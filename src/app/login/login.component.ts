@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     cognitoUser.authenticateUser(authDetails, {
       onSuccess: (result) => {
         console.log('access token + ' + result.getAccessToken().getJwtToken());
-        this.router.navigate(['/home']);
+        this.router.navigate(['/adminhome']);
       }
       ,
       onFailure: (err) => {

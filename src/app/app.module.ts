@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AppointmentformComponent } from './appointmentform/appointmentform.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SingupComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    AppointmentformComponent
   ],
   imports: [
     BrowserModule,

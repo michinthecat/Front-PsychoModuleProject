@@ -5,13 +5,15 @@ import { SingupComponent } from './singup/singup.component';
 import { HomeComponent } from './home/home.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeGuard } from './guards/home.guard';
+import { AppointmentformComponent } from './appointmentform/appointmentform.component';
 
 
 const routes: Routes = [
   {path:'', component: LoginComponent, canActivate: [LoginGuard]},
   {path:'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path:'signup', component: SingupComponent, canActivate: [LoginGuard]},
-  {path:'home', component: HomeComponent, canActivate: [HomeGuard]},
+  {path:'appointmentform', component: AppointmentformComponent},
+  {path:'adminhome', component: HomeComponent, canActivate: [HomeGuard]},
   {path:'**',redirectTo:'', pathMatch:'full' }
 
 ];
