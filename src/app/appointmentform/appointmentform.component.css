@@ -1,0 +1,10 @@
+.collage-section {
+    margin: 50px;
+    flex: 1;
+    width: 80%;
+    
+  }
+  .form-container {
+    margin: 50px;
+    left: -150px;
+  }

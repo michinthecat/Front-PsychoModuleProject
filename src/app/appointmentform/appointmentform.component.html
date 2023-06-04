@@ -1,16 +1,114 @@
-<section class="d-flex justify-content-center">
-  <div class="card col-md-5">
-      <h4>Contacto</h4>
-  </div>
-  <div>
-      <form>
-          <div>
-              <label for="nombre">Nombre</label>
-              <input type="text" name="nombre" id="nombre" placeholder="">
+<section class="d-flex justify-content-center align-items-center">
+    <div class="collage-section">
+      <img class="collage-section" src="assets/Collage.png">
+    </div>
+    <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4 p-4 form-container">
+      <div class="mb-4 d-flex justify-content-start align-items-center">
+        <h4><i class="bi bi-calendar-check"></i>&nbsp;Agenda tu cita</h4>
+      </div>
+      <div class="mb-1">
+        <form id="contacto">
+          <div class="mb-4 d-flex justify-content-between">
+            <div>
+              <label for="nombre"><i class="bi bi-person-fill"></i> Nombre</label>
+              <input type="text" class="form-control" name="nombre" id="nombre" placeholder="ej: Gabriel" required>
+              <div class="nombre text-danger"></div>
+            </div>
+            <div>
+              <label for="apellido"><i class="bi bi-person-bounding-box"></i> Apellido</label>
+              <input type="text" class="form-control" name="apellido" id="apellido" placeholder="ej: Pacheco" required>
+              <div class="apellido text-danger"></div>
+            </div>
           </div>
-      </form>
-  </div>
-
-
-
-</section>
+          <div class="mb-4">
+            <label for="correo"><i class="bi bi-envelope-fill"></i> Correo</label>
+            <input type="email" class="form-control" name="correo" id="correo" placeholder="ej: gpmcheco@mail.com" required>
+            <div class="correo text-danger"></div>
+          </div>
+          <div class="form-group">
+            <label for="tipoVinculacion">Tipo de vinculación</label>
+            <select class="form-control" id="tipoVinculacion">
+              <option *ngFor="let pacient of pacientType">{{pacient}}</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="tipoVinculacion">Programa académico</label>
+            <select class="form-control" id="programa">
+              <option *ngFor="let academic of academics">{{academic}}</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="tipoVinculacion">Semestre</label>
+            <select class="form-control" id="semestre">
+              <option *ngFor="let semester of semesters">{{semester}}</option>
+            </select>
+          </div>
+          <br>
+          <div class="mb-4">
+            <label for="genero"><i class="bi bi-gender-ambiguous"></i> Género</label>
+            <div>
+              <input type="radio" class="form-check-input" name="genero" value="masculino"> Masculino
+              <input type="radio" class="form-check-input" name="genero" value="femenino"> Femenino
+              <input type="radio" class="form-check-input" name="genero" value="otro"> Otro
+              <div class="genero text-danger"></div>
+            </div>
+          </div>
+          <div class="mb-4 d-flex justify-content-between">
+            <div>
+              <label for="edad"><i class="bi bi-person-plus-fill"></i> Edad</label>
+              <input type="text" class="form-control" name="edad" id="edad" required>
+              <div class="edad text-danger"></div>
+            </div>
+            <div>
+              <label for="telefono"><i class="bi bi-telephone-fill"></i> Teléfono</label>
+              <input type="text" class="form-control" name="telefono" id="telefono" required>
+              <div class="telefono text-danger"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Seleccione el servicio de interés</label>
+            <select class="form-control" id="tipoVinculacion">
+              <option *ngFor="let service of services">{{service}}</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="servicio">Seleccione el/la profesional</label>
+            <select class="form-control" id="tipoVinculacion">
+              <option *ngFor="let psychologist of psychologists">{{psychologist}}</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <div class="form-group">
+              <label for="fecha">Fecha</label>
+              <input type="date" id="start" class="form-control" name="fecha">
+            </div>
+          </div>
+          <br>
+          <div>
+            <div>
+              <label for="hora"><i class="bi bi-clock-fill"></i> Hora</label>
+            </div>
+            <div style="text-align:center">
+              <h1>
+                <tr>
+                  <td *ngFor="let times of time">
+                    <button class="btn btn-primary">{{times}}</button>
+                  </td>
+                </tr>
+              </h1>
+            </div>
+          </div>
+          <br>
+          <div>
+            <button id="botton" class="col-12 btn btn-primary justify-content-between">
+              <span>Enviar</span><i id="icono" class="bi bi-cursor-fill"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
