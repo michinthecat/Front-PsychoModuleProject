@@ -21,6 +21,11 @@
     border-radius: 25px;
   }
 
+  .button-container {
+    display: flex;
+    gap: 10px; /* Ajusta el valor según el espaciado deseado */
+  }
+
 @keyframes animate {
     0%{
         background-position: 0 50%;
