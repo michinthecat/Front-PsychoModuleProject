@@ -1,8 +1,7 @@
 export class DatesByPsycologist {
     constructor(
-        public cedula: string = '', 
-        public id: string ="",
-        public fecha: Date = new Date(),
-        public hora: string ="",
+        public id: string = '', 
+        public date: Date = new Date(),
+        public time: string ="",
     ){}
 }

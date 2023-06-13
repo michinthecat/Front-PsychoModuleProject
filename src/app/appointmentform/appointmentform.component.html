@@ -13,94 +13,97 @@
         <form id="contacto">
           <div class="mb-4 d-flex justify-content-between">
             <div>
-              <label for="nombre"><i class="bi bi-person-fill"></i> Nombre</label>
-              <input type="text" class="form-control" name="nombre" id="nombre" placeholder="ej: Gabriel" required (input)="validateInput($event, 'nombre')">
-              <div class="nombre text-danger"></div>
+              <label for="name"><i class="bi bi-person-fill"></i> Nombre</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="ej: Gabriel" required (input)="validateInput($event, 'name')">
+              <div class="name text-danger"></div>
             </div>
             <div>
-              <label for="apellido"><i class="bi bi-person-bounding-box"></i> Apellido</label>
-              <input type="text" class="form-control" name="apellido" id="apellido" placeholder="ej: Pacheco" required (input)="validateInput($event, 'apellido')">
-              <div class="apellido text-danger"></div>
+              <label for="lastname"><i class="bi bi-person-bounding-box"></i> Apellido</label>
+              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="ej: Pacheco" required (input)="validateInput($event, 'lastname')">
+              <div class="lastname text-danger"></div>
             </div>
           </div>
           <div class="mb-4">
-            <label for="correo"><i class="bi bi-envelope-fill"></i> Correo</label>
-            <input type="email" class="form-control" name="correo" id="correo" placeholder="ej: gpmcheco@mail.com" required (input)="validateCorreo($event)">
-            <div class="correo text-danger"></div>
+            <label for="email"><i class="bi bi-envelope-fill"></i> Correo</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="ej: gpmcheco@mail.com" required (input)="validateEmail($event)">
+            <div class="email text-danger"></div>
           </div>
           <div class="form-group">
-            <label for="tipoVinculacion">Tipo de vinculación</label>
-            <select class="form-control" id="tipoVinculacion" (change)="onTipoVinculacionSelected($event)">
-              <option *ngFor="let pacient of userType">{{pacient}}</option>
+            <label for="linkage">Tipo de vinculación</label>
+            <select class="form-control" id="linkage" (change)="onLinkageSelected($event)">
+              <option *ngFor="let pacient of userType" [value]="pacient.id" >{{pacient.type}}</option>
             </select>
           </div>
           <br>
           <div class="form-group" *ngIf="showFields" >
-            <label for="tipoVinculacion">Programa académico</label>
-            <select class="form-control" id="programa">
-              <option *ngFor="let academic of academics">{{academic}}</option>
+            <label for="program">Programa académico</label>
+            <select class="form-control" id="program">
+              <option *ngFor="let academic of academics" [value]="academic.id">{{academic.program}}</option>
             </select>
           </div>
           <br>
           <div class="form-group" *ngIf="showFields">
-            <label for="tipoVinculacion">Semestre</label>
-            <select class="form-control" id="semestre">
-              <option *ngFor="let semester of semesters">{{semester}}</option>
+            <label for="semester">Semestre</label>
+            <select class="form-control" id="semester">
+              <option *ngFor="let semester of semesters" [value]="semester.id">{{semester.semester}}</option>
             </select>
           </div>
           <br>
           <div class="mb-4">
-            <label for="genero"><i class="bi bi-gender-ambiguous"></i> Género</label>
-            <div>
-              <input type="radio" class="form-check-input" name="genero" value="masculino"> Masculino
-              <input type="radio" class="form-check-input" name="genero" value="femenino"> Femenino
-              <input type="radio" class="form-check-input" name="genero" value="otro"> Otro
-              <div class="genero text-danger"></div>
+            <div class="form-group">
+              <label for="gender"><i class="bi bi-gender-ambiguous"></i> Género</label>
+              <select class="form-control" id="gender">
+                <option *ngFor="let gender of genders" [value]="gender.id" >{{gender.gender}}</option>
+              </select>
             </div>
           </div>
           <div class="mb-4 d-flex justify-content-between">
             <div>
-              <label for="edad"><i class="bi bi-person-plus-fill"></i> Edad</label>
-              <input type="number" class="form-control" name="edad" id="edad" required maxlength="2" (input)="validateEdad($event)">
-              <div class="edad text-danger"></div>
+              <label for="age"><i class="bi bi-person-plus-fill"></i> Edad</label>
+              <input type="number" class="form-control" name="age" id="age" required maxlength="2" (input)="validateAge($event)">
+              <div class="age text-danger"></div>
             </div>
             <div>
-              <label for="telefono"><i class="bi bi-telephone-fill"></i> Teléfono</label>
-              <input type="number" class="form-control" name="telefono" id="telefono" required maxlength="10" (input)="validateTelefono($event)">
-              <div class="telefono text-danger"></div>
+              <label for="phone"><i class="bi bi-telephone-fill"></i> Teléfono</label>
+              <input type="number" class="form-control" name="phone" id="phone" required maxlength="10" (input)="validatePhone($event)">
+              <div class="phone text-danger"></div>
             </div>
           </div>
           <div class="form-group">
-            <label for="servicio">Seleccione el servicio de interés</label>
-            <select class="form-control" id="tipoVinculacion" (change)="onServiceSelected($event.target)">
-              <option *ngFor="let service of services" [value]="service.id">{{service.nombre_servicio}}</option>
+            <label for="service">Seleccione el servicio de interés</label>
+            <select class="form-control" id="service" name="service" [(ngModel)]="selectedService" (ngModelChange)="onServiceSelected($event)">
+              <option *ngFor="let service of services" [value]="service.id">{{service.service_name}}</option>
             </select>
           </div>
+          
+          
+          
           <br>
           <div class="form-group">
-            <label for="servicio">Seleccione el/la profesional</label>
-            <select class="form-control" id="psicologo" (change)="onPsychologistSelected($event)" >
-              <option *ngFor="let psychologist of psychologistsByService" [value]="psychologist.cedula" >{{psychologist.nombre + ' ' + psychologist.apellido}}</option>
+            <label for="psychologist">Seleccione el/la profesional</label>
+            <select class="form-control" id="psychologist" name="psychologist" [(ngModel)]="selectedPsychologistId" (ngModelChange)="onPsychologistSelected($event)">
+              <option *ngFor="let psychologist of psychologistsByService" [value]="psychologist.id">{{psychologist.name + ' ' + psychologist.last_name}}</option>
             </select>
           </div>
+          
           <br>
           <div>
             <div class="form-group">
-              <label for="fecha">Fecha</label>
-              <input type="date" id="start" class="form-control" name="fecha" (change)="onDateSelected($event)">
+              <label for="date">Fecha</label>
+              <input type="date" id="date" class="form-control" name="date" (change)="onDateSelected($event)">
             </div>
           </div>
           <br>
           <div>
             <div>
-              <label for="hora"><i class="bi bi-clock-fill"></i> Hora</label>
+              <label for="time"><i class="bi bi-clock-fill"></i> Hora</label>
             </div>
             <div style="text-align:center">
               <tr>
                 <td>
                   <div class="button-container">
-                    <button class="btn btn-primary" *ngFor="let times of time">
-                      {{ formatHour(times.hora) }}
+                    <button class="btn btn-primary" *ngFor="let times of time" id="time" (click)="selectedTime = times.time">
+                      {{ formatHour(times.time) }}
                     </button>
                   </div>
                   <br>
@@ -110,11 +113,29 @@
           </div>
           <br>
           <div>
-            <button id="botton" class="col-12 btn btn-primary justify-content-between">
+            <button id="botton" class="col-12 btn btn-primary justify-content-between" (click)="createAppointment()" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <span>Enviar</span><i id="icono" class="bi bi-cursor-fill"></i>
             </button>
           </div>
         </form>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

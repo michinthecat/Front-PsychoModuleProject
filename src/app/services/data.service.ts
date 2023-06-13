@@ -4,7 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { Psychologist } from '../models/psychologist.model';
 import { PsycologistByService } from '../models/psycologist-by-service.model';
 import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
-
+import { StudentAppointmentData } from '../models/student-appointment-data.model'
+import { ExternalAppointmentData } from '../models/external-appointment-data.model'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  getGenders(): Observable<any[]>{
+    const url = this.apiUrl + '/genders'
+    return this.http.get<any[]>(url);
+  }
+
   getServices(): Observable<any[]>{
     const url = this.apiUrl + '/services'
     return this.http.get<any[]>(url);
@@ -21,11 +27,6 @@ export class DataService {
 
   getPrograms(): Observable<any[]>{
     const url = this.apiUrl + '/programs'
-    return this.http.get<any[]>(url);
-  }
-
-  getPshicologists(): Observable<any[]>{
-    const url = this.apiUrl + '/psychologists'
     return this.http.get<any[]>(url);
   }
 
@@ -40,15 +41,23 @@ export class DataService {
   }
 
   getPsychologistsByService(service: string): Observable<PsycologistByService[]> {
-    const url = this.apiUrl + '/psychologists/byservice?serviciosid=' + service;
-    console.log(this.http.get<PsycologistByService[]>(url))
+    const url = this.apiUrl + '/psychologists/byservice?serviceId=' + service;
     return this.http.get<PsycologistByService[]>(url);  
   }
   
   getDatesByPsycologist(idPsycologist: string, date: string): Observable<DatesByPsycologist[]>{
-    const url = this.apiUrl + '/times/by-date?cedula= ' + idPsycologist + '&' +'fecha='+ date;
-    console.log(this.http.get<PsycologistByService[]>(url))
+    const url = this.apiUrl + '/times/by-date?id= ' + idPsycologist + '&' +'date='+ date;
     return this.http.get<DatesByPsycologist[]>(url);  
+  }
+
+  createStudentAppointment(studentAppointmentData: StudentAppointmentData): Observable<any>{
+    const url = this.apiUrl + '/appointments/students'
+    return this.http.post(url, studentAppointmentData);
+  }
+
+  createExternalAppointment(externalAppointmentData: ExternalAppointmentData){
+    const url = this.apiUrl + '/appointments/externals';
+    return this.http.post(url, externalAppointmentData);
   }
 
 

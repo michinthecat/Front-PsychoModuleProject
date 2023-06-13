@@ -7,6 +7,10 @@ import { Psychologist } from '../models/psychologist.model';
 import { Semester } from '../models/semester.model';
 import { PsycologistByService } from '../models/psycologist-by-service.model';
 import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
+import { StudentAppointmentData } from '../models/student-appointment-data.model'
+import { ExternalAppointmentData } from '../models/external-appointment-data.model'
+import { Gender } from '../models/gender.model';
+
 
 
 @Component({
@@ -16,84 +20,91 @@ import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
 })
 export class AppointmentformComponent implements OnInit{
   time: DatesByPsycologist[];
-  userType: string[];
+  userType: UserType[];
   services: Service[];
+  genders: Gender[];
   selectedService: string;
   psychologists: Psychologist[]; 
   psychologistsByService: PsycologistByService [];
-  academics: string[];
-  semesters: string[];
+  academics: Program[];
+  semesters: Semester[];
   selectedDate: string;
-  selectedPsychologistCedula: string;
-  selectedTipoVinculacion: string;
-  showFields: boolean = false; // Agrega esta línea
-
+  selectedPsychologistId: string;
+  selectedLinkage: string;
+  showFields: boolean = false; 
+  selectedTime: string;
 
   constructor(private dataService: DataService){}
 
   ngOnInit(): void {
 
-    this.dataService.getServices().subscribe((servicios: Service[]) => {
-      this.services = servicios; // Asignar el arreglo de objetos Service
+    this.dataService.getGenders().subscribe((gender: Gender[]) => {
+      this.genders = gender;
+    });
+
+    this.dataService.getServices().subscribe((service: Service[]) => {
+      this.services = service; // Asignar el arreglo de objetos Service
     });
   
 
-    this.dataService.getPrograms().subscribe((programas: Program[]) =>{
-      this.academics = programas.map(programa => programa.programa);
+    this.dataService.getPrograms().subscribe((program: Program[]) =>{
+      this.academics = program;
     });
 
 
-    this.dataService.getUserType().subscribe((tipoUsuarios: UserType[]) =>{
-      this.userType = tipoUsuarios.map(tipoUsuario => tipoUsuario.tipo_paciente);
+    this.dataService.getUserType().subscribe((userType: UserType[]) =>{
+      this.userType = userType;
     });
 
-    this.dataService.getSemesters().subscribe((semestres: Semester[]) =>{
-      this.semesters = semestres.map(semestre => semestre.semestre);
+    this.dataService.getSemesters().subscribe((semester: Semester[]) =>{
+      this.semesters = semester;
     });
   }
 
-  onTipoVinculacionSelected(event: any): void { // Agrega este método
-    const selectedTipoVinculacion: string = event.target.value;
-    this.showFields = selectedTipoVinculacion === 'Estudiante';
+  onLinkageSelected(event: any): void { // Agrega este método
+    const selectedLinkage: string = event.target.value;
+    this.showFields = selectedLinkage === '1';
   }
 
-  onServiceSelected(event: EventTarget): void {
-    const selectElement = event as HTMLSelectElement;
-    const selectedServiceId = selectElement.value; // Obtener el ID del servicio seleccionado
-    
-    console.log(selectedServiceId + "Hola");
 
-    this.dataService.getPsychologistsByService(selectedServiceId).subscribe((psychologistsByService: PsycologistByService[]) => {
+  onServiceSelected(selectedService: string): void {
+    console.log(selectedService);
+  
+    this.dataService.getPsychologistsByService(selectedService).subscribe((psychologistsByService: PsycologistByService[]) => {
       this.psychologistsByService = psychologistsByService;
     });
-
-    console.log(this.psychologists);
   }
+  
+
 
   onDateSelected(event: any): void {
-    const selectedDate: string = event.target.value;
-    this.selectedDate = selectedDate;
-    this.retrieveData();
-    
+    if (event.target && event.target.value) {
+      const selectedDate: string = event.target.value;
+      this.selectedDate = selectedDate;
+      this.retrieveData();
+    }
   }
   
   onPsychologistSelected(event: any): void {
-    const selectedPsychologistCedula: string = event.target.value;
-    this.selectedPsychologistCedula = selectedPsychologistCedula;
-    this.retrieveData();
+    if (event.target && event.target.value) {
+      const selectedPsychologistId: string = event.target.value;
+      this.selectedPsychologistId = selectedPsychologistId;
+      this.retrieveData();
+    }
   }
   
   retrieveData(): void {
-    if (this.selectedDate && this.selectedPsychologistCedula) {
+    if (this.selectedDate && this.selectedPsychologistId) {
       console.log('fecha: ' + this.selectedDate);
-      console.log('psicologo: ' + this.selectedPsychologistCedula);
-
-      this.dataService.getDatesByPsycologist(this.selectedPsychologistCedula, this.selectedDate).subscribe((datesByPsycologist: DatesByPsycologist[]) =>{
+      console.log('psicologo: ' + this.selectedPsychologistId);
+  
+      this.dataService.getDatesByPsycologist(this.selectedPsychologistId, this.selectedDate).subscribe((datesByPsycologist: DatesByPsycologist[]) => {
         this.time = datesByPsycologist;
         console.log(this.time)
       });
     }
   }
+  
 
   formatHour(hour: string): string {
     // Verificar si la cadena tiene el formato esperado
@@ -127,70 +138,70 @@ export class AppointmentformComponent implements OnInit{
   }
   
 
-  validateCorreo(event: Event): void {
+  validateEmail(event: Event): void {
   const inputElement = event.target as HTMLInputElement;
-  const correo = inputElement.value.trim();
+  const email = inputElement.value.trim();
 
-  if (correo === '') {
+  if (email === '') {
     // Si el campo está vacío, mostrar un mensaje de error
     inputElement.classList.add('is-invalid');
-    const errorElement = document.querySelector('.correo.text-danger');
+    const errorElement = document.querySelector('.email.text-danger');
     if (errorElement) {
       errorElement.textContent = 'Por favor, ingresa un correo electrónico';
     }
   } else if (!inputElement.validity.valid) {
     // Si el formato del correo electrónico no es válido, mostrar un mensaje de error
     inputElement.classList.add('is-invalid');
-    const errorElement = document.querySelector('.correo.text-danger');
+    const errorElement = document.querySelector('.email.text-danger');
     if (errorElement) {
       errorElement.textContent = 'El correo electrónico ingresado no es válido';
     }
   } else {
     // Si el correo electrónico es válido, eliminar cualquier mensaje de error y la clase de inválido
     inputElement.classList.remove('is-invalid');
-    const errorElement = document.querySelector('.correo.text-danger');
+    const errorElement = document.querySelector('.email.text-danger');
     if (errorElement) {
       errorElement.textContent = '';
     }
   }
 }
 
-validateEdad(event: Event): void {
+validateAge(event: Event): void {
   const inputElement = event.target as HTMLInputElement;
-  const edad = inputElement.value.trim();
+  const age = inputElement.value.trim();
 
-  if (/^\d{0,2}$/.test(edad)) {
+  if (/^\d{0,2}$/.test(age)) {
     // Si la edad contiene solo números y tiene máximo 2 caracteres, es válida
     inputElement.classList.remove('is-invalid');
-    const errorElement = document.querySelector('.edad.text-danger');
+    const errorElement = document.querySelector('.age.text-danger');
     if (errorElement) {
       errorElement.textContent = '';
     }
   } else {
     // Si la edad no cumple con el formato o tiene más de 2 caracteres, mostrar un mensaje de error
     inputElement.classList.add('is-invalid');
-    const errorElement = document.querySelector('.edad.text-danger');
+    const errorElement = document.querySelector('.age.text-danger');
     if (errorElement) {
       errorElement.textContent = 'La edad debe ser un número de máximo 2 caracteres';
     }
   }
 }
 
-validateTelefono(event: Event): void {
+validatePhone(event: Event): void {
   const inputElement = event.target as HTMLInputElement;
-  const telefono = inputElement.value.trim();
+  const phone = inputElement.value.trim();
 
-  if (/^\d{0,10}$/.test(telefono)) {
+  if (/^\d{0,10}$/.test(phone)) {
     // Si el teléfono contiene solo números y tiene máximo 10 caracteres, es válido
     inputElement.classList.remove('is-invalid');
-    const errorElement = document.querySelector('.telefono.text-danger');
+    const errorElement = document.querySelector('.phone.text-danger');
     if (errorElement) {
       errorElement.textContent = '';
     }
   } else {
     // Si el teléfono no cumple con el formato o tiene más de 10 caracteres, mostrar un mensaje de error
     inputElement.classList.add('is-invalid');
-    const errorElement = document.querySelector('.telefono.text-danger');
+    const errorElement = document.querySelector('.phone.text-danger');
     if (errorElement) {
       errorElement.textContent = 'El teléfono debe ser un número de máximo 10 caracteres';
     }
@@ -198,5 +209,91 @@ validateTelefono(event: Event): void {
 }
 
 
+
+
+  createAppointment(): void{
+
+    console.log('Hola desde createAppointment')
+
+    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const last_name = (document.getElementById('lastname') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const linkage = (document.getElementById('linkage') as HTMLSelectElement).value;
+    const program = (document.getElementById('program') as HTMLInputElement)?.value;
+    const semester = (document.getElementById('semester') as HTMLInputElement)?.value;
+    const gender =   (document.getElementById('gender') as HTMLInputElement)?.value;
+    const age = (document.getElementById('age') as HTMLInputElement).value;
+    const phone = (document.getElementById('phone') as HTMLInputElement).value;
+    const service = (document.getElementById('service') as HTMLInputElement).value;
+    const psychologist = (document.getElementById('psychologist') as HTMLInputElement).value;
+    const date = (document.getElementById('date') as HTMLInputElement).value;
+    const time = this.selectedTime;
+
+    if(linkage === '1'){
+
+      const studentAppointmentData:  StudentAppointmentData= {
+        name,
+        last_name,
+        email,
+        linkage,
+        program,
+        semester,
+        gender,
+        age,
+        phone,
+        service,
+        psychologist,
+        date,
+        time
+      };
+
+      console.log(studentAppointmentData);
+       this.dataService.createStudentAppointment(studentAppointmentData)
+       .subscribe(
+         (response) => {
+           console.log('Cita creada exitosamente:', response);
+           // Realizar cualquier acción adicional después de crear la cita
+         },
+         (error) => {
+           console.error('Error al crear la cita:', error);
+           // Manejar el error de creación de cita
+         }
+       );
+
+    }
+    else{
+      const externalAppointmentData: ExternalAppointmentData = {
+        name,
+        last_name,
+        email,
+        linkage,
+        gender,
+        age,
+        phone,
+        service,
+        psychologist,
+        date,
+        time 
+      };
+
+      console.log(externalAppointmentData);
+      this.dataService.createExternalAppointment(externalAppointmentData)
+      .subscribe(
+        (response) => {
+          console.log('Cita creada exitosamente:', response);
+          // Realizar cualquier acción adicional después de crear la cita
+        },
+        (error) => {
+          console.error('Error al crear la cita:', error);
+          // Manejar el error de creación de cita
+        }
+      );
+    }
+   
+
+    console.log('Hola');
+   
+
+  }
 
 }

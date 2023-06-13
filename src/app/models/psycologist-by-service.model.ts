@@ -1,9 +1,9 @@
 export class PsycologistByService {
     constructor(
-        public nombre: number = 0,
-        public apellido: string ="",
-        public cedula: string ="",
-        public nombre_servicio: string ="",
+        public name: number = 0,
+        public last_name: string ="",
+        public id: string ="",
+        public service_name: string ="",
     ){}
 
 }
