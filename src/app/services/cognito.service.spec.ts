@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ModalService } from './modal.service';
+import { CognitoService } from './cognito.service';
 
-describe('ModalService', () => {
-  let service: ModalService;
+describe('CognitoService', () => {
+  let service: CognitoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ModalService);
+    service = TestBed.inject(CognitoService);
   });
 
   it('should be created', () => {

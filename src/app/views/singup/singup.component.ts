@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { CognitoUserAttribute, CognitoUserPool } from 'amazon-cognito-identity-js';
-import { Iuser } from '../models/iuser';
+import { Iuser } from '../../models/iuser';
 import { Router } from '@angular/router';
-import { ModalService } from '../modal.service';
+
 
 
 @Component({
@@ -19,7 +19,7 @@ export class SingupComponent implements OnInit {
   password: string;
 
 
-  constructor(private router : Router, private modalService: ModalService) {  }
+  constructor(private router : Router) {  }
 
   ngOnInit(): void {
 
