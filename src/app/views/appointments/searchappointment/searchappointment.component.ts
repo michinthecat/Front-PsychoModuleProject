@@ -1,14 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Appointment, Psychologist, Patient, Service, State } from 'src/app/models/appointment/appointment.model';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Appointment, Patient, Psychologist, Service, State } from 'src/app/models/appointment/appointment.model';
+import { AppointmentService } from '../../../services/appointment/appointment.service';
+import { ModalService } from '../../../services/modal/modal.service';
+import { DateFormatService } from '../../../services/date-format/date-format.service';
 
 @Component({
   selector: 'app-searchappointment',
   templateUrl: './searchappointment.component.html',
-  styleUrls: ['./searchappointment.component.css']
+  styleUrls: ['./searchappointment.component.css'],
+  providers: [AppointmentService, ModalService, DateFormatService]
 })
-
 export class SearchappointmentComponent {
   @ViewChild('content') content: any;
   @ViewChild('rescheduleModal') rescheduleModal: any;
@@ -22,19 +24,26 @@ export class SearchappointmentComponent {
   modalBody: string;
   newAppointmentDate: string;
   rescheduleModalRef: NgbModalRef;
-  searchComplete: boolean = false;
+  searchComplete = false;
 
-  constructor(private http: HttpClient, private modalService: NgbModal) {}
+  constructor(
+    private appointmentService: AppointmentService,
+    private modalService: ModalService,
+    private dateFormatService: DateFormatService
+  ) {}
+
 
   searchAppointment() {
     if (this.appointmentId) {
-      const url = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}`;
-      this.http.get<Appointment>(url).subscribe(
+      this.appointmentService.searchAppointment(this.appointmentId).subscribe(
         (appointment: Appointment) => {
           this.handleAppointmentSuccess(appointment);
         },
         (error) => {
-          this.handleAppointmentError(error);
+          this.openModal(
+            'Error al buscar la cita',
+            `Error: ${error.error}`
+          );
         }
       );
     }
@@ -49,21 +58,23 @@ export class SearchappointmentComponent {
     this.searchComplete = true;
   }
 
-  handleAppointmentError(error: any) {
-    this.openModal('Error al buscar la cita', `Hubo un error al buscar la cita con ID ${this.appointmentId}. Error: ${error.message}`);
-  }
 
   rescheduleAppointment() {
     if (this.appointmentId && this.newAppointmentDate) {
-      const rescheduleUrl = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}/reschedule?newDate=${this.newAppointmentDate}`;
-      this.http.put(rescheduleUrl, {}).subscribe(
+      this.appointmentService.rescheduleAppointment(this.appointmentId, this.newAppointmentDate).subscribe(
         () => {
           this.newAppointmentDate = this.newAppointmentDate;
           this.rescheduleModalRef.close('reprogramadoExitosamente');
-          this.openModal('Cita Reprogramada', `La cita con ID ${this.appointmentId} ha sido reprogramada exitosamente.`);
+          this.openModal(
+            'Cita Reprogramada ✅',
+            `La cita con ID ${this.appointmentId} ha sido reprogramada exitosamente.`
+          );
         },
         (error) => {
-          this.openModal('Error al Reprogramar la Cita', `Hubo un error al intentar reprogramar la cita con ID ${this.appointmentId}. Error: ${error}`);
+          this.openModal(
+            'Error al Reprogramar la Cita',
+            `Hubo un error al intentar reprogramar la cita con ID ${this.appointmentId}. Codigo: ${error.error}`
+          );
         }
       );
     }
@@ -71,54 +82,51 @@ export class SearchappointmentComponent {
 
   cancelAppointment() {
     if (this.appointmentId) {
-      const cancelUrl = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}/cancel`;
-      this.http.put(cancelUrl, {}, { responseType: 'text' }).subscribe(
+      this.appointmentService.cancelAppointment(this.appointmentId).subscribe(
         () => {
+          this.openModal(
+            'Cita Cancelada',
+            `La cita con ID ${this.appointmentId} ha sido cancelada exitosamente.`
+          );
           this.searchAppointment();
-          this.openModal('Cita Cancelada', `La cita con ID ${this.appointmentId} ha sido cancelada exitosamente.`);
         },
         (error) => {
-          this.openModal('Error al Cancelar la Cita', `Hubo un error al intentar cancelar la cita con ID ${this.appointmentId}. Error: ${error}`);
+          this.openModal(
+            'Error al Cancelar la Cita',
+            `Hubo un error al intentar cancelar la cita con ID ${this.appointmentId}. Codigo: ${error.error}`
+          );
         }
       );
     }
   }
 
   openModal(title: string, body: string) {
-    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-      (result) => {},
-      (reason) => {}
-    );
+    this.modalService.openModal(this.content);
     this.modalTitle = title;
     this.modalBody = body;
   }
 
   openRescheduleModal() {
-    this.rescheduleModalRef = this.modalService.open(this.rescheduleModal, { ariaLabelledBy: 'modal-basic-title' });
-    this.rescheduleModalRef.result.then(
-      (result) => {
-        if (result === 'reprogramadoExitosamente') {
-          this.searchAppointment();
+    this.rescheduleModalRef = this.modalService.openModal(this.rescheduleModal);
+    if (this.rescheduleModalRef) {
+      this.rescheduleModalRef.result.then(
+        (result) => {
+          if (result === 'reprogramadoExitosamente') {
+            this.searchAppointment();
+          }
+        },
+        (reason) => {
+          if (reason === 'reprogramadoExitosamente') {
+            this.searchAppointment();
+          }
         }
-      },
-      (reason) => {
-        if (reason === 'reprogramadoExitosamente') {
-          this.searchAppointment();
-        }
-      }
-    );
+      );
+    }
   }
 
   formatDate(dateString: string): string {
-    const day = dateString.slice(8, 10);
-    const month = dateString.slice(5, 7);
-    const year = dateString.slice(0, 4);
-    const hourMinute = dateString.slice(11, 16);
-
-    return `${day}/${month}/${year} ${hourMinute}`;
+    return this.dateFormatService.formatDate(dateString);
   }
-
-
 
   clearSearch() {
     this.appointmentId = '';
@@ -129,8 +137,4 @@ export class SearchappointmentComponent {
     this.state = null;
     this.searchComplete = false;
   }
-
-
-
-
 }

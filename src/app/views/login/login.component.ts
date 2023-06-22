@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
 
     var poolData = {
-      UserPoolId: environment.UserPoolId, // Your user pool id here
-      ClientId: environment.ClientId, // Your client id here
+      UserPoolId: environment.UserPoolId,
+      ClientId: environment.ClientId,
     };
 
     var userPool = new CognitoUserPool(poolData);
@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
 
     var authDetails = new AuthenticationDetails(authData);
 
-    //login
     cognitoUser.authenticateUser(authDetails, {
       onSuccess: (result) => {
         console.log('access token + ' + result.getAccessToken().getJwtToken());

@@ -11,6 +11,9 @@ import { SearchappointmentComponent } from './views/appointments/searchappointme
 import { MenuComponent } from './menu/menu.component';
 import { ShowappointmentComponent } from './views/appointments/showappointment/showappointment.component';
 import { NotFoundComponent } from './views/notfound/notfound.component';
+import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
+import { NotespatientComponent } from './views/patients/notespatient/notespatient.component';
+import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 
 
 const routes: Routes = [
@@ -23,6 +26,9 @@ const routes: Routes = [
   {path: 'cancel-appointment', component: CancelappointmentComponent, canActivate: [HomeGuard]},
   {path: 'search-appointment', component: SearchappointmentComponent, canActivate: [HomeGuard]},
   {path: 'show-appointment', component: ShowappointmentComponent, canActivate: [HomeGuard]},
+  {path: 'search-patient' , component: SearchpatientComponent, canActivate: [HomeGuard]},
+  {path: 'patient-notes' , component: NotespatientComponent, canActivate: [HomeGuard]},
+  {path: 'update-patient' , component: UpdatepatientComponent, canActivate: [HomeGuard]},
   {path: '**', component: NotFoundComponent }
 
 ];
