@@ -8,6 +8,7 @@ import { Appointment, Psychologist, Patient, Service, State } from 'src/app/mode
   templateUrl: './searchappointment.component.html',
   styleUrls: ['./searchappointment.component.css']
 })
+
 export class SearchappointmentComponent {
   @ViewChild('content') content: any;
   @ViewChild('rescheduleModal') rescheduleModal: any;

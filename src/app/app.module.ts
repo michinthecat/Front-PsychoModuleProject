@@ -14,6 +14,8 @@ import { AppointmentformComponent } from './appointmentform/appointmentform.comp
 import { CancelappointmentComponent } from './views/appointments/cancelappointment/cancelappointment.component';
 import { ShowappointmentComponent } from './views/appointments/showappointment/showappointment.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
+import { NotFoundComponent } from './views/notfound/notfound.component';
+
 
 
 
@@ -27,7 +29,8 @@ import { SearchappointmentComponent } from './views/appointments/searchappointme
     AppointmentformComponent,
     CancelappointmentComponent,
     ShowappointmentComponent,
-    SearchappointmentComponent
+    SearchappointmentComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import { AppointmentformComponent } from './appointmentform/appointmentform.comp
 import { CancelappointmentComponent } from './views/appointments/cancelappointment/cancelappointment.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { MenuComponent } from './menu/menu.component';
+import { ShowappointmentComponent } from './views/appointments/showappointment/showappointment.component';
+import { NotFoundComponent } from './views/notfound/notfound.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,8 @@ const routes: Routes = [
   {path:'menu', component: MenuComponent, canActivate: [HomeGuard]},
   {path: 'cancel-appointment', component: CancelappointmentComponent, canActivate: [HomeGuard]},
   {path: 'search-appointment', component: SearchappointmentComponent, canActivate: [HomeGuard]},
-  {path:'**',redirectTo:'', pathMatch:'full' }
+  {path: 'show-appointment', component: ShowappointmentComponent, canActivate: [HomeGuard]},
+  {path: '**', component: NotFoundComponent }
 
 ];
 
