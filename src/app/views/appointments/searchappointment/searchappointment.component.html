@@ -38,7 +38,7 @@
             </div>
             <div class="card-body">
               <p><strong>ID:</strong> <span class="font-weight-bold">{{ appointment.id }}</span></p>
-              <p><strong>Fecha:</strong> {{ appointment.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+              <p><strong>Fecha:</strong> {{ formatDate(appointment.date) }}</p>
               <p><strong>Servicio:</strong> {{ service.serviceName }}</p>
               <p><strong>Descripción:</strong> {{ service.description }}</p>
               <p><strong>Costo:</strong> {{ service.cost }}</p>

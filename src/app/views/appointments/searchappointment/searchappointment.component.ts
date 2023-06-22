@@ -31,18 +31,26 @@ export class SearchappointmentComponent {
       const url = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}`;
       this.http.get<Appointment>(url).subscribe(
         (appointment: Appointment) => {
-          this.appointment = appointment;
-          this.patient = appointment.patient;
-          this.psychologist = appointment.psychologist;
-          this.service = appointment.service;
-          this.state = appointment.state;
-          this.searchComplete = true;
+          this.handleAppointmentSuccess(appointment);
         },
         (error) => {
-          this.openModal('Error al buscar la cita', `Hubo un error al buscar la cita con ID ${this.appointmentId}. Error: ${error.message}`);
+          this.handleAppointmentError(error);
         }
       );
     }
+  }
+
+  handleAppointmentSuccess(appointment: Appointment) {
+    this.appointment = appointment;
+    this.patient = appointment.patient;
+    this.psychologist = appointment.psychologist;
+    this.service = appointment.service;
+    this.state = appointment.state;
+    this.searchComplete = true;
+  }
+
+  handleAppointmentError(error: any) {
+    this.openModal('Error al buscar la cita', `Hubo un error al buscar la cita con ID ${this.appointmentId}. Error: ${error.message}`);
   }
 
   rescheduleAppointment() {
@@ -100,6 +108,17 @@ export class SearchappointmentComponent {
       }
     );
   }
+
+  formatDate(dateString: string): string {
+    const day = dateString.slice(8, 10);
+    const month = dateString.slice(5, 7);
+    const year = dateString.slice(0, 4);
+    const hourMinute = dateString.slice(11, 16);
+
+    return `${day}/${month}/${year} ${hourMinute}`;
+  }
+
+
 
   clearSearch() {
     this.appointmentId = '';
