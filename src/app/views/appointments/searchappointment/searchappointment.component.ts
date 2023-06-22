@@ -27,7 +27,7 @@ export class SearchappointmentComponent {
 
   searchAppointment() {
     if (this.appointmentId) {
-      const url = `http://localhost:5000/appointment/${this.appointmentId}`;
+      const url = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}`;
       this.http.get<Appointment>(url).subscribe(
         (appointment: Appointment) => {
           this.appointment = appointment;
@@ -44,19 +44,25 @@ export class SearchappointmentComponent {
     }
   }
 
-  clearSearch() {
-    this.appointmentId = '';
-    this.appointment = null;
-    this.patient = null;
-    this.psychologist = null;
-    this.service = null;
-    this.state = null;
-    this.searchComplete = false;
+  rescheduleAppointment() {
+    if (this.appointmentId && this.newAppointmentDate) {
+      const rescheduleUrl = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}/reschedule?newDate=${this.newAppointmentDate}`;
+      this.http.put(rescheduleUrl, {}).subscribe(
+        () => {
+          this.newAppointmentDate = this.newAppointmentDate;
+          this.rescheduleModalRef.close('reprogramadoExitosamente');
+          this.openModal('Cita Reprogramada', `La cita con ID ${this.appointmentId} ha sido reprogramada exitosamente.`);
+        },
+        (error) => {
+          this.openModal('Error al Reprogramar la Cita', `Hubo un error al intentar reprogramar la cita con ID ${this.appointmentId}. Error: ${error}`);
+        }
+      );
+    }
   }
 
   cancelAppointment() {
     if (this.appointmentId) {
-      const cancelUrl = `http://localhost:5000/appointment/${this.appointmentId}/cancel`;
+      const cancelUrl = `http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment/${this.appointmentId}/cancel`;
       this.http.put(cancelUrl, {}, { responseType: 'text' }).subscribe(
         () => {
           this.searchAppointment();
@@ -94,21 +100,17 @@ export class SearchappointmentComponent {
     );
   }
 
-
-  rescheduleAppointment() {
-    if (this.appointmentId && this.newAppointmentDate) {
-      const rescheduleUrl = `http://localhost:5000/appointment/${this.appointmentId}/reschedule?newDate=${this.newAppointmentDate}`;
-      this.http.put(rescheduleUrl, {}).subscribe(
-        () => {
-          this.newAppointmentDate = this.newAppointmentDate;
-          this.rescheduleModalRef.close('reprogramadoExitosamente');
-          this.openModal('Cita Reprogramada', `La cita con ID ${this.appointmentId} ha sido reprogramada exitosamente.`);
-        },
-        (error) => {
-          this.openModal('Error al Reprogramar la Cita', `Hubo un error al intentar reprogramar la cita con ID ${this.appointmentId}. Error: ${error}`);
-        }
-      );
-    }
+  clearSearch() {
+    this.appointmentId = '';
+    this.appointment = null;
+    this.patient = null;
+    this.psychologist = null;
+    this.service = null;
+    this.state = null;
+    this.searchComplete = false;
   }
+
+
+
 
 }
