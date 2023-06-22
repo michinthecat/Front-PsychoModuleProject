@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { CognitoService } from '../services/cognito.service';
 
@@ -11,9 +10,7 @@ import { CognitoService } from '../services/cognito.service';
 export class HomeComponent {
   attributes: CognitoUserAttribute[];
 
-  constructor(
-    private cognitoService: CognitoService
-  ) { }
+  constructor(private cognitoService: CognitoService) {}
 
   onLogout(): void {
     this.cognitoService.onLogout();

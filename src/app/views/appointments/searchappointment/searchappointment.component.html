@@ -1,0 +1,122 @@
+<style>
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mb-4 special-title">🔎 Buscar Cita</h2>
+      <div class="input-group mb-3">
+        <input type="number" class="form-control rounded-start mr-2" id="appointmentId" [(ngModel)]="appointmentId" placeholder="ID de la Cita" inputmode="numeric" [disabled]="searchComplete" (keyup.enter)="searchAppointment()">
+        <button class="btn btn-primary rounded-end" *ngIf="!searchComplete" (click)="searchAppointment()">Buscar</button>
+        <button class="btn btn-secondary rounded-end" *ngIf="searchComplete" (click)="clearSearch()">Limpiar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="appointment" class="row mt-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Estado de la Cita</h3>
+        </div>
+        <div class="card-body" [ngClass]="{
+          'text-danger': state.state === 'Cancelado',
+          'text-success': state.state !== 'Cancelado',
+          'text-warning': state.state === 'Pendiente'
+        }">
+          <p><strong>Estado:</strong> {{ state.state }}</p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Detalles de la Cita</h3>
+            </div>
+            <div class="card-body">
+              <p><strong>ID:</strong> <span class="font-weight-bold">{{ appointment.id }}</span></p>
+              <p><strong>Fecha:</strong> {{ appointment.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+              <p><strong>Servicio:</strong> {{ service.serviceName }}</p>
+              <p><strong>Descripción:</strong> {{ service.description }}</p>
+              <p><strong>Costo:</strong> {{ service.cost }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Detalles del Paciente</h3>
+            </div>
+            <div class="card-body">
+              <p><strong>Nombre:</strong> {{ patient.name + ' ' + patient.lastName }}</p>
+              <p><strong>Email:</strong> {{ patient.email }}</p>
+              <p><strong>Edad:</strong> {{ patient.age }}</p>
+              <p><strong>Tipo:</strong> {{ patient.patientType.patientType }}</p>
+              <p><strong>Teléfono:</strong> {{ patient.phone }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Detalles del Psicólogo</h3>
+        </div>
+        <div class="card-body">
+          <p><strong>Nombre:</strong> {{ psychologist.name + ' ' + psychologist.lastName }}</p>
+          <p><strong>Email:</strong> {{ psychologist.email }}</p>
+          <p><strong>Especialidad:</strong> {{ psychologist.specialty.specialty }}</p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col d-flex justify-content-between">
+          <button class="btn btn-danger" *ngIf="state.state !== 'Cancelado'" (click)="cancelAppointment()">Cancelar Cita</button>
+          <button class="btn btn-primary w-30" *ngIf="state.state !== 'Cancelado'" (click)="openRescheduleModal()">Reprogramar Cita</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Template De Notificacion Generico (MODAL) -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ modalBody }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+<!-- Template De Reprogramar Cita (MODAL) -->
+<ng-template #rescheduleModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Reprogramar Cita</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="newAppointmentDate">Nueva Fecha de la Cita:</label>
+        <input type="datetime-local" class="form-control" id="newAppointmentDate" [(ngModel)]="newAppointmentDate" name="newAppointmentDate">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="rescheduleAppointment()">Reprogramar</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+

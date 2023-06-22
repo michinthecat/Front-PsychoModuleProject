@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { environment } from 'src/environment/environment';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ export class AuthService {
     ClientId: environment.ClientId,
   };
 
-  constructor() { }
+  private isAuthSubject = new Subject<boolean>();
+  isAuthStateChanged = this.isAuthSubject.asObservable();
 
+  constructor() { }
 
   isAuth(): boolean {
     var isAuth = false;
@@ -26,15 +29,11 @@ export class AuthService {
           alert(err.message || JSON.stringify(err));
         }
         isAuth = session.isValid();
+        this.isAuthSubject.next(isAuth);
       });
+    } else {
+      this.isAuthSubject.next(false);
     }
     return isAuth;
   }
-
-
-
-  }
-
-
-
-
+}
