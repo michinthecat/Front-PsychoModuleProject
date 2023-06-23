@@ -2,14 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Patient } from 'src/app/models/patient/patient.model';
 import { PatientService } from '../../../services/patient/patient.service';
 import { ModalService } from '../../../services/modal/modal.service';
-import { DateFormatService } from '../../../services/date-format/date-format.service';
+
 
 
 @Component({
   selector: 'app-searchpatient',
   templateUrl: './searchpatient.component.html',
   styleUrls: ['./searchpatient.component.css'],
-  providers: [PatientService, ModalService, DateFormatService]
+  providers: [PatientService, ModalService]
 })
 export class SearchpatientComponent {
   @ViewChild('content') content: any;

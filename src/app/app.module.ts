@@ -16,7 +16,6 @@ import { ShowappointmentComponent } from './views/appointments/showappointment/s
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { NotFoundComponent } from './views/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
-import { NotespatientComponent } from './views/patients/notespatient/notespatient.component';
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 
 
@@ -35,14 +34,12 @@ import { UpdatepatientComponent } from './views/patients/updatepatient/updatepat
     SearchappointmentComponent,
     NotFoundComponent,
     SearchpatientComponent,
-    NotespatientComponent,
     UpdatepatientComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-
     AppRoutingModule
   ],
   providers: [],

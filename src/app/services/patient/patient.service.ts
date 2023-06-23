@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PatientService {
-  private apiUrl = 'http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/patients';
+  private apiUrl : String= 'http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/patients';
 
   constructor(private http: HttpClient) {}
 
@@ -18,4 +18,10 @@ export class PatientService {
     const url = `${this.apiUrl}/${patientId}/notes`;
     return this.http.patch<Patient>(url, notes);
   }
+
+  updatePatient(patient: Patient): Observable<Patient> {
+    const url = `${this.apiUrl}`;
+    return this.http.put<Patient>(url, patient);
+  }
+
 }
