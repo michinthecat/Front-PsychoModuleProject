@@ -11,7 +11,7 @@ import { ExternalAppointmentData } from '../models/external-appointment-data.mod
   providedIn: 'root'
 })
 export class DataService {
-  apiUrl = 'https://21xns2keo6.execute-api.us-east-2.amazonaws.com/dev';
+  apiUrl = 'https://b8oisr2463.execute-api.us-east-2.amazonaws.com/dev';
 
   constructor(private http: HttpClient) { }
 

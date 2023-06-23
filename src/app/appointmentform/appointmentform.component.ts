@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Service } from '../models/service.model';
 import { Program } from '../models/program.model';
@@ -10,8 +10,6 @@ import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
 import { StudentAppointmentData } from '../models/student-appointment-data.model'
 import { ExternalAppointmentData } from '../models/external-appointment-data.model'
 import { Gender } from '../models/gender.model';
-
-
 
 @Component({
   selector: 'app-appointmentform',
@@ -33,8 +31,12 @@ export class AppointmentformComponent implements OnInit{
   selectedLinkage: string;
   showFields: boolean = false; 
   selectedTime: string;
+  closeButton: HTMLElement = document.getElementById('close-button');
+  
+
 
   constructor(private dataService: DataService){}
+
 
   ngOnInit(): void {
 
@@ -59,7 +61,11 @@ export class AppointmentformComponent implements OnInit{
     this.dataService.getSemesters().subscribe((semester: Semester[]) =>{
       this.semesters = semester;
     });
+
   }
+
+
+  
 
   onLinkageSelected(event: any): void { // Agrega este método
     const selectedLinkage: string = event.target.value;
@@ -229,6 +235,7 @@ validatePhone(event: Event): void {
     const date = (document.getElementById('date') as HTMLInputElement).value;
     const time = this.selectedTime;
 
+
     if(linkage === '1'){
 
       const studentAppointmentData:  StudentAppointmentData= {
@@ -251,8 +258,7 @@ validatePhone(event: Event): void {
        this.dataService.createStudentAppointment(studentAppointmentData)
        .subscribe(
          (response) => {
-           console.log('Cita creada exitosamente:', response);
-           // Realizar cualquier acción adicional después de crear la cita
+          console.log('Cita creada exitosamente:', response);
          },
          (error) => {
            console.error('Error al crear la cita:', error);
@@ -281,7 +287,6 @@ validatePhone(event: Event): void {
       .subscribe(
         (response) => {
           console.log('Cita creada exitosamente:', response);
-          // Realizar cualquier acción adicional después de crear la cita
         },
         (error) => {
           console.error('Error al crear la cita:', error);
@@ -289,11 +294,16 @@ validatePhone(event: Event): void {
         }
       );
     }
-   
+  
 
-    console.log('Hola');
-   
+  }
 
+  
+
+  resetFormulario(): void {
+    // Restablece los valores del formulario
+    const formulario: HTMLFormElement = document.getElementById('contacto') as HTMLFormElement;
+    formulario.reset;
   }
 
 }
