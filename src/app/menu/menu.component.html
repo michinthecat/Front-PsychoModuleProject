@@ -32,6 +32,16 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Horarios
+        </a>
+        <ul class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" >Gestionar Mis Horarios</a></li>
+          <li><a class="dropdown-item" >Ver Horarios</a></li>
+
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Pacientes
         </a>
         <ul class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
@@ -69,7 +79,6 @@
         <a href="https://instagram.com/soyunibague" target="_blank" class="nav-link text-light">
           <i class="bi bi-instagram"></i>
           <small class="d-md-none ms-2">Instagram</small>
-
         </a>
       </li>
     </ul>
@@ -77,11 +86,18 @@
    <!--boton Informacion -->
 
    <form class="d-flex">
-    <button class="btn btn-outline-warning d-none d-md-inline-block" type="submit" routerLink="/signup">Registrate</button>
+    <!-- ESTE PUTO BOTON TOCA METERLO PERO NO SE DONDE AUN GRACIAS
+      <button class="btn btn-outline-warning d-none d-md-inline-block" type="submit" routerLink="/signup">Registrate</button>
+    <span style="margin: 0 5px;"></span> -->
+    <button type="button" class="btn btn-outline-warning" (click)="onLogout()">
+      <i class="fa-regular fa-user"></i> Perfil
+    </button>
     <span style="margin: 0 5px;"></span>
     <button type="button" class="btn btn-outline-warning" (click)="onLogout()">
       <i class="fas fa-sign-out-alt"></i> Logout
     </button>
+
+
   </form>
 
 

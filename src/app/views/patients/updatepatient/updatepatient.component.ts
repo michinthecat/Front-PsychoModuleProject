@@ -23,7 +23,7 @@ export class UpdatepatientComponent {
   modalTitle: string;
   modalBody: string;
   searchComplete = false;
-  editingNotes = false;
+  editingPatient = false;
 
   constructor(
     private patientService: PatientService,
@@ -90,7 +90,11 @@ export class UpdatepatientComponent {
     this.patientId = '';
     this.patient = null;
     this.searchComplete = false;
-    this.editingNotes = false;
+    this.editingPatient = false;
+  }
+
+  startEditing() {
+    this.editingPatient = true;
   }
 
   updatePatient() {
@@ -101,6 +105,7 @@ export class UpdatepatientComponent {
             'Paciente actualizado',
             'Los datos del paciente han sido actualizados correctamente.'
           );
+          this.editingPatient = false;
         },
         (error) => {
           this.openModal(
