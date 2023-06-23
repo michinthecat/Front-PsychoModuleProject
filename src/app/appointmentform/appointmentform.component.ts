@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Service } from '../models/service.model';
 import { Program } from '../models/program.model';
@@ -10,6 +10,7 @@ import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
 import { StudentAppointmentData } from '../models/student-appointment-data.model'
 import { ExternalAppointmentData } from '../models/external-appointment-data.model'
 import { Gender } from '../models/gender.model';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-appointmentform',
@@ -17,25 +18,29 @@ import { Gender } from '../models/gender.model';
   styleUrls: ['./appointmentform.component.css']
 })
 export class AppointmentformComponent implements OnInit{
+  @ViewChild('content') content: any;
   time: DatesByPsycologist[];
   userType: UserType[];
   services: Service[];
   genders: Gender[];
   selectedService: string;
-  psychologists: Psychologist[]; 
+  psychologists: Psychologist[];
   psychologistsByService: PsycologistByService [];
   academics: Program[];
   semesters: Semester[];
   selectedDate: string;
   selectedPsychologistId: string;
   selectedLinkage: string;
-  showFields: boolean = false; 
+  showFields: boolean = false;
   selectedTime: string;
   closeButton: HTMLElement = document.getElementById('close-button');
-  
+
+  modalTitle = '';
+  modalBody = '';
 
 
-  constructor(private dataService: DataService){}
+
+  constructor(private modalService: NgbModal, private dataService: DataService){}
 
 
   ngOnInit(): void {
@@ -47,7 +52,7 @@ export class AppointmentformComponent implements OnInit{
     this.dataService.getServices().subscribe((service: Service[]) => {
       this.services = service; // Asignar el arreglo de objetos Service
     });
-  
+
 
     this.dataService.getPrograms().subscribe((program: Program[]) =>{
       this.academics = program;
@@ -65,7 +70,7 @@ export class AppointmentformComponent implements OnInit{
   }
 
 
-  
+
 
   onLinkageSelected(event: any): void { // Agrega este método
     const selectedLinkage: string = event.target.value;
@@ -75,12 +80,12 @@ export class AppointmentformComponent implements OnInit{
 
   onServiceSelected(selectedService: string): void {
     console.log(selectedService);
-  
+
     this.dataService.getPsychologistsByService(selectedService).subscribe((psychologistsByService: PsycologistByService[]) => {
       this.psychologistsByService = psychologistsByService;
     });
   }
-  
+
 
 
   onDateSelected(event: any): void {
@@ -90,7 +95,7 @@ export class AppointmentformComponent implements OnInit{
       this.retrieveData();
     }
   }
-  
+
   onPsychologistSelected(event: any): void {
     if (event.target && event.target.value) {
       const selectedPsychologistId: string = event.target.value;
@@ -98,19 +103,19 @@ export class AppointmentformComponent implements OnInit{
       this.retrieveData();
     }
   }
-  
+
   retrieveData(): void {
     if (this.selectedDate && this.selectedPsychologistId) {
       console.log('fecha: ' + this.selectedDate);
       console.log('psicologo: ' + this.selectedPsychologistId);
-  
+
       this.dataService.getDatesByPsycologist(this.selectedPsychologistId, this.selectedDate).subscribe((datesByPsycologist: DatesByPsycologist[]) => {
         this.time = datesByPsycologist;
         console.log(this.time)
       });
     }
   }
-  
+
 
   formatHour(hour: string): string {
     // Verificar si la cadena tiene el formato esperado
@@ -121,11 +126,11 @@ export class AppointmentformComponent implements OnInit{
       return hour; // Retornar la cadena sin cambios si no tiene el formato esperado
     }
   }
-  
+
   validateInput(event: Event, fieldName: string): void {
     const inputElement = event.target as HTMLInputElement;
     const value = inputElement.value.trim();
-  
+
     if (/\d/.test(value)) {
       // Si el valor contiene algún carácter numérico, mostrar un mensaje de error
       inputElement.classList.add('is-invalid');
@@ -142,7 +147,7 @@ export class AppointmentformComponent implements OnInit{
       }
     }
   }
-  
+
 
   validateEmail(event: Event): void {
   const inputElement = event.target as HTMLInputElement;
@@ -258,9 +263,18 @@ validatePhone(event: Event): void {
        this.dataService.createStudentAppointment(studentAppointmentData)
        .subscribe(
          (response) => {
+
+          this.modalTitle = 'Cita Creada Exitosamente';
+          this.modalBody = `Su Cita Fue Creada Exitosamente, por favor espere la confirmación de su cita al telefono ${phone}`;
+          this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
           console.log('Cita creada exitosamente:', response);
+
          },
          (error) => {
+
+           this.modalTitle = 'Cita No Tomada';
+           this.modalBody = `No Sirvio Chaval`;
+           this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
            console.error('Error al crear la cita:', error);
            // Manejar el error de creación de cita
          }
@@ -279,7 +293,7 @@ validatePhone(event: Event): void {
         service,
         psychologist,
         date,
-        time 
+        time
       };
 
       console.log(externalAppointmentData);
@@ -287,18 +301,24 @@ validatePhone(event: Event): void {
       .subscribe(
         (response) => {
           console.log('Cita creada exitosamente:', response);
+          this.modalTitle = 'Cita Creada Exitosamente';
+          this.modalBody = `Su Cita Fue Creada Exitosamente, por favor espere la confirmación de su cita al telefono ${phone}`;
+          this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
         },
         (error) => {
           console.error('Error al crear la cita:', error);
+           this.modalTitle = 'Cita No Tomada';
+           this.modalBody = `No Sirvio Chaval`;
+           this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
           // Manejar el error de creación de cita
         }
       );
     }
-  
+
 
   }
 
-  
+
 
   resetFormulario(): void {
     // Restablece los valores del formulario

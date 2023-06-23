@@ -1,3 +1,24 @@
+<style>
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .notes-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  .notes-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .notes-content {
+    white-space: pre-wrap;
+  }
+</style>
 <div class="container mt-4">
   <div class="row">
     <div class="col">
@@ -18,10 +39,15 @@
         <div class="card-body">
           <p><strong>Nombre:</strong> {{ patient.name + ' ' + patient.lastName }}</p>
           <p><strong>Email:</strong> {{ patient.email }}</p>
+          <p><strong>Género:</strong> {{ patient.gender.gender }} {{ getGenderEmoji(patient.gender.gender) }}</p>
           <p><strong>Edad:</strong> {{ patient.age }}</p>
           <p><strong>Tipo:</strong> {{ patient.patientType.patientType }}</p>
           <p><strong>Teléfono:</strong> {{ patient.phone }}</p>
         </div>
+      </div>
+      <div class="notes-container">
+        <p class="notes-title">Notas del Paciente</p>
+        <div class="notes-content">{{ patient.notes }}</div>
       </div>
     </div>
   </div>

@@ -40,6 +40,16 @@ export class SearchpatientComponent {
     }
   }
 
+  getGenderEmoji(gender: string): string {
+    if (gender === 'Femenino') {
+      return '♀️';
+    } else if (gender === 'Masculino') {
+      return '♂️';
+    } else {
+      return '⚪️';
+    }
+  }
+
   handlePatientSuccess(patient: Patient) {
     this.patient = patient;
     this.searchComplete = true;

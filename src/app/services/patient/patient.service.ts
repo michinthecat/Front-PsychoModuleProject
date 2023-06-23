@@ -13,4 +13,10 @@ export class PatientService {
     const url = `${this.apiUrl}/${patientId}`;
     return this.http.get<Patient>(url);
   }
+
+  updatePatientNotes(patientId: string, notes: string): Observable<Patient> {
+    const url = `${this.apiUrl}/${patientId}/notes`;
+    const body = { notes: notes };
+    return this.http.patch<Patient>(url, body);
+  }
 }
