@@ -1,45 +1,75 @@
 {
-  "name": "cognito-front",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+  "name": "@angular/platform-browser",
+  "version": "16.1.2",
+  "description": "Angular - library for using Angular in a web browser",
+  "author": "angular",
+  "license": "MIT",
+  "engines": {
+    "node": "^16.14.0 || >=18.10.0"
   },
-  "private": true,
   "dependencies": {
-    "@angular/animations": "^16.0.0",
-    "@angular/common": "^16.0.0",
-    "@angular/compiler": "^16.0.0",
-    "@angular/core": "^16.0.0",
-    "@angular/forms": "^16.0.0",
-    "@angular/platform-browser": "^16.0.0",
-    "@angular/platform-browser-dynamic": "^16.0.0",
-    "@angular/router": "^16.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^15.0.1",
-    "amazon-cognito-identity-js": "^6.2.0",
-    "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.10.5",
-    "jquery": "^3.7.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
+    "tslib": "^2.3.0"
   },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^16.0.3",
-    "@angular/cli": "~16.0.3",
-    "@angular/compiler-cli": "^16.0.0",
-    "@types/bootstrap": "^5.2.6",
-    "@types/jasmine": "~4.3.0",
-    "@types/jquery": "^3.5.16",
-    "jasmine-core": "~4.6.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.0.2"
+  "peerDependencies": {
+    "@angular/animations": "16.1.2",
+    "@angular/core": "16.1.2",
+    "@angular/common": "16.1.2"
+  },
+  "peerDependenciesMeta": {
+    "@angular/animations": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular.git",
+    "directory": "packages/platform-browser"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@angular/core",
+      "@angular/bazel",
+      "@angular/common",
+      "@angular/compiler",
+      "@angular/compiler-cli",
+      "@angular/animations",
+      "@angular/elements",
+      "@angular/platform-browser",
+      "@angular/platform-browser-dynamic",
+      "@angular/forms",
+      "@angular/platform-server",
+      "@angular/upgrade",
+      "@angular/router",
+      "@angular/language-service",
+      "@angular/localize",
+      "@angular/service-worker"
+    ]
+  },
+  "sideEffects": false,
+  "module": "./fesm2022/platform-browser.mjs",
+  "typings": "./index.d.ts",
+  "type": "module",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/platform-browser.mjs",
+      "esm": "./esm2022/platform-browser.mjs",
+      "default": "./fesm2022/platform-browser.mjs"
+    },
+    "./animations": {
+      "types": "./animations/index.d.ts",
+      "esm2022": "./esm2022/animations/animations.mjs",
+      "esm": "./esm2022/animations/animations.mjs",
+      "default": "./fesm2022/animations.mjs"
+    },
+    "./testing": {
+      "types": "./testing/index.d.ts",
+      "esm2022": "./esm2022/testing/testing.mjs",
+      "esm": "./esm2022/testing/testing.mjs",
+      "default": "./fesm2022/testing.mjs"
+    }
   }
 }
