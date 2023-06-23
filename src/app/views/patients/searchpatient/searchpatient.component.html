@@ -1,1 +1,44 @@
-<p>searchpatient works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mb-4 special-title">🔎 Buscar Paciente</h2>
+      <div class="input-group mb-3">
+        <input type="number" class="form-control rounded-start mr-2" id="patientId" [(ngModel)]="patientId" placeholder="ID del Paciente" inputmode="numeric" [disabled]="searchComplete" (keyup.enter)="searchPatient()">
+        <button class="btn btn-primary rounded-end" *ngIf="!searchComplete" (click)="searchPatient()">Buscar</button>
+        <button class="btn btn-secondary rounded-end" *ngIf="searchComplete" (click)="clearSearch()">Limpiar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="patient" class="row mt-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Detalles del Paciente</h3>
+        </div>
+        <div class="card-body">
+          <p><strong>Nombre:</strong> {{ patient.name + ' ' + patient.lastName }}</p>
+          <p><strong>Email:</strong> {{ patient.email }}</p>
+          <p><strong>Edad:</strong> {{ patient.age }}</p>
+          <p><strong>Tipo:</strong> {{ patient.patientType.patientType }}</p>
+          <p><strong>Teléfono:</strong> {{ patient.phone }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template De Notificacion Generico (MODAL) -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ modalBody }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
