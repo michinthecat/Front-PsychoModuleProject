@@ -18,6 +18,8 @@
   .notes-content {
     white-space: pre-wrap;
     margin-bottom: 10px;
+    max-height: 100px;
+    overflow-y: auto;
   }
   .edit-notes-button {
     margin-bottom: 10px;
@@ -55,7 +57,13 @@
       <div class="notes-container">
         <p class="notes-title">Notas del Paciente</p>
         <div *ngIf="!editingNotes" class="notes-content">{{ patient.notes }}</div>
-        <textarea *ngIf="editingNotes" class="form-control" [(ngModel)]="editedNotes"></textarea>
+        <textarea
+          *ngIf="editingNotes"
+          class="form-control"
+          [(ngModel)]="editedNotes"
+          rows="5"
+          (click)="setCursorPosition($event)"
+        ></textarea>
         <button class="btn btn-primary edit-notes-button" *ngIf="!editingNotes" (click)="editNotes()">Editar notas del paciente</button>
         <button class="btn btn-success save-notes-button" *ngIf="editingNotes" (click)="saveNotes()">Guardar notas del paciente</button>
       </div>

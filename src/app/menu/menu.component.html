@@ -82,7 +82,9 @@
    <form class="d-flex">
     <button class="btn btn-outline-warning d-none d-md-inline-block" type="submit" routerLink="/signup">Registrate</button>
     <span style="margin: 0 5px;"></span>
-    <button class="btn btn-outline-warning d-none d-md-inline-block" type="submit" routerLink="/login">Iniciar Sesión</button>
+    <button type="button" class="btn btn-outline-warning" (click)="onLogout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
   </form>
 
 

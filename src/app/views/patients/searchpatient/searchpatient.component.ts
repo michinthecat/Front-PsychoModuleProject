@@ -54,7 +54,7 @@ export class SearchpatientComponent {
           'Actualización Exitosa',
           `Datos Actualizados Exitosamente`
         );
-        this.searchPatient();
+        this.patient.notes = response.notes
       },
       (error) => {
         this.openModal(
@@ -92,5 +92,16 @@ export class SearchpatientComponent {
     this.patientId = '';
     this.patient = null;
     this.searchComplete = false;
+    this.editingNotes = false;
+  }
+
+
+
+  setCursorPosition(event: any): void {
+    // Establecer el cursor al final del campo de texto al hacer clic en él
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.selectionStart = textarea.value.length;
+    textarea.selectionEnd = textarea.value.length;
+
   }
 }
