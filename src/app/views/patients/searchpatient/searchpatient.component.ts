@@ -18,6 +18,8 @@ export class SearchpatientComponent {
   modalTitle: string;
   modalBody: string;
   searchComplete = false;
+  editingNotes = false;
+  editedNotes: string;
 
   constructor(
     private patientService: PatientService,
@@ -40,6 +42,31 @@ export class SearchpatientComponent {
     }
   }
 
+  editNotes() {
+    this.editingNotes = true;
+    this.editedNotes = this.patient.notes;
+  }
+
+  saveNotes() {
+    this.patientService.updatePatientNotes(this.patient.id.toString(), this.editedNotes).subscribe(
+      (response) => {
+        this.openModal(
+          'Actualización Exitosa',
+          `Datos Actualizados Exitosamente`
+        );
+        this.searchPatient();
+      },
+      (error) => {
+        this.openModal(
+          'Error al Actualizar los Datos Del Paciente',
+          `${error.error}`
+        );
+      }
+    );
+    this.editingNotes = false;
+  }
+
+
   getGenderEmoji(gender: string): string {
     if (gender === 'Femenino') {
       return '♀️';
@@ -56,9 +83,9 @@ export class SearchpatientComponent {
   }
 
   openModal(title: string, body: string) {
-    this.modalService.openModal(this.content);
     this.modalTitle = title;
     this.modalBody = body;
+    this.modalService.openModal(this.content);
   }
 
   clearSearch() {

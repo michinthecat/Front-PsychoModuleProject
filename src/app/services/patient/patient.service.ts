@@ -16,7 +16,6 @@ export class PatientService {
 
   updatePatientNotes(patientId: string, notes: string): Observable<Patient> {
     const url = `${this.apiUrl}/${patientId}/notes`;
-    const body = { notes: notes };
-    return this.http.patch<Patient>(url, body);
+    return this.http.patch<Patient>(url, notes);
   }
 }
