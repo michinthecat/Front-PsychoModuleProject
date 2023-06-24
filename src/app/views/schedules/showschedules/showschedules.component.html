@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mb-4 special-title"><i class="fas fa-calendar-alt"></i> Mostrar Citas</h2>
+      <div class="form-group">
+        <label for="selectedDate">Fecha:</label>
+        <input type="date" class="form-control" id="selectedDate" [(ngModel)]="selectedDate" (change)="filterSchedules()" />
+      </div>
+      <div class="form-group">
+        <label for="selectedStatus">Estado:</label>
+        <select class="form-control" id="selectedStatus" [(ngModel)]="selectedStatus" (change)="filterSchedules()">
+          <option value="">Todos</option>
+          <option value="4">Disponible</option>
+          <option value="5">Reservado</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="filteredSchedules && filteredSchedules.length > 0">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Citas del Día</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Psicólogo</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let schedule of filteredSchedules">
+                <td>{{ schedule.date }}</td>
+                <td>{{ schedule.time }}</td>
+                <td>{{ schedule.psychologist }}</td>
+                <td [ngClass]="getStatusColor(schedule.state)">
+                  <span>{{ getStatusText(schedule.state) }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="!filteredSchedules || filteredSchedules.length === 0">
+    <div class="col">
+      <div class="alert alert-info" role="alert">
+        No se encontraron horarios para la fecha y estado seleccionados.
+      </div>
+    </div>
+  </div>
+</div>

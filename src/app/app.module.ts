@@ -11,12 +11,12 @@ import { MenuComponent } from './menu/menu.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
-import { CancelappointmentComponent } from './views/appointments/cancelappointment/cancelappointment.component';
 import { ShowAppointmentComponent} from './views/appointments/showappointment/showappointment.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { NotFoundComponent } from './views/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
+import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
 
 
 
@@ -29,12 +29,12 @@ import { UpdatepatientComponent } from './views/patients/updatepatient/updatepat
     HomeComponent,
     MenuComponent,
     AppointmentformComponent,
-    CancelappointmentComponent,
     ShowAppointmentComponent,
     SearchappointmentComponent,
     NotFoundComponent,
     SearchpatientComponent,
-    UpdatepatientComponent
+    UpdatepatientComponent,
+    ShowschedulesComponent
   ],
   imports: [
     BrowserModule,

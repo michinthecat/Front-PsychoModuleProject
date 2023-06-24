@@ -6,13 +6,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeGuard } from './guards/home.guard';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
-import { CancelappointmentComponent } from './views/appointments/cancelappointment/cancelappointment.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { MenuComponent } from './menu/menu.component';
 import { ShowAppointmentComponent } from './views/appointments/showappointment/showappointment.component';
 import { NotFoundComponent } from './views/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
+import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
 
 
 const routes: Routes = [
@@ -22,11 +22,11 @@ const routes: Routes = [
   {path:'appointmentform', component: AppointmentformComponent},
   {path:'adminhome', component: HomeComponent, canActivate: [HomeGuard]},
   {path:'menu', component: MenuComponent, canActivate: [HomeGuard]},
-  {path: 'cancel-appointment', component: CancelappointmentComponent, canActivate: [HomeGuard]},
   {path: 'search-appointment', component: SearchappointmentComponent, canActivate: [HomeGuard]},
   {path: 'show-appointment', component: ShowAppointmentComponent, canActivate: [HomeGuard]},
   {path: 'search-patient' , component: SearchpatientComponent, canActivate: [HomeGuard]},
   {path: 'update-patient' , component: UpdatepatientComponent, canActivate: [HomeGuard]},
+  {path: 'show-schedules' , component: ShowschedulesComponent, canActivate: [HomeGuard]},
   {path: '**', component: NotFoundComponent }
 
 ];

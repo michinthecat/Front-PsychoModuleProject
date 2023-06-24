@@ -1,38 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment/appointment.model';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DateFormatService } from 'src/app/services/date-format/date-format.service';
+import { CognitoService } from 'src/app/services/cognito.service';
+
 
 @Component({
   selector: 'app-showappointment',
   templateUrl: './showappointment.component.html',
   styleUrls: ['./showappointment.component.css'],
-  providers: [AppointmentService, DateFormatService]
+  providers: [AppointmentService, DateFormatService, CognitoService]
 })
-export class ShowAppointmentComponent {
+export class ShowAppointmentComponent implements OnInit {
   selectedDate: string;
   appointments: Appointment[];
   selectedAppointment: Appointment;
   modalRef: NgbModalRef;
-
+  psychologistId: string;
 
   constructor(
     private appointmentService: AppointmentService,
     private modalService: NgbModal,
-    private dateFormatService: DateFormatService
+    private dateFormatService: DateFormatService,
+    private cognitoService: CognitoService
   ) {}
 
-  searchAppointmentsByDateAndPsychologist() {
-    if (this.selectedDate) {
-      const psychologistId = '1110585229';
+  ngOnInit() {
+    this.cognitoService.getAttributes().subscribe(
+      attributes => {
+        const nicknameAttribute = attributes.find(attr => attr.Name === 'nickname');
+        if (nicknameAttribute) {
+          this.psychologistId = nicknameAttribute.Value;
+        } else {
+          console.log('No se encontro la cedula del psicologo en Cognito');
+        }
+      },
+      error => {
+        console.log('Error de Obtencion: ', error);
+      }
+    );
+  }
 
+  searchAppointmentsByDateAndPsychologist() {
+    if (this.selectedDate && this.psychologistId) {
       this.appointmentService
-        .getAllAppointmentsByDateAndPsychologistId(this.selectedDate, psychologistId)
+        .getAllAppointmentsByDateAndPsychologistId(this.selectedDate, this.psychologistId)
         .subscribe(
           (appointments: Appointment[]) => {
             this.appointments = appointments;
-
           },
           (error) => {
             console.log('Error:', error);

@@ -12,10 +12,6 @@ export class HomeComponent {
 
   constructor(private cognitoService: CognitoService) {}
 
-  onLogout(): void {
-    this.cognitoService.onLogout();
-  }
-
   getAttributes(): void {
     this.cognitoService.getAttributes().subscribe(
       attributes => {
