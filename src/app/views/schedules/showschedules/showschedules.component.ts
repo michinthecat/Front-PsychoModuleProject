@@ -3,6 +3,7 @@ import { Schedule } from 'src/app/models/schedule/schedule.mode';
 import { SchedulesService } from 'src/app/services/schedules/schedules.service';
 import { CognitoService } from 'src/app/services/cognito.service';
 
+
 @Component({
   selector: 'app-showschedules',
   templateUrl: './showschedules.component.html',
@@ -14,7 +15,15 @@ export class ShowschedulesComponent implements OnInit {
   schedules: Schedule[];
   filteredSchedules: Schedule[] = [];
   psychologistId: string;
-
+  modalOpen: boolean = false;
+  newAppointment: Schedule = {
+    date: '',
+    time: '',
+    psychologist: 0,
+    state: 0
+  };
+  successModalOpen: boolean = false;
+  errorModalOpen: boolean = false;
 
   constructor(
     private schedulesService: SchedulesService,
@@ -69,7 +78,6 @@ export class ShowschedulesComponent implements OnInit {
     );
   }
 
-
   getStatusColor(status: number): string {
     if (status === 1) {
       return 'text-success';
@@ -102,5 +110,53 @@ export class ShowschedulesComponent implements OnInit {
 
   private addLeadingZero(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
+  }
+
+  openModal() {
+    this.modalOpen = true;
+  }
+
+  closeModal() {
+    this.modalOpen = false;
+  }
+
+  createSchedule() {
+    const psychologist = this.psychologistId;
+    this.newAppointment.psychologist = parseInt(psychologist, 10);
+    this.schedulesService.createSchedule(this.newAppointment).subscribe(
+      (createdSchedule: Schedule) => {
+        console.log('Schedule created:', createdSchedule);
+        this.successModalOpen = true;
+        this.closeModal();
+        this.getFilteredSchedules();
+      },
+      error => {
+        console.error('Error creating schedule:', error);
+        this.errorModalOpen = true;
+        // Aquí puedes manejar el error y mostrar un mensaje al usuario
+      }
+    );
+  }
+
+  closeSuccessModal() {
+    this.successModalOpen = false;
+  }
+
+  closeErrorModal() {
+    this.errorModalOpen = false;
+  }
+
+  deleteSchedule(scheduleId: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este horario?')) {
+      this.schedulesService.deleteSchedule(scheduleId).subscribe(
+        () => {
+          this.getFilteredSchedules(); // Vuelve a obtener los horarios actualizados
+        },
+        error => {
+          console.error('Error deleting schedule:', error);
+          // Manejar el error y mostrar un mensaje al usuario si es necesario
+        }
+      );
+    }
   }
 }

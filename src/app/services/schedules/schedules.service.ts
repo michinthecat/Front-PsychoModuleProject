@@ -17,8 +17,13 @@ export class SchedulesService {
     return this.http.get<Schedule[]>(url);
   }
 
-  createSchedule(schedule: Schedule): Observable<any> {
+  createSchedule(schedule: Schedule): Observable<Schedule> {
     const url = `${this.apiUrl}/schedule`;
-    return this.http.post(url, schedule);
+    return this.http.post<Schedule>(url, schedule);
+  }
+
+  deleteSchedule(scheduleId: number): Observable<any> {
+    const url = `${this.apiUrl}/schedule/${scheduleId}`;
+    return this.http.delete(url);
   }
 }

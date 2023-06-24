@@ -30,6 +30,7 @@
                 <th>Hora</th>
                 <th>Psicólogo</th>
                 <th>Estado</th>
+                <th>Acciones</th> <!-- Nueva columna para acciones -->
               </tr>
             </thead>
             <tbody>
@@ -39,6 +40,9 @@
                 <td>{{ schedule.psychologist }}</td>
                 <td [ngClass]="getStatusColor(schedule.state)">
                   <span>{{ getStatusText(schedule.state) }}</span>
+                </td>
+                <td>
+                  <button class="btn btn-danger btn-sm" (click)="deleteSchedule(schedule.id)">Eliminar</button>
                 </td>
               </tr>
             </tbody>
@@ -54,4 +58,84 @@
       </div>
     </div>
   </div>
+
+  <button class="btn btn-primary btn-lg btn-floating mt-2" (click)="openModal()">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <!-- Modal Gen-->
+  <div class="modal" tabindex="-1" role="dialog" [class.show]="modalOpen" [class.d-block]="modalOpen">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Cita</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="appointmentDate">Fecha:</label>
+            <input type="date" class="form-control" id="appointmentDate" [(ngModel)]="newAppointment.date" />
+          </div>
+          <div class="form-group">
+            <label for="appointmentTime">Hora:</label>
+            <input type="time" class="form-control" id="appointmentTime" [(ngModel)]="newAppointment.time" />
+          </div>
+          <div class="form-group">
+            <label for="appointmentState">Estado:</label>
+            <select class="form-control" id="appointmentState" [(ngModel)]="newAppointment.state">
+              <option value="4">Disponible</option>
+              <option value="5">Reservado</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="createSchedule()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Modal de Éxito -->
+<div class="modal" tabindex="-1" role="dialog" [class.show]="successModalOpen" [class.d-block]="successModalOpen">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cita Agregada Exitosamente</h5>
+        <button type="button" class="close" (click)="closeSuccessModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>La cita se ha agregado exitosamente.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeSuccessModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Error -->
+<div class="modal" tabindex="-1" role="dialog" [class.show]="errorModalOpen" [class.d-block]="errorModalOpen">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Error al Agregar la Cita</h5>
+        <button type="button" class="close" (click)="closeErrorModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Ha ocurrido un error al agregar la cita. Por favor, intenta nuevamente.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeErrorModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
