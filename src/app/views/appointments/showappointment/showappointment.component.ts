@@ -15,7 +15,7 @@ export class ShowAppointmentComponent {
   appointments: Appointment[];
   selectedAppointment: Appointment;
   modalRef: NgbModalRef;
-  loadingAppointments: boolean;
+
 
   constructor(
     private appointmentService: AppointmentService,
@@ -26,17 +26,16 @@ export class ShowAppointmentComponent {
   searchAppointmentsByDateAndPsychologist() {
     if (this.selectedDate) {
       const psychologistId = '1110585229';
-      this.loadingAppointments = true; // Mostrar mensaje de carga
+
       this.appointmentService
         .getAllAppointmentsByDateAndPsychologistId(this.selectedDate, psychologistId)
         .subscribe(
           (appointments: Appointment[]) => {
             this.appointments = appointments;
-            this.loadingAppointments = false; // Ocultar mensaje de carga
+
           },
           (error) => {
             console.log('Error:', error);
-            this.loadingAppointments = false; // Ocultar mensaje de carga en caso de error
           }
         );
     }
