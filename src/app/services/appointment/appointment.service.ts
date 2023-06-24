@@ -24,6 +24,12 @@ export class AppointmentService {
     return this.http.put(url, {}, { responseType: 'text' });
   }
 
+  getAllAppointmentsByDateAndPsychologistId(date: string, psychologistId: string): Observable<Appointment[]> {
+    const url = `${this.apiUrl}/date/${date}/psychologist/${psychologistId}`;
+    return this.http.get<Appointment[]>(url);
+  }
+
+
 
 
 }

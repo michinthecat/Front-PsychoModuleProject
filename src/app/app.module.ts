@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
 import { CancelappointmentComponent } from './views/appointments/cancelappointment/cancelappointment.component';
-import { ShowappointmentComponent } from './views/appointments/showappointment/showappointment.component';
+import { ShowAppointmentComponent} from './views/appointments/showappointment/showappointment.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { NotFoundComponent } from './views/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
@@ -30,7 +30,7 @@ import { UpdatepatientComponent } from './views/patients/updatepatient/updatepat
     MenuComponent,
     AppointmentformComponent,
     CancelappointmentComponent,
-    ShowappointmentComponent,
+    ShowAppointmentComponent,
     SearchappointmentComponent,
     NotFoundComponent,
     SearchpatientComponent,

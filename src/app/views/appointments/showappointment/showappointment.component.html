@@ -1,1 +1,76 @@
-<p>showappointment works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mb-4 special-title">📅 Mostrar Citas</h2>
+      <div class="form-group">
+        <label for="selectedDate">Fecha:</label>
+        <input type="date" class="form-control" id="selectedDate" [(ngModel)]="selectedDate" (change)="searchAppointmentsByDateAndPsychologist()">
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="appointments && appointments.length > 0">
+    <div class="col text-center">
+      <i class="fas fa-spinner fa-spin fa-3x"></i>
+      <p>Cargando citas...</p>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="appointments && appointments.length > 0">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Citas del Día</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Servicio</th>
+                <th>Paciente</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of appointments" (click)="openModal(appointmentModal, appointment)" class="animate__animated animate__fadeIn">
+                <td>{{ appointment.id }}</td>
+                <td>{{ formatDate(appointment.date) }}</td>
+                <td>{{ appointment.service.serviceName }}</td>
+                <td>{{ appointment.patient.name }} {{ appointment.patient.lastName }}</td>
+                <td [ngClass]="getStatusColor(appointment.state.state)">
+                  <span class="appointment-status">{{ appointment.state.state }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="appointments && appointments.length === 0">
+    <div class="col">
+      <div class="alert alert-info" role="alert">
+        No se encontraron citas para la fecha seleccionada.
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #appointmentModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Detalles de la Cita</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>ID Cita:</strong> {{ selectedAppointment.id }}</p>
+    <p><strong>Fecha y Hora:</strong> {{ formatDate(selectedAppointment.date) }}</p>
+    <p><strong>Paciente:</strong> {{ selectedAppointment.patient.name }} {{ selectedAppointment.patient.lastName }}</p>
+    <p><strong>Cedula:</strong> {{ selectedAppointment.patient.id }}</p>
+    <p><strong>Edad:</strong> {{ selectedAppointment.patient.age }}</p>
+    <p><strong>Servicio:</strong> {{ selectedAppointment.service.serviceName }}</p>
+    <p><strong>Telefono:</strong> {{ selectedAppointment.patient.phone }}</p>
+    <p [ngClass]="getStatusColor(selectedAppointment.state.state)"><strong>Estado:</strong> {{ selectedAppointment.state.state }}</p>
+  </div>
+</ng-template>
