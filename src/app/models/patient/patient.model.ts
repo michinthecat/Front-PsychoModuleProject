@@ -1,3 +1,6 @@
+import { Gender } from "../gender/gender.model";
+import { PatientType } from "../patienttype/patienttype.model";
+
 export interface Patient{
   id: number;
   name: string;
@@ -10,12 +13,3 @@ export interface Patient{
   notes: string;
 }
 
-export interface PatientType {
-  id: number;
-  patientType: string;
-}
-
-export interface Gender {
-  id: number;
-  gender: string;
-}

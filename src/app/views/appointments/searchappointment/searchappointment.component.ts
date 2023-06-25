@@ -1,9 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Appointment, Patient, Psychologist, Service, State } from 'src/app/models/appointment/appointment.model';
+import { Appointment} from 'src/app/models/appointment/appointment.model';
 import { AppointmentService } from '../../../services/api-consume/appointment/appointment.service';
 import { ModalService } from '../../../services/modal/modal.service';
 import { DateFormatService } from '../../../services/date-format/date-format.service';
+import { Psychologist } from 'src/app/models/psychologist/psychologist.model';
+import { Patient } from 'src/app/models/patient/patient.model';
+import { ServicesPsycho } from 'src/app/models/servicespsycho/servicespsycho.model';
+import { State } from 'src/app/models/state/state.model';
 
 @Component({
   selector: 'app-searchappointment',
@@ -18,7 +22,7 @@ export class SearchappointmentComponent {
   appointment: Appointment;
   patient: Patient;
   psychologist: Psychologist;
-  service: Service;
+  service: ServicesPsycho;
   state: State;
   modalTitle: string;
   modalBody: string;
