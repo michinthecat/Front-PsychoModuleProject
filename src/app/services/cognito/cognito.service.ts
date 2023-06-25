@@ -22,6 +22,7 @@ export class CognitoService {
     var currentUser = userPool.getCurrentUser();
     currentUser.signOut();
     this.router.navigate(['']);
+    this.attributes = null;
   }
 
   getAttributes(): Observable<CognitoUserAttribute[]> {
@@ -46,9 +47,37 @@ export class CognitoService {
     });
   }
 
+  getCedula(): Observable<string> {
+    return new Observable<string>(observer => {
+      var userPool = new CognitoUserPool(this.poolData);
+      var currentUser = userPool.getCurrentUser();
+      currentUser.getSession((err: any, session: any) => {
+        if (err) {
+          observer.error(err.message || JSON.stringify(err));
+          return;
+        }
+        currentUser.getUserAttributes((err, result) => {
+          if (err) {
+            observer.error(err.message || JSON.stringify(err));
+            return;
+          }
 
-
-
-
-
+          let nicknameAttribute = result.find(attribute => attribute.getName() === 'nickname');
+          if(nicknameAttribute){
+            observer.next(nicknameAttribute.getValue());
+            observer.complete();
+          } else {
+            observer.error("Cedula attribute not found");
+          }
+        });
+      });
+    });
+  }
 }
+
+
+
+
+
+
+

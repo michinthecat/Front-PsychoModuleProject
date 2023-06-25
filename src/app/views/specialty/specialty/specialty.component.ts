@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Specialty } from 'src/app/models/specialty/speciality.model';
+import { Specialty } from 'src/app/models/specialty/specialty.model';
 import { SpecialtyService } from 'src/app/services/api-consume/specialty/specialty.service';
 
 

@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h2 class="text-center mb-4 special-title"><i class="fas fa-calendar-alt"></i> Mostrar Citas</h2>
+      <h2 class="text-center mb-4 special-title"><i class="fas fa-calendar-alt"></i> Mostrar Horarios</h2>
       <div class="form-group">
         <label for="selectedDate">Fecha:</label>
         <input type="date" class="form-control" id="selectedDate" [(ngModel)]="selectedDate" (change)="filterSchedules()" />
@@ -20,7 +20,7 @@
     <div class="col">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Citas del Día</h3>
+          <h3 class="card-title">Horarios Habilitados del Día</h3>
         </div>
         <div class="card-body">
           <table class="table table-striped">

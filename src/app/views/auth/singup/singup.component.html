@@ -5,31 +5,28 @@
         <h2 class="text-center mb-4">Regístrate</h2>
         <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
           <!-- Campos del formulario -->
-
           <div class="form-outline mb-4">
             <input type="email" id="email" name="email" class="form-control form-control-lg" [(ngModel)]="email" required placeholder="Correo Electrónico">
           </div>
-
           <div class="form-outline mb-4">
-            <input type="text" name="givenName" id="givenName" class="form-control form-control-lg" [(ngModel)]="givenName" required placeholder="Nombre Completo">
+            <input type="text" name="name" id="name" class="form-control form-control-lg" [(ngModel)]="name" required placeholder="Nombre">
           </div>
-
-          <!-- Usaremos el nicknameparaguardar la cedula -->
           <div class="form-outline mb-4">
-            <input type="text" name="nickName" id="nickName" class="form-control form-control-lg" [(ngModel)]="nickName" required placeholder="Cedula">
+            <input type="text" name="lastName" id="lastName" class="form-control form-control-lg" [(ngModel)]="lastName" required placeholder="Apellido">
           </div>
-
+          <div class="form-outline mb-4">
+            <input type="text" name="nickName" id="nickName" class="form-control form-control-lg" [(ngModel)]="nickName" required placeholder="Cédula">
+          </div>
           <div class="form-outline mb-4">
             <input type="password" name="password" id="password" class="form-control form-control-lg" [(ngModel)]="password" required placeholder="Contraseña">
           </div>
-
-
+          <div class="form-outline mb-4">
+            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-lg" [(ngModel)]="confirmPassword" required placeholder="Confirmar Contraseña">
+          </div>
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary btn-lg w-72">Crear Cuenta</button>
           </div>
         </form>
-
-
       </div>
       <div class="col-md-8 col-lg-7 col-xl-6">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
@@ -37,5 +34,3 @@
     </div>
   </div>
 </section>
-
-
