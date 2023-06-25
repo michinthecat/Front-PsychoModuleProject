@@ -18,6 +18,7 @@ import { SearchpatientComponent } from './views/patients/searchpatient/searchpat
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
 import { SpecialtyComponent } from './views/specialty/specialty/specialty.component';
+import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 
 
 
@@ -36,7 +37,8 @@ import { SpecialtyComponent } from './views/specialty/specialty/specialty.compon
     SearchpatientComponent,
     UpdatepatientComponent,
     ShowschedulesComponent,
-    SpecialtyComponent
+    SpecialtyComponent,
+    ServicespsychoComponent
   ],
   imports: [
     BrowserModule,

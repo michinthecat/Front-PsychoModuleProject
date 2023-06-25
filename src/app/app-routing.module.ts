@@ -14,6 +14,7 @@ import { SearchpatientComponent } from './views/patients/searchpatient/searchpat
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
 import { SpecialtyComponent } from './views/specialty/specialty/specialty.component';
+import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'update-patient' , component: UpdatepatientComponent, canActivate: [HomeGuard]},
   {path: 'show-schedules' , component: ShowschedulesComponent, canActivate: [HomeGuard]},
   {path: 'specialty-admin' , component: SpecialtyComponent, canActivate: [HomeGuard]},
+  {path: 'servicespsycho-admin' , component: ServicespsychoComponent, canActivate: [HomeGuard]},
   {path: '**', component: NotFoundComponent }
 
 ];
