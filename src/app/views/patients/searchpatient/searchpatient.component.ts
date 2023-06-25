@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Patient } from 'src/app/models/patient/patient.model';
-import { PatientService } from '../../../services/patient/patient.service';
+import { PatientService } from '../../../services/api-consume/patient/patient.service';
 import { ModalService } from '../../../services/modal/modal.service';
 
 

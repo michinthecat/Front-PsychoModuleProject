@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/models/schedule/schedule.mode';
-import { SchedulesService } from 'src/app/services/schedules/schedules.service';
+import { SchedulesService } from 'src/app/services/api-consume/schedules/schedules.service';
+
 import { CognitoService } from 'src/app/services/cognito.service';
 
 

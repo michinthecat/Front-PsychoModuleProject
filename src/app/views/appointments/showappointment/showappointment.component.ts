@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment/appointment.model';
-import { AppointmentService } from 'src/app/services/appointment/appointment.service';
+import { AppointmentService } from 'src/app/services/api-consume/appointment/appointment.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DateFormatService } from 'src/app/services/date-format/date-format.service';
 import { CognitoService } from 'src/app/services/cognito.service';
@@ -32,6 +32,8 @@ export class ShowAppointmentComponent implements OnInit {
         const nicknameAttribute = attributes.find(attr => attr.Name === 'nickname');
         if (nicknameAttribute) {
           this.psychologistId = nicknameAttribute.Value;
+          this.selectedDate = this.dateFormatService.getTodayDate();
+          this.searchAppointmentsByDateAndPsychologist();
         } else {
           console.log('No se encontro la cedula del psicologo en Cognito');
         }
@@ -41,6 +43,7 @@ export class ShowAppointmentComponent implements OnInit {
       }
     );
   }
+
 
   searchAppointmentsByDateAndPsychologist() {
     if (this.selectedDate && this.psychologistId) {

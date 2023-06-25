@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Appointment, Patient, Psychologist, Service, State } from 'src/app/models/appointment/appointment.model';
-import { AppointmentService } from '../../../services/appointment/appointment.service';
+import { AppointmentService } from '../../../services/api-consume/appointment/appointment.service';
 import { ModalService } from '../../../services/modal/modal.service';
 import { DateFormatService } from '../../../services/date-format/date-format.service';
 
