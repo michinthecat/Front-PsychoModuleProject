@@ -17,6 +17,7 @@ import { NotFoundComponent } from './views/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
+import { SpecialtyComponent } from './views/specialty/specialty/specialty.component';
 
 
 
@@ -34,7 +35,8 @@ import { ShowschedulesComponent } from './views/schedules/showschedules/showsche
     NotFoundComponent,
     SearchpatientComponent,
     UpdatepatientComponent,
-    ShowschedulesComponent
+    ShowschedulesComponent,
+    SpecialtyComponent
   ],
   imports: [
     BrowserModule,

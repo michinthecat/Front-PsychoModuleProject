@@ -29,6 +29,6 @@ export class SpecialtyService {
 
   deleteSpecialty(id: number): Observable<any> {
     const url = `${this.apiUrl}/specialties/${id}`;
-    return this.http.delete(url);
+    return this.http.delete(url, { responseType: 'text' });
   }
 }
