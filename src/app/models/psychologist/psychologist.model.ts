@@ -1,6 +1,7 @@
 import { Role } from "../role/role.model";
 import { ServicesPsycho } from "../servicespsycho/servicespsycho.model";
-import { Specialty } from "../speciality/speciality.model";
+import { Specialty } from "../specialty/speciality.model";
+
 
 export interface Psychologist {
   id: number;
