@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './views/login/login.component';
-import { SingupComponent } from './views/singup/singup.component';
+import { LoginComponent } from './views/auth/login/login.component';
+import { SingupComponent } from './views/auth/singup/singup.component';
 import { HomeComponent } from './home/home.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeGuard } from './guards/home.guard';
@@ -9,12 +9,13 @@ import { AppointmentformComponent } from './appointmentform/appointmentform.comp
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { MenuComponent } from './menu/menu.component';
 import { ShowAppointmentComponent } from './views/appointments/showappointment/showappointment.component';
-import { NotFoundComponent } from './views/notfound/notfound.component';
+import { NotFoundComponent } from './views/auth/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
 import { SpecialtyComponent } from './views/specialty/specialty/specialty.component';
 import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
+import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'show-schedules' , component: ShowschedulesComponent, canActivate: [HomeGuard]},
   {path: 'specialty-admin' , component: SpecialtyComponent, canActivate: [HomeGuard]},
   {path: 'servicespsycho-admin' , component: ServicespsychoComponent, canActivate: [HomeGuard]},
+  {path: 'forgot-password' , component: ForgotpasswordComponent, canActivate: [LoginGuard]},
   {path: '**', component: NotFoundComponent }
 
 ];

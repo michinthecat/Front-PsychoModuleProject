@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
-import { CognitoService } from '../services/cognito.service';
+import { CognitoService } from '../services/cognito/cognito.service';
 
 @Component({
   selector: 'app-menu',

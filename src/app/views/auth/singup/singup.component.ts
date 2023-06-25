@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { CognitoUserAttribute, CognitoUserPool } from 'amazon-cognito-identity-js';
-import { Iuser } from '../../models/iuser';
+import { Iuser } from '../../../models/iuser';
 import { Router } from '@angular/router';
 
 

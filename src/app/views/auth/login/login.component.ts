@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor( private router : Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -45,12 +45,10 @@ export class LoginComponent implements OnInit {
       onSuccess: (result) => {
         console.log('access token + ' + result.getAccessToken().getJwtToken());
         this.router.navigate(['/adminhome']);
-      }
-      ,
+      },
       onFailure: (err) => {
         alert(err.message || JSON.stringify(err));
       }
     });
-
   }
 }

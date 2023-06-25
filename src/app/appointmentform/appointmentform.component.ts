@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/lambda/data.service';
 import { ServicesPsycho } from '../models/servicespsycho/servicespsycho.model';
 import { Program } from '../models/program/program.model';
 import { PatientType } from '../models/patienttype/patienttype.model';

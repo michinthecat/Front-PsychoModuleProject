@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { PsycologistByService } from '../models/psychologist/psycologist-by-service.model';
-import { DatesByPsycologist } from '../models/schedule/dates-by-psycologist.model'
-import { StudentAppointmentData } from '../models/appointment/student-appointment-data.model'
-import { ExternalAppointmentData } from '../models/appointment/external-appointment-data.model'
+import { PsycologistByService } from '../../models/psychologist/psycologist-by-service.model';
+import { DatesByPsycologist } from '../../models/schedule/dates-by-psycologist.model'
+import { StudentAppointmentData } from '../../models/appointment/student-appointment-data.model'
+import { ExternalAppointmentData } from '../../models/appointment/external-appointment-data.model'
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +41,12 @@ export class DataService {
 
   getPsychologistsByService(service: string): Observable<PsycologistByService[]> {
     const url = this.apiUrl + '/psychologists/byservice?serviceId=' + service;
-    return this.http.get<PsycologistByService[]>(url);  
+    return this.http.get<PsycologistByService[]>(url);
   }
-  
+
   getDatesByPsycologist(idPsycologist: string, date: string): Observable<DatesByPsycologist[]>{
     const url = this.apiUrl + '/times/by-date?id= ' + idPsycologist + '&' +'date='+ date;
-    return this.http.get<DatesByPsycologist[]>(url);  
+    return this.http.get<DatesByPsycologist[]>(url);
   }
 
   createStudentAppointment(studentAppointmentData: StudentAppointmentData): Observable<any>{

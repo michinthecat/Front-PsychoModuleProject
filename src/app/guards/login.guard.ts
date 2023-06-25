@@ -1,4 +1,4 @@
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../services/cognito/auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
     var isAuth = this.authService.isAuth();
     if(isAuth) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/adminhome']);
       return false;
     }
     return true;
