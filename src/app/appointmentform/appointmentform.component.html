@@ -30,7 +30,7 @@
           <div class="form-group">
             <label for="linkage">Tipo de vinculación</label>
             <select class="form-control" id="linkage" (change)="onLinkageSelected($event)">
-              <option *ngFor="let pacient of userType" [value]="pacient.id">{{pacient.type}}</option>
+              <option *ngFor="let pacient of userType" [value]="pacient.id">{{pacient.patientType}}</option>
             </select>
           </div>
           <br>
@@ -71,7 +71,7 @@
           <div class="form-group">
             <label for="service">Seleccione el servicio de interés</label>
             <select class="form-control" id="service" name="service" [(ngModel)]="selectedService" (ngModelChange)="onServiceSelected($event)">
-              <option *ngFor="let service of services" [value]="service.id">{{service.service_name}}</option>
+              <option *ngFor="let service of services" [value]="service.id">{{service.serviceName}}</option>
             </select>
           </div>
           <br>

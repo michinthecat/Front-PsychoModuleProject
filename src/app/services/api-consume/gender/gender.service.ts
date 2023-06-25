@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Gender } from 'src/app/models/gender.model';
+import { Gender } from 'src/app/models/gender/gender.model';
 
 @Injectable()
 export class GenderService {

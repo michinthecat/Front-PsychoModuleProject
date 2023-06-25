@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Patient } from 'src/app/models/patient/patient.model';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { PatientService } from 'src/app/services/api-consume/patient/patient.service';
-import { Gender } from 'src/app/models/gender.model';
+import { Gender } from 'src/app/models/gender/gender.model';
 import { GenderService } from 'src/app/services/api-consume/gender/gender.service';
 import { PatientType } from 'src/app/models/patienttype/patienttype.model';
 import { PatienttypesService } from 'src/app/services/api-consume/patienttypes/patienttypes.service';

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Psychologist } from '../models/psychologist.model';
-import { PsycologistByService } from '../models/psycologist-by-service.model';
-import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
-import { StudentAppointmentData } from '../models/student-appointment-data.model'
-import { ExternalAppointmentData } from '../models/external-appointment-data.model'
+import { PsycologistByService } from '../models/psychologist/psycologist-by-service.model';
+import { DatesByPsycologist } from '../models/schedule/dates-by-psycologist.model'
+import { StudentAppointmentData } from '../models/appointment/student-appointment-data.model'
+import { ExternalAppointmentData } from '../models/appointment/external-appointment-data.model'
 
 @Injectable({
   providedIn: 'root'

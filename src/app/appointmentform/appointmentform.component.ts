@@ -1,15 +1,14 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Service } from '../models/service.model';
-import { Program } from '../models/program.model';
-import { UserType } from '../models/user-type.model';
-import { Psychologist } from '../models/psychologist.model';
-import { Semester } from '../models/semester.model';
-import { PsycologistByService } from '../models/psycologist-by-service.model';
-import { DatesByPsycologist } from '../models/dates-by-psycologist.model'
-import { StudentAppointmentData } from '../models/student-appointment-data.model'
-import { ExternalAppointmentData } from '../models/external-appointment-data.model'
-import { Gender } from '../models/gender.model';
+import { ServicesPsycho } from '../models/servicespsycho/servicespsycho.model';
+import { Program } from '../models/program/program.model';
+import { PatientType } from '../models/patienttype/patienttype.model';
+import { Semester } from '../models/semester/semester.model';
+import { PsycologistByService } from '../models/psychologist/psycologist-by-service.model';
+import { DatesByPsycologist } from '../models/schedule/dates-by-psycologist.model'
+import { StudentAppointmentData } from '../models/appointment/student-appointment-data.model'
+import { ExternalAppointmentData } from '../models/appointment/external-appointment-data.model'
+import { Gender} from '../models/gender/gender.model'
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -20,11 +19,10 @@ import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class AppointmentformComponent implements OnInit{
   @ViewChild('content') content: any;
   time: DatesByPsycologist[];
-  userType: UserType[];
-  services: Service[];
+  userType: PatientType[];
+  services: ServicesPsycho[];
   genders: Gender[];
   selectedService: string;
-  psychologists: Psychologist[];
   psychologistsByService: PsycologistByService [];
   academics: Program[];
   semesters: Semester[];
@@ -49,9 +47,9 @@ export class AppointmentformComponent implements OnInit{
       this.genders = gender;
     });
 
-    this.dataService.getServices().subscribe((service: Service[]) => {
-      this.services = service; // Asignar el arreglo de objetos Service
-    });
+    // this.dataService.getServices().subscribe((service: Service[]) => {
+    //   this.services = service; // Asignar el arreglo de objetos Service
+    // });
 
 
     this.dataService.getPrograms().subscribe((program: Program[]) =>{
@@ -59,7 +57,7 @@ export class AppointmentformComponent implements OnInit{
     });
 
 
-    this.dataService.getUserType().subscribe((userType: UserType[]) =>{
+    this.dataService.getUserType().subscribe((userType: PatientType[]) =>{
       this.userType = userType;
     });
 
@@ -268,15 +266,17 @@ validatePhone(event: Event): void {
           this.modalBody = `Su Cita Fue Creada Exitosamente, por favor espere la confirmación de su cita al telefono ${phone}`;
           this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
           console.log('Cita creada exitosamente:', response);
+          this.resetFormulario();
 
          },
          (error) => {
 
-           this.modalTitle = 'Cita No Tomada';
-           this.modalBody = `No Sirvio Chaval`;
+           this.modalTitle = 'Hubo un error al crear la cita';
+           this.modalBody = `Hemos tenido problemas para agendar tu cita, por favor intenta de nuevo o comunícate a las líneas de atención de la Universidad de Ibagué`;
            this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
            console.error('Error al crear la cita:', error);
            // Manejar el error de creación de cita
+           this.resetFormulario;
          }
        );
 
@@ -301,16 +301,19 @@ validatePhone(event: Event): void {
       .subscribe(
         (response) => {
           console.log('Cita creada exitosamente:', response);
-          this.modalTitle = 'Cita Creada Exitosamente';
-          this.modalBody = `Su Cita Fue Creada Exitosamente, por favor espere la confirmación de su cita al telefono ${phone}`;
+          this.modalTitle = 'Cita creada exitosamente';
+          this.modalBody = `Hemos enviado un mensaje de texto al ${phone} con los pasos necesarios para confirmar tu cita, Gracias por elegirnos, ¡te esperamos en la Universidad de Ibagué!`;
           this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
+          this.resetFormulario();
         },
         (error) => {
           console.error('Error al crear la cita:', error);
-           this.modalTitle = 'Cita No Tomada';
-           this.modalBody = `No Sirvio Chaval`;
+           this.modalTitle = 'Hubo un error al crear la cita';
+           this.modalBody = `Hemos tenido problemas para agendar tu cita, por favor intenta de nuevo o comunícate a las líneas de atención de la Universidad de Ibagué`;
            this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'});
           // Manejar el error de creación de cita
+          this.resetFormulario;
+
         }
       );
     }
