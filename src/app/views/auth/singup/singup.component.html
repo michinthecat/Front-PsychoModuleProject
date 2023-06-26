@@ -2,9 +2,8 @@
   <div class="container py-5 h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <h2 class="text-center mb-4">Regístrate</h2>
+        <h2 class="text-center mb-4">Registro Psicología</h2>
         <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
-          <!-- Campos del formulario -->
           <div class="form-outline mb-4">
             <input type="email" id="email" name="email" class="form-control form-control-lg" [(ngModel)]="email" required placeholder="Correo Electrónico">
           </div>
@@ -15,7 +14,7 @@
             <input type="text" name="lastName" id="lastName" class="form-control form-control-lg" [(ngModel)]="lastName" required placeholder="Apellido">
           </div>
           <div class="form-outline mb-4">
-            <input type="text" name="nickName" id="nickName" class="form-control form-control-lg" [(ngModel)]="nickName" required placeholder="Cédula">
+            <input type="number" name="nickName" id="nickName" class="form-control form-control-lg no-arrows" [(ngModel)]="nickName" required placeholder="Cédula" title="Ingrese solo números">
           </div>
           <div class="form-outline mb-4">
             <input type="password" name="password" id="password" class="form-control form-control-lg" [(ngModel)]="password" required placeholder="Contraseña">

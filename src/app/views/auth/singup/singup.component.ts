@@ -30,8 +30,7 @@ export class SingupComponent implements OnInit {
       return;
     }
 
-    // Registro en tu API
-    var psychologist: Psychologist = {
+      var psychologist: Psychologist = {
       id: parseInt(this.nickName),
       name: this.name,
       lastName: this.lastName,
@@ -49,7 +48,7 @@ export class SingupComponent implements OnInit {
 
     this.psychologistService.createPsychologist(psychologist).subscribe(
       (createdPsychologist: Psychologist) => {
-        // Registro exitoso en tu API
+
         console.log('Registro exitoso en la API:', createdPsychologist);
 
         // Registro en Cognito
@@ -79,7 +78,7 @@ export class SingupComponent implements OnInit {
 
         userPool.signUp(this.email, this.password, attributeList, [], (err, result) => {
           if (err) {
-            // Eliminar el registro en tu API en caso de error en Cognito
+
             this.psychologistService.deletePsychologist(createdPsychologist.id).subscribe(
               () => {
                 console.log('Registro eliminado en la API debido a un error en Cognito');
@@ -93,15 +92,13 @@ export class SingupComponent implements OnInit {
             return;
           }
 
-          // Registro exitoso en Cognito
           var cognitoUser = result.user;
           console.log(JSON.stringify(cognitoUser));
-          alert('Hemos Enviado un correo de confirmacion a ' + cognitoUser.getUsername());
+          alert('Hemos enviado un correo de confirmación a ' + cognitoUser.getUsername());
           this.router.navigate(['/login']);
         });
       },
       error => {
-        // Manejo del error al registrar en tu API
         console.error('Error al registrar en la API:', error);
       }
     );

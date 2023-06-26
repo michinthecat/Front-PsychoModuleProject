@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CognitoUserAttribute, CognitoUserPool } from 'amazon-cognito-identity-js';
+import { CognitoUserAttribute, CognitoUserPool, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 
@@ -9,7 +9,7 @@ import { environment } from 'src/environment/environment';
 })
 export class CognitoService {
 
-  constructor(private router: Router){}
+  constructor(private router: Router) {}
 
   attributes: CognitoUserAttribute[];
   poolData = {
@@ -63,7 +63,7 @@ export class CognitoService {
           }
 
           let nicknameAttribute = result.find(attribute => attribute.getName() === 'nickname');
-          if(nicknameAttribute){
+          if (nicknameAttribute) {
             observer.next(nicknameAttribute.getValue());
             observer.complete();
           } else {
@@ -73,11 +73,72 @@ export class CognitoService {
       });
     });
   }
+
+  recoverPassword(username: string): Observable<any> {
+    return new Observable<any>(observer => {
+      var userPool = new CognitoUserPool(this.poolData);
+      var userData = {
+        Username: username,
+        Pool: userPool
+      };
+      var cognitoUser = new CognitoUser(userData);
+
+      cognitoUser.forgotPassword({
+        onSuccess: () => {
+          observer.next();
+          observer.complete();
+        },
+        onFailure: (err: any) => {
+          observer.error(err.message || JSON.stringify(err));
+        }
+      });
+    });
+  }
+
+  confirmNewPassword(username: string, verificationCode: string, newPassword: string): Observable<any> {
+    return new Observable<any>(observer => {
+      var userPool = new CognitoUserPool(this.poolData);
+      var userData = {
+        Username: username,
+        Pool: userPool
+      };
+      var cognitoUser = new CognitoUser(userData);
+
+      cognitoUser.confirmPassword(verificationCode, newPassword, {
+        onSuccess: () => {
+          observer.next();
+          observer.complete();
+        },
+        onFailure: (err: any) => {
+          observer.error(err.message || JSON.stringify(err));
+        }
+      });
+    });
+  }
+
+  authenticateUser(username: string, password: string): Observable<any> {
+    return new Observable<any>(observer => {
+      var userPool = new CognitoUserPool(this.poolData);
+      var authenticationData = {
+        Username: username,
+        Password: password
+      };
+      var authenticationDetails = new AuthenticationDetails(authenticationData);
+      var userData = {
+        Username: username,
+        Pool: userPool
+      };
+      var cognitoUser = new CognitoUser(userData);
+
+      cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: (result: any) => {
+          observer.next(result);
+          observer.complete();
+        },
+        onFailure: (err: any) => {
+          observer.error(err.message || JSON.stringify(err));
+        }
+      });
+    });
+  }
 }
-
-
-
-
-
-
-
