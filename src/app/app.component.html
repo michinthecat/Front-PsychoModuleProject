@@ -1,6 +1,6 @@
 <ng-container *ngIf="isLoggedIn">
-  <app-menu *ngIf="!isLoggedWithAdmin"></app-menu>
   <app-menu-admin *ngIf="isLoggedWithAdmin"></app-menu-admin>
+  <app-menu *ngIf="!isLoggedWithAdmin"></app-menu>
 </ng-container>
 
 <router-outlet></router-outlet>

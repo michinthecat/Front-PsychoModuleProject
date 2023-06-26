@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { environment } from 'src/environment/environment';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { CognitoService } from './cognito.service';
+import { PsychologistService } from '../api-consume/psychologist/psychologist.service';
+import { Psychologist } from 'src/app/models/psychologist/psychologist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +18,13 @@ export class AuthService {
 
   private isAuthSubject = new Subject<boolean>();
   isAuthStateChanged = this.isAuthSubject.asObservable();
+  userRole$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
-  constructor() { }
+
+  constructor(
+    private cognitoService: CognitoService,
+    private psychologistService: PsychologistService
+  ) { }
 
   isAuth(): boolean {
     var isAuth = false;
@@ -30,10 +38,30 @@ export class AuthService {
         }
         isAuth = session.isValid();
         this.isAuthSubject.next(isAuth);
+
+        if (isAuth) {
+          this.cognitoService.getCedula().subscribe(
+            (cedula: string) => {
+              this.psychologistService.getPsychologist(parseInt(cedula)).subscribe(
+                (psychologist: Psychologist) => {
+                  const userRole = psychologist.role.id;
+                  this.userRole$.next(userRole);
+                }
+              );
+            }
+          );
+        }
       });
     } else {
       this.isAuthSubject.next(false);
+      this.userRole$.next(null);  // reset user role when not authenticated
     }
+
     return isAuth;
   }
+
+
+
+
+
 }
