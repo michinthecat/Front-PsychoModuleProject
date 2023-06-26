@@ -5,6 +5,7 @@ import { SingupComponent } from './views/auth/singup/singup.component';
 import { HomeComponent } from './home/home.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeGuard } from './guards/home.guard';
+import { RolGuard } from './guards/rol.guard';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { MenuComponent } from './menu/menu.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path:'signup', component: SingupComponent, canActivate: [LoginGuard]},
   {path:'appointmentform', component: AppointmentformComponent},
-  {path:'adminhome', component: HomeComponent, canActivate: [HomeGuard]},
+  {path:'adminhome', component: HomeComponent, canActivate: [RolGuard]},
   {path:'menu', component: MenuComponent, canActivate: [HomeGuard]},
   {path: 'search-appointment', component: SearchappointmentComponent, canActivate: [HomeGuard]},
   {path: 'show-appointment', component: ShowAppointmentComponent, canActivate: [HomeGuard]},
