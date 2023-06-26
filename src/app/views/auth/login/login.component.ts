@@ -8,18 +8,16 @@ import { CognitoService } from 'src/app/services/cognito/cognito.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent{
   email: string;
   password: string;
 
   constructor(private router: Router, private cognitoService: CognitoService) {}
 
-
-
   onLogin(): void {
     this.cognitoService.authenticateUser(this.email, this.password).subscribe(
       (result: any) => {
-        this.router.navigate(['/adminhome']);
+        this.router.navigate(['/show-appointment']);
       },
       (err: any) => {
 

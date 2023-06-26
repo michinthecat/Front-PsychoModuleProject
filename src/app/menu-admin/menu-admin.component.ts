@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { CognitoService } from '../services/cognito/cognito.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-menu-admin',
+  templateUrl: './menu-admin.component.html',
+  styleUrls: ['./menu-admin.component.css']
 })
-export class MenuComponent {
-  attributes: CognitoUserAttribute[];
+export class MenuAdminComponent {
 
   constructor(private cognitoService: CognitoService) {}
 

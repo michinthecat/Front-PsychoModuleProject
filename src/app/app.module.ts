@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { SingupComponent } from './views/auth/singup/singup.component';
 import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './menu-user/menu.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { ShowschedulesComponent } from './views/schedules/showschedules/showsche
 import { SpecialtyComponent } from './views/specialty/specialty/specialty.component';
 import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
+import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 
 
 
@@ -40,7 +41,8 @@ import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassw
     ShowschedulesComponent,
     SpecialtyComponent,
     ServicespsychoComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    MenuAdminComponent
   ],
   imports: [
     BrowserModule,
