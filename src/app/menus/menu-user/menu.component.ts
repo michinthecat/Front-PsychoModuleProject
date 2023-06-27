@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CognitoService } from '../services/cognito/cognito.service';
+import { CognitoService } from '../../services/cognito/cognito.service';
 
 @Component({
   selector: 'app-menu',

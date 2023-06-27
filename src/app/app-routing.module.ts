@@ -8,7 +8,7 @@ import { HomeGuard } from './guards/home.guard';
 import { RolGuard } from './guards/rol.guard';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
-import { MenuComponent } from './menu-user/menu.component';
+import { MenuComponent } from './menus/menu-user/menu.component';
 import { ShowAppointmentComponent } from './views/appointments/showappointment/showappointment.component';
 import { NotFoundComponent } from './views/auth/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
@@ -17,7 +17,7 @@ import { ShowschedulesComponent } from './views/schedules/showschedules/showsche
 import { SpecialtyComponent } from './views/specialty/specialty.component';
 import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
-import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import { MenuAdminComponent } from './menus/menu-admin/menu-admin.component';
 import { PsychologistComponent } from './views/psychologist/psychologist.component';
 
 
