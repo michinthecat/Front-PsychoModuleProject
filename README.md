@@ -2,6 +2,10 @@
 
 Este proyecto fue generado con [Angular CLI] versión 16.1.1
 
+# Desarrolladores:
+
+- [Jhon Edison Bravo Casas](hola)
+
 ## Descripción del Proyecto
 
 Modulo Administrativo Psicologico es una aplicación web desarrollada con Angular que proporciona una interfaz de usuario para interactuar con un sistema de gestión de psicólogos, citas, servicios y demas funcionalidades. Permite realizar operaciones de gestion en los datos de los psicólogos, citas, especialidades, horarios, servicios etc. Utilizando consumos de multiples API RESTfull, conectadas a Springboot.
