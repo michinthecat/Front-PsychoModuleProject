@@ -5,12 +5,11 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DateFormatService } from 'src/app/services/date-format/date-format.service';
 import { CognitoService } from 'src/app/services/cognito/cognito.service';
 
-
 @Component({
   selector: 'app-showappointment',
   templateUrl: './showappointment.component.html',
   styleUrls: ['./showappointment.component.css'],
-  providers: [AppointmentService, DateFormatService, CognitoService]
+  providers: [AppointmentService, DateFormatService, CognitoService],
 })
 export class ShowAppointmentComponent implements OnInit {
   selectedDate: string;
@@ -28,8 +27,10 @@ export class ShowAppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.cognitoService.getAttributes().subscribe(
-      attributes => {
-        const nicknameAttribute = attributes.find(attr => attr.Name === 'nickname');
+      (attributes) => {
+        const nicknameAttribute = attributes.find(
+          (attr) => attr.Name === 'nickname'
+        );
         if (nicknameAttribute) {
           this.psychologistId = nicknameAttribute.Value;
           this.selectedDate = this.dateFormatService.getTodayDate();
@@ -38,17 +39,19 @@ export class ShowAppointmentComponent implements OnInit {
           console.log('No se encontro la cedula del psicologo en Cognito');
         }
       },
-      error => {
+      (error) => {
         console.log('Error de Obtencion: ', error);
       }
     );
   }
 
-
   searchAppointmentsByDateAndPsychologist() {
     if (this.selectedDate && this.psychologistId) {
       this.appointmentService
-        .getAllAppointmentsByDateAndPsychologistId(this.selectedDate, this.psychologistId)
+        .getAllAppointmentsByDateAndPsychologistId(
+          this.selectedDate,
+          this.psychologistId
+        )
         .subscribe(
           (appointments: Appointment[]) => {
             this.appointments = appointments;
@@ -77,7 +80,10 @@ export class ShowAppointmentComponent implements OnInit {
 
   openModal(content: any, appointment: Appointment) {
     this.selectedAppointment = appointment;
-    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-title', centered: true });
+    this.modalRef = this.modalService.open(content, {
+      ariaLabelledBy: 'modal-title',
+      centered: true,
+    });
   }
 
   closeModal() {

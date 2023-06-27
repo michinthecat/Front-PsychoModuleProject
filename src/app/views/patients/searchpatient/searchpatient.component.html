@@ -3,9 +3,30 @@
     <div class="col">
       <h2 class="text-center mb-4 special-title">🔎 Informacion & Notas 📝</h2>
       <div class="input-group mb-3">
-        <input type="number" class="form-control rounded-start mr-2" id="patientId" [(ngModel)]="patientId" placeholder="Ingrese Cedula del Paciente" inputmode="numeric" [disabled]="searchComplete" (keyup.enter)="searchPatient()">
-        <button class="btn btn-primary rounded-end" *ngIf="!searchComplete" (click)="searchPatient()">Buscar</button>
-        <button class="btn btn-secondary rounded-end" *ngIf="searchComplete" (click)="clearSearch()">Limpiar</button>
+        <input
+          type="number"
+          class="form-control rounded-start mr-2"
+          id="patientId"
+          [(ngModel)]="patientId"
+          placeholder="Ingrese Cedula del Paciente"
+          inputmode="numeric"
+          [disabled]="searchComplete"
+          (keyup.enter)="searchPatient()"
+        />
+        <button
+          class="btn btn-primary rounded-end"
+          *ngIf="!searchComplete"
+          (click)="searchPatient()"
+        >
+          Buscar
+        </button>
+        <button
+          class="btn btn-secondary rounded-end"
+          *ngIf="searchComplete"
+          (click)="clearSearch()"
+        >
+          Limpiar
+        </button>
       </div>
     </div>
   </div>
@@ -16,9 +37,14 @@
           <h3 class="card-title">Detalles del Paciente</h3>
         </div>
         <div class="card-body">
-          <p><strong>Nombre:</strong> {{ patient.name + ' ' + patient.lastName }}</p>
+          <p>
+            <strong>Nombre:</strong> {{ patient.name + " " + patient.lastName }}
+          </p>
           <p><strong>Email:</strong> {{ patient.email }}</p>
-          <p><strong>Género:</strong> {{ patient.gender.gender }} {{ getGenderEmoji(patient.gender.gender) }}</p>
+          <p>
+            <strong>Género:</strong> {{ patient.gender.gender }}
+            {{ getGenderEmoji(patient.gender.gender) }}
+          </p>
           <p><strong>Edad:</strong> {{ patient.age }}</p>
           <p><strong>Tipo:</strong> {{ patient.patientType.patientType }}</p>
           <p><strong>Teléfono:</strong> {{ patient.phone }}</p>
@@ -26,7 +52,9 @@
       </div>
       <div class="notes-container">
         <p class="notes-title">Notas del Paciente</p>
-        <div *ngIf="!editingNotes" class="notes-content">{{ patient.notes }}</div>
+        <div *ngIf="!editingNotes" class="notes-content">
+          {{ patient.notes }}
+        </div>
         <textarea
           *ngIf="editingNotes"
           class="form-control"
@@ -34,8 +62,20 @@
           rows="5"
           (click)="setCursorPosition($event)"
         ></textarea>
-        <button class="btn btn-primary edit-notes-button" *ngIf="!editingNotes" (click)="editNotes()">Editar notas del paciente</button>
-        <button class="btn btn-success save-notes-button" *ngIf="editingNotes" (click)="saveNotes()">Guardar notas del paciente</button>
+        <button
+          class="btn btn-primary edit-notes-button"
+          *ngIf="!editingNotes"
+          (click)="editNotes()"
+        >
+          Editar notas del paciente
+        </button>
+        <button
+          class="btn btn-success save-notes-button"
+          *ngIf="editingNotes"
+          (click)="saveNotes()"
+        >
+          Guardar notas del paciente
+        </button>
       </div>
     </div>
   </div>
@@ -45,7 +85,12 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">{{ modalTitle }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -53,6 +98,12 @@
     {{ modalBody }}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close('Close click')"
+    >
+      Cerrar
+    </button>
   </div>
 </ng-template>

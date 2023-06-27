@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CognitoService } from 'src/app/services/cognito/cognito.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent{
+export class LoginComponent {
   email: string;
   password: string;
 
@@ -20,7 +19,6 @@ export class LoginComponent{
         this.router.navigate(['/show-appointment']);
       },
       (err: any) => {
-
         alert(err.message || JSON.stringify(err));
       }
     );

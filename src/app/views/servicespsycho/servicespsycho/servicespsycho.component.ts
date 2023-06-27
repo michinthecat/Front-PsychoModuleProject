@@ -5,7 +5,7 @@ import { ServicespsychoService } from 'src/app/services/api-consume/servicespsyc
 @Component({
   selector: 'app-servicespsycho',
   templateUrl: './servicespsycho.component.html',
-  styleUrls: ['./servicespsycho.component.css']
+  styleUrls: ['./servicespsycho.component.css'],
 })
 export class ServicespsychoComponent implements OnInit {
   services: ServicesPsycho[];
@@ -13,7 +13,7 @@ export class ServicespsychoComponent implements OnInit {
     id: 0,
     serviceName: '',
     description: '',
-    cost: 0
+    cost: 0,
   };
   modalOpen: boolean = false;
   editModalOpen: boolean = false;
@@ -24,7 +24,7 @@ export class ServicespsychoComponent implements OnInit {
     id: 0,
     serviceName: '',
     description: '',
-    cost: 0
+    cost: 0,
   };
 
   constructor(private servicespsychoService: ServicespsychoService) {}
@@ -38,7 +38,7 @@ export class ServicespsychoComponent implements OnInit {
       (services: ServicesPsycho[]) => {
         this.services = services;
       },
-      error => {
+      (error) => {
         console.error('Error fetching services:', error);
       }
     );
@@ -52,7 +52,7 @@ export class ServicespsychoComponent implements OnInit {
         this.closeModal();
         this.getAllServicesPsycho();
       },
-      error => {
+      (error) => {
         console.error('Error creating service:', error);
         this.errorModalOpen = true;
       }
@@ -60,18 +60,20 @@ export class ServicespsychoComponent implements OnInit {
   }
 
   updateService() {
-    this.servicespsychoService.updateServicesPsycho(this.selectedService.id, this.selectedService).subscribe(
-      (updatedService: ServicesPsycho) => {
-        console.log('Service updated:', updatedService);
-        this.successModalOpen = true;
-        this.closeEditModal();
-        this.getAllServicesPsycho();
-      },
-      error => {
-        console.error('Error updating service:', error);
-        this.errorModalOpen = true;
-      }
-    );
+    this.servicespsychoService
+      .updateServicesPsycho(this.selectedService.id, this.selectedService)
+      .subscribe(
+        (updatedService: ServicesPsycho) => {
+          console.log('Service updated:', updatedService);
+          this.successModalOpen = true;
+          this.closeEditModal();
+          this.getAllServicesPsycho();
+        },
+        (error) => {
+          console.error('Error updating service:', error);
+          this.errorModalOpen = true;
+        }
+      );
   }
 
   deleteService(id: number) {
@@ -80,7 +82,7 @@ export class ServicespsychoComponent implements OnInit {
         () => {
           this.getAllServicesPsycho();
         },
-        error => {
+        (error) => {
           console.error('Error deleting service:', error);
           this.deleteErrorModalOpen = true;
         }

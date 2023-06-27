@@ -7,10 +7,9 @@ import { PsychologistService } from '../api-consume/psychologist/psychologist.se
 import { Psychologist } from 'src/app/models/psychologist/psychologist.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private poolData = {
     UserPoolId: environment.UserPoolId,
     ClientId: environment.ClientId,
@@ -18,13 +17,14 @@ export class AuthService {
 
   private isAuthSubject = new Subject<boolean>();
   isAuthStateChanged = this.isAuthSubject.asObservable();
-  userRole$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
-
+  userRole$: BehaviorSubject<number | null> = new BehaviorSubject<
+    number | null
+  >(null);
 
   constructor(
     private cognitoService: CognitoService,
     private psychologistService: PsychologistService
-  ) { }
+  ) {}
 
   isAuth(): boolean {
     var isAuth = false;
@@ -32,7 +32,7 @@ export class AuthService {
     var userPool = new CognitoUserPool(this.poolData);
     var currentUser = userPool.getCurrentUser();
     if (currentUser != null) {
-      currentUser.getSession((err:any, session: any) => {
+      currentUser.getSession((err: any, session: any) => {
         if (err) {
           alert(err.message || JSON.stringify(err));
         }
@@ -40,28 +40,21 @@ export class AuthService {
         this.isAuthSubject.next(isAuth);
 
         if (isAuth) {
-          this.cognitoService.getCedula().subscribe(
-            (cedula: string) => {
-              this.psychologistService.getPsychologist(parseInt(cedula)).subscribe(
-                (psychologist: Psychologist) => {
-                  const userRole = psychologist.role.id;
-                  this.userRole$.next(userRole);
-                }
-              );
-            }
-          );
+          this.cognitoService.getCedula().subscribe((cedula: string) => {
+            this.psychologistService
+              .getPsychologist(parseInt(cedula))
+              .subscribe((psychologist: Psychologist) => {
+                const userRole = psychologist.role.id;
+                this.userRole$.next(userRole);
+              });
+          });
         }
       });
     } else {
       this.isAuthSubject.next(false);
-      this.userRole$.next(null);  // reset user role when not authenticated
+      this.userRole$.next(null); // reset user role when not authenticated
     }
 
     return isAuth;
   }
-
-
-
-
-
 }

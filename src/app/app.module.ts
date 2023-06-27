@@ -11,7 +11,7 @@ import { MenuComponent } from './menus/menu-user/menu.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
-import { ShowAppointmentComponent} from './views/appointments/showappointment/showappointment.component';
+import { ShowAppointmentComponent } from './views/appointments/showappointment/showappointment.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { NotFoundComponent } from './views/auth/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
@@ -22,9 +22,6 @@ import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/s
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 import { MenuAdminComponent } from './menus/menu-admin/menu-admin.component';
 import { PsychologistComponent } from './views/psychologist/psychologist.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -44,15 +41,10 @@ import { PsychologistComponent } from './views/psychologist/psychologist.compone
     ServicespsychoComponent,
     ForgotpasswordComponent,
     MenuAdminComponent,
-    PsychologistComponent
+    PsychologistComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

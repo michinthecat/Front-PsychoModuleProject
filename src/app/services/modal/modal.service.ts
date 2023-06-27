@@ -6,9 +6,8 @@ export class ModalService {
   constructor(private modalService: NgbModal) {}
 
   openModal(content: any): NgbModalRef {
-    return this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+    return this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+    });
   }
-
-
-
 }

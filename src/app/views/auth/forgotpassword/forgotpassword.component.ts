@@ -6,7 +6,7 @@ import { ModalService } from 'src/app/services/modal/modal.service';
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['./forgotpassword.component.css'],
-  providers: [ModalService]
+  providers: [ModalService],
 })
 export class ForgotpasswordComponent {
   @ViewChild('emailSentModal') content: any;
@@ -20,7 +20,10 @@ export class ForgotpasswordComponent {
   modalTitle: string;
   modalBody: string;
 
-  constructor(private cognitoService: CognitoService, private modalService: ModalService) {}
+  constructor(
+    private cognitoService: CognitoService,
+    private modalService: ModalService
+  ) {}
 
   sendVerificationCode(): void {
     this.errorMessage = null;
@@ -33,7 +36,7 @@ export class ForgotpasswordComponent {
           `Se ha enviado un código de seguridad a tu email para que puedas cambiar tu contraseña.`
         );
       },
-      error => {
+      (error) => {
         this.openModal(
           'Error',
           `Ocurrió un error al enviar el correo de verificación: ${error}`
@@ -56,13 +59,15 @@ export class ForgotpasswordComponent {
       return;
     }
 
-    this.cognitoService.confirmNewPassword(this.email, this.verificationCode, this.newPassword).subscribe(
-      () => {
-        this.isResetCompleted = true;
-      },
-      error => {
-        this.errorMessage = error;
-      }
-    );
+    this.cognitoService
+      .confirmNewPassword(this.email, this.verificationCode, this.newPassword)
+      .subscribe(
+        () => {
+          this.isResetCompleted = true;
+        },
+        (error) => {
+          this.errorMessage = error;
+        }
+      );
   }
 }

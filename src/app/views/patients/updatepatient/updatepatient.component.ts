@@ -7,12 +7,11 @@ import { GenderService } from 'src/app/services/api-consume/gender/gender.servic
 import { PatientType } from 'src/app/models/patienttype/patienttype.model';
 import { PatienttypesService } from 'src/app/services/api-consume/patienttypes/patienttypes.service';
 
-
 @Component({
   selector: 'app-updatepatient',
   templateUrl: './updatepatient.component.html',
   styleUrls: ['./updatepatient.component.css'],
-  providers: [PatientService, ModalService, GenderService, PatienttypesService]
+  providers: [PatientService, ModalService, GenderService, PatienttypesService],
 })
 export class UpdatepatientComponent {
   @ViewChild('content') content: any;
@@ -66,10 +65,7 @@ export class UpdatepatientComponent {
           this.handlePatientSuccess(patient);
         },
         (error) => {
-          this.openModal(
-            'Error al buscar el Paciente',
-            `${error.error}`
-          );
+          this.openModal('Error al buscar el Paciente', `${error.error}`);
         }
       );
     }
@@ -108,10 +104,7 @@ export class UpdatepatientComponent {
           this.editingPatient = false;
         },
         (error) => {
-          this.openModal(
-            'Error al actualizar el Paciente',
-            `${error.error}`
-          );
+          this.openModal('Error al actualizar el Paciente', `${error.error}`);
         }
       );
     }

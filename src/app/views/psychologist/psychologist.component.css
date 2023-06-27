@@ -3,6 +3,6 @@
 }
 
 .scrollable-services {
-  max-height: 250px; /* Ajusta la altura máxima según tus necesidades */
+  max-height: 250px;
   overflow-y: auto;
 }

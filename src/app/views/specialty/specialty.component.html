@@ -1,8 +1,9 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h2 class="text-center mb-4 special-title"><i class="fas fa-stethoscope"></i> Mostrar Especialidades</h2>
-
+      <h2 class="text-center mb-4 special-title">
+        <i class="fas fa-stethoscope"></i> Mostrar Especialidades
+      </h2>
     </div>
   </div>
   <div class="row mt-4" *ngIf="specialties && specialties.length > 0">
@@ -26,8 +27,18 @@
                 <td>{{ specialty.specialty }}</td>
                 <td>
                   <div class="d-flex">
-                    <button class="btn btn-danger btn-sm mr-2" (click)="deleteSpecialty(specialty.id)">Eliminar</button>
-                    <button class="btn btn-primary btn-sm edit-button" (click)="openEditModal(specialty)">Editar</button>
+                    <button
+                      class="btn btn-danger btn-sm mr-2"
+                      (click)="deleteSpecialty(specialty.id)"
+                    >
+                      Eliminar
+                    </button>
+                    <button
+                      class="btn btn-primary btn-sm edit-button"
+                      (click)="openEditModal(specialty)"
+                    >
+                      Editar
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -45,12 +56,21 @@
     </div>
   </div>
 
-  <button class="btn btn-primary btn-lg btn-floating mt-2" (click)="openModal()">
+  <button
+    class="btn btn-primary btn-lg btn-floating mt-2"
+    (click)="openModal()"
+  >
     <i class="fas fa-plus"></i>
   </button>
 
   <!-- Modal Gen-->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="modalOpen" [class.d-block]="modalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="modalOpen"
+    [class.d-block]="modalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -62,19 +82,42 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="specialtyName">Nombre:</label>
-            <input type="text" class="form-control" id="specialtyName" [(ngModel)]="newSpecialty.specialty" />
+            <input
+              type="text"
+              class="form-control"
+              id="specialtyName"
+              [(ngModel)]="newSpecialty.specialty"
+            />
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="createSpecialty()">Guardar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeModal()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="createSpecialty()"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Editar -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="editModalOpen" [class.d-block]="editModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="editModalOpen"
+    [class.d-block]="editModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -86,19 +129,42 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="editSpecialtyName">Nombre:</label>
-            <input type="text" class="form-control" id="editSpecialtyName" [(ngModel)]="selectedSpecialty.specialty" />
+            <input
+              type="text"
+              class="form-control"
+              id="editSpecialtyName"
+              [(ngModel)]="selectedSpecialty.specialty"
+            />
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="updateSpecialty()">Guardar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeEditModal()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="updateSpecialty()"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Éxito -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="successModalOpen" [class.d-block]="successModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="successModalOpen"
+    [class.d-block]="successModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -111,27 +177,50 @@
           <p>La especialidad se ha agregado/actualizado exitosamente.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeSuccessModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeSuccessModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Error -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="errorModalOpen" [class.d-block]="errorModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="errorModalOpen"
+    [class.d-block]="errorModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Error al Agregar/Actualizar la Especialidad</h5>
+          <h5 class="modal-title">
+            Error al Agregar/Actualizar la Especialidad
+          </h5>
           <button type="button" class="close" (click)="closeErrorModal()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Ha ocurrido un error al agregar/actualizar la especialidad. Por favor, intenta nuevamente.</p>
+          <p>
+            Ha ocurrido un error al agregar/actualizar la especialidad. Por
+            favor, intenta nuevamente.
+          </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeErrorModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeErrorModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
@@ -139,7 +228,13 @@
 </div>
 
 <!-- Modal de Error al Eliminar -->
-<div class="modal" tabindex="-1" role="dialog" [class.show]="deleteErrorModalOpen" [class.d-block]="deleteErrorModalOpen">
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [class.show]="deleteErrorModalOpen"
+  [class.d-block]="deleteErrorModalOpen"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -149,12 +244,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Ha ocurrido un error al eliminar la especialidad. Verifica que no este asociado a un Psicologo</p>
+        <p>
+          Ha ocurrido un error al eliminar la especialidad. Verifica que no este
+          asociado a un Psicologo
+        </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="closeDeleteErrorModal()">Cerrar</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="closeDeleteErrorModal()"
+        >
+          Cerrar
+        </button>
       </div>
     </div>
   </div>
 </div>
-

@@ -9,7 +9,7 @@ import { ServicespsychoService } from 'src/app/services/api-consume/servicespsyc
 @Component({
   selector: 'app-psychologist',
   templateUrl: './psychologist.component.html',
-  styleUrls: ['./psychologist.component.css']
+  styleUrls: ['./psychologist.component.css'],
 })
 export class PsychologistComponent implements OnInit {
   psychologists: Psychologist[];
@@ -20,7 +20,7 @@ export class PsychologistComponent implements OnInit {
     email: '',
     specialty: { id: 0, specialty: '' },
     role: { id: 0, role: '' },
-    services: []
+    services: [],
   };
   modalOpen: boolean = false;
   editModalOpen: boolean = false;
@@ -34,7 +34,7 @@ export class PsychologistComponent implements OnInit {
     email: '',
     specialty: { id: 0, specialty: '' },
     role: { id: 0, role: '' },
-    services: []
+    services: [],
   };
   specialties: Specialty[];
   services: ServicesPsycho[];
@@ -56,7 +56,7 @@ export class PsychologistComponent implements OnInit {
       (psychologists: Psychologist[]) => {
         this.psychologists = psychologists;
       },
-      error => {
+      (error) => {
         console.error('Error fetching psychologists:', error);
       }
     );
@@ -67,7 +67,7 @@ export class PsychologistComponent implements OnInit {
       (specialties: Specialty[]) => {
         this.specialties = specialties;
       },
-      error => {
+      (error) => {
         console.error('Error fetching specialties:', error);
       }
     );
@@ -78,7 +78,7 @@ export class PsychologistComponent implements OnInit {
       (services: ServicesPsycho[]) => {
         this.services = services;
       },
-      error => {
+      (error) => {
         console.error('Error fetching services:', error);
       }
     );
@@ -92,7 +92,7 @@ export class PsychologistComponent implements OnInit {
         this.closeModal();
         this.getAllPsychologists();
       },
-      error => {
+      (error) => {
         console.error('Error creating psychologist:', error);
         this.errorModalOpen = true;
       }
@@ -100,18 +100,23 @@ export class PsychologistComponent implements OnInit {
   }
 
   updatePsychologist() {
-    this.psychologistService.updatePsychologist(this.selectedPsychologist.id, this.selectedPsychologist).subscribe(
-      (updatedPsychologist: Psychologist) => {
-        console.log('Psychologist updated:', updatedPsychologist);
-        this.successModalOpen = true;
-        this.closeEditModal();
-        this.getAllPsychologists();
-      },
-      error => {
-        console.error('Error updating psychologist:', error);
-        this.errorModalOpen = true;
-      }
-    );
+    this.psychologistService
+      .updatePsychologist(
+        this.selectedPsychologist.id,
+        this.selectedPsychologist
+      )
+      .subscribe(
+        (updatedPsychologist: Psychologist) => {
+          console.log('Psychologist updated:', updatedPsychologist);
+          this.successModalOpen = true;
+          this.closeEditModal();
+          this.getAllPsychologists();
+        },
+        (error) => {
+          console.error('Error updating psychologist:', error);
+          this.errorModalOpen = true;
+        }
+      );
   }
 
   deletePsychologist(id: number) {
@@ -120,7 +125,7 @@ export class PsychologistComponent implements OnInit {
         () => {
           this.getAllPsychologists();
         },
-        error => {
+        (error) => {
           console.error('Error deleting psychologist:', error);
           this.deleteErrorModalOpen = true;
         }
@@ -158,7 +163,9 @@ export class PsychologistComponent implements OnInit {
   }
 
   toggleService(service: ServicesPsycho) {
-    const index = this.selectedPsychologist.services.findIndex(s => s.id === service.id);
+    const index = this.selectedPsychologist.services.findIndex(
+      (s) => s.id === service.id
+    );
     if (index > -1) {
       this.selectedPsychologist.services.splice(index, 1); // Remove service
     } else {
@@ -167,6 +174,6 @@ export class PsychologistComponent implements OnInit {
   }
 
   isServiceSelected(service: ServicesPsycho): boolean {
-    return this.selectedPsychologist.services.some(s => s.id === service.id);
+    return this.selectedPsychologist.services.some((s) => s.id === service.id);
   }
 }

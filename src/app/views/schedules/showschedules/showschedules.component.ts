@@ -4,11 +4,10 @@ import { SchedulesService } from 'src/app/services/api-consume/schedules/schedul
 
 import { CognitoService } from 'src/app/services/cognito/cognito.service';
 
-
 @Component({
   selector: 'app-showschedules',
   templateUrl: './showschedules.component.html',
-  styleUrls: ['./showschedules.component.css']
+  styleUrls: ['./showschedules.component.css'],
 })
 export class ShowschedulesComponent implements OnInit {
   selectedDate: string;
@@ -21,7 +20,7 @@ export class ShowschedulesComponent implements OnInit {
     date: '',
     time: '',
     psychologist: 0,
-    state: 0
+    state: 0,
   };
   successModalOpen: boolean = false;
   errorModalOpen: boolean = false;
@@ -33,14 +32,16 @@ export class ShowschedulesComponent implements OnInit {
 
   ngOnInit() {
     this.getPsychologistId();
-    this.selectedDate = this.getTodayDate(); // Set today's date as the default selected date
-    this.selectedStatus = ""; // Set empty string as the default selected status (show all)
+    this.selectedDate = this.getTodayDate();
+    this.selectedStatus = '';
   }
 
   getPsychologistId() {
     this.cognitoService.getAttributes().subscribe(
-      attributes => {
-        const psychologistIdAttribute = attributes.find(attr => attr.Name === 'nickname');
+      (attributes) => {
+        const psychologistIdAttribute = attributes.find(
+          (attr) => attr.Name === 'nickname'
+        );
         if (psychologistIdAttribute) {
           this.psychologistId = psychologistIdAttribute.Value;
           this.getFilteredSchedules();
@@ -48,7 +49,7 @@ export class ShowschedulesComponent implements OnInit {
           console.log('No se encontró el psychologistId en Cognito');
         }
       },
-      error => {
+      (error) => {
         console.log('Error obteniendo atributos de Cognito:', error);
       }
     );
@@ -59,24 +60,28 @@ export class ShowschedulesComponent implements OnInit {
   }
 
   private getFilteredSchedules() {
-    this.schedulesService.getScheduleByPsychologistAndDate(this.psychologistId, this.selectedDate).subscribe(
-      (schedules: Schedule[]) => {
-        if (schedules) {
-          this.schedules = schedules;
-          this.filteredSchedules = schedules.filter(schedule =>
-            !this.selectedStatus || schedule.state.toString() === this.selectedStatus
-          );
-        } else {
+    this.schedulesService
+      .getScheduleByPsychologistAndDate(this.psychologistId, this.selectedDate)
+      .subscribe(
+        (schedules: Schedule[]) => {
+          if (schedules) {
+            this.schedules = schedules;
+            this.filteredSchedules = schedules.filter(
+              (schedule) =>
+                !this.selectedStatus ||
+                schedule.state.toString() === this.selectedStatus
+            );
+          } else {
+            this.schedules = [];
+            this.filteredSchedules = [];
+          }
+        },
+        (error) => {
+          console.error('Error fetching schedules:', error);
           this.schedules = [];
           this.filteredSchedules = [];
         }
-      },
-      error => {
-        console.error('Error fetching schedules:', error);
-        this.schedules = [];
-        this.filteredSchedules = [];
-      }
-    );
+      );
   }
 
   getStatusColor(status: number): string {
@@ -131,10 +136,9 @@ export class ShowschedulesComponent implements OnInit {
         this.closeModal();
         this.getFilteredSchedules();
       },
-      error => {
+      (error) => {
         console.error('Error creating schedule:', error);
         this.errorModalOpen = true;
-        // Aquí puedes manejar el error y mostrar un mensaje al usuario
       }
     );
   }
@@ -151,11 +155,10 @@ export class ShowschedulesComponent implements OnInit {
     if (confirm('¿Estás seguro de que deseas eliminar este horario?')) {
       this.schedulesService.deleteSchedule(scheduleId).subscribe(
         () => {
-          this.getFilteredSchedules(); // Vuelve a obtener los horarios actualizados
+          this.getFilteredSchedules();
         },
-        error => {
+        (error) => {
           console.error('Error deleting schedule:', error);
-          // Manejar el error y mostrar un mensaje al usuario si es necesario
         }
       );
     }

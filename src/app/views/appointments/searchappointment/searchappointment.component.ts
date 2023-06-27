@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Appointment} from 'src/app/models/appointment/appointment.model';
+import { Appointment } from 'src/app/models/appointment/appointment.model';
 import { AppointmentService } from '../../../services/api-consume/appointment/appointment.service';
 import { ModalService } from '../../../services/modal/modal.service';
 import { DateFormatService } from '../../../services/date-format/date-format.service';
@@ -13,7 +13,7 @@ import { State } from 'src/app/models/state/state.model';
   selector: 'app-searchappointment',
   templateUrl: './searchappointment.component.html',
   styleUrls: ['./searchappointment.component.css'],
-  providers: [AppointmentService, ModalService, DateFormatService]
+  providers: [AppointmentService, ModalService, DateFormatService],
 })
 export class SearchappointmentComponent {
   @ViewChild('content') content: any;
@@ -36,7 +36,6 @@ export class SearchappointmentComponent {
     private dateFormatService: DateFormatService
   ) {}
 
-
   searchAppointment() {
     if (this.appointmentId) {
       this.appointmentService.searchAppointment(this.appointmentId).subscribe(
@@ -44,10 +43,7 @@ export class SearchappointmentComponent {
           this.handleAppointmentSuccess(appointment);
         },
         (error) => {
-          this.openModal(
-            'Error al buscar la cita',
-            `Error: ${error.error}`
-          );
+          this.openModal('Error al buscar la cita', `Error: ${error.error}`);
         }
       );
     }
@@ -62,25 +58,26 @@ export class SearchappointmentComponent {
     this.searchComplete = true;
   }
 
-
   rescheduleAppointment() {
     if (this.appointmentId && this.newAppointmentDate) {
-      this.appointmentService.rescheduleAppointment(this.appointmentId, this.newAppointmentDate).subscribe(
-        () => {
-          this.newAppointmentDate = this.newAppointmentDate;
-          this.rescheduleModalRef.close('reprogramadoExitosamente');
-          this.openModal(
-            'Cita Reprogramada ✅',
-            `La cita con ID ${this.appointmentId} ha sido reprogramada exitosamente.`
-          );
-        },
-        (error) => {
-          this.openModal(
-            'Error al Reprogramar la Cita',
-            `Hubo un error al intentar reprogramar la cita con ID ${this.appointmentId}. Codigo: ${error.error}`
-          );
-        }
-      );
+      this.appointmentService
+        .rescheduleAppointment(this.appointmentId, this.newAppointmentDate)
+        .subscribe(
+          () => {
+            this.newAppointmentDate = this.newAppointmentDate;
+            this.rescheduleModalRef.close('reprogramadoExitosamente');
+            this.openModal(
+              'Cita Reprogramada ✅',
+              `La cita con ID ${this.appointmentId} ha sido reprogramada exitosamente.`
+            );
+          },
+          (error) => {
+            this.openModal(
+              'Error al Reprogramar la Cita',
+              `Hubo un error al intentar reprogramar la cita con ID ${this.appointmentId}. Codigo: ${error.error}`
+            );
+          }
+        );
     }
   }
 

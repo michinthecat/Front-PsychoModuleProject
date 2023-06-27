@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-
 export class DateFormatService {
-
-  // Funcion para dar la fecha de hoy en este formato =
   formatDate(dateString: string): string {
     const day = dateString.slice(8, 10);
     const month = dateString.slice(5, 7);

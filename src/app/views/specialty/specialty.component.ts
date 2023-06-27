@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Specialty } from 'src/app/models/specialty/specialty.model';
 import { SpecialtyService } from 'src/app/services/api-consume/specialty/specialty.service';
 
-
 @Component({
   selector: 'app-specialty',
   templateUrl: './specialty.component.html',
-  styleUrls: ['./specialty.component.css']
+  styleUrls: ['./specialty.component.css'],
 })
 export class SpecialtyComponent implements OnInit {
   specialties: Specialty[];
   newSpecialty: Specialty = {
     id: 0,
-    specialty: ''
+    specialty: '',
   };
   modalOpen: boolean = false;
   editModalOpen: boolean = false;
@@ -21,7 +20,7 @@ export class SpecialtyComponent implements OnInit {
   deleteErrorModalOpen: boolean = false;
   selectedSpecialty: Specialty = {
     id: 0,
-    specialty: ''
+    specialty: '',
   };
 
   constructor(private specialtyService: SpecialtyService) {}
@@ -35,13 +34,11 @@ export class SpecialtyComponent implements OnInit {
       (specialties: Specialty[]) => {
         this.specialties = specialties;
       },
-      error => {
+      (error) => {
         console.error('Error fetching specialties:', error);
       }
     );
   }
-
-
 
   createSpecialty() {
     this.specialtyService.createSpecialty(this.newSpecialty).subscribe(
@@ -51,7 +48,7 @@ export class SpecialtyComponent implements OnInit {
         this.closeModal();
         this.getAllSpecialties();
       },
-      error => {
+      (error) => {
         console.error('Error creating specialty:', error);
         this.errorModalOpen = true;
       }
@@ -59,18 +56,20 @@ export class SpecialtyComponent implements OnInit {
   }
 
   updateSpecialty() {
-    this.specialtyService.updateSpecialty(this.selectedSpecialty.id, this.selectedSpecialty).subscribe(
-      (updatedSpecialty: Specialty) => {
-        console.log('Specialty updated:', updatedSpecialty);
-        this.successModalOpen = true;
-        this.closeEditModal();
-        this.getAllSpecialties();
-      },
-      error => {
-        console.error('Error updating specialty:', error);
-        this.errorModalOpen = true;
-      }
-    );
+    this.specialtyService
+      .updateSpecialty(this.selectedSpecialty.id, this.selectedSpecialty)
+      .subscribe(
+        (updatedSpecialty: Specialty) => {
+          console.log('Specialty updated:', updatedSpecialty);
+          this.successModalOpen = true;
+          this.closeEditModal();
+          this.getAllSpecialties();
+        },
+        (error) => {
+          console.error('Error updating specialty:', error);
+          this.errorModalOpen = true;
+        }
+      );
   }
 
   deleteSpecialty(id: number) {
@@ -79,14 +78,13 @@ export class SpecialtyComponent implements OnInit {
         () => {
           this.getAllSpecialties();
         },
-        error => {
+        (error) => {
           console.error('Error deleting specialty:', error);
           this.deleteErrorModalOpen = true;
         }
       );
     }
   }
-
 
   openModal() {
     this.modalOpen = true;
@@ -116,6 +114,4 @@ export class SpecialtyComponent implements OnInit {
   closeDeleteErrorModal() {
     this.deleteErrorModalOpen = false;
   }
-
-
 }

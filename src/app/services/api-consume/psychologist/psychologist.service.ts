@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Psychologist } from 'src/app/models/psychologist/psychologist.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PsychologistService {
-  private apiUrl: string = 'http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com';
+  private apiUrl: string = environment.AwsUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +27,10 @@ export class PsychologistService {
     return this.http.post<Psychologist>(url, psychologist);
   }
 
-  updatePsychologist(id: number, psychologist: Psychologist): Observable<Psychologist> {
+  updatePsychologist(
+    id: number,
+    psychologist: Psychologist
+  ): Observable<Psychologist> {
     const url = `${this.apiUrl}/psychologists/${id}`;
     return this.http.put<Psychologist>(url, psychologist);
   }
@@ -36,7 +40,10 @@ export class PsychologistService {
     return this.http.delete(url, { responseType: 'text' });
   }
 
-  assignServiceToPsychologist(psychologistId: number, serviceId: number): Observable<any> {
+  assignServiceToPsychologist(
+    psychologistId: number,
+    serviceId: number
+  ): Observable<any> {
     const url = `${this.apiUrl}/psychologists/${psychologistId}/services/${serviceId}`;
     return this.http.post(url, { responseType: 'text' });
   }

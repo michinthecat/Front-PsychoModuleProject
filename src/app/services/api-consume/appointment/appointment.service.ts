@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Appointment } from 'src/app/models/appointment/appointment.model';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AppointmentService {
-  private apiUrl = 'http://apirest-aws-psyco-env.eba-bpusjxfs.us-east-1.elasticbeanstalk.com/appointment';
+  private apiUrl = environment.AwsUrl + '/appointment';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +15,10 @@ export class AppointmentService {
     return this.http.get<Appointment>(url);
   }
 
-  rescheduleAppointment(appointmentId: string, newDate: string): Observable<void> {
+  rescheduleAppointment(
+    appointmentId: string,
+    newDate: string
+  ): Observable<void> {
     const url = `${this.apiUrl}/${appointmentId}/reschedule?newDate=${newDate}`;
     return this.http.put<void>(url, {});
   }
@@ -24,12 +28,11 @@ export class AppointmentService {
     return this.http.put(url, {}, { responseType: 'text' });
   }
 
-  getAllAppointmentsByDateAndPsychologistId(date: string, psychologistId: string): Observable<Appointment[]> {
+  getAllAppointmentsByDateAndPsychologistId(
+    date: string,
+    psychologistId: string
+  ): Observable<Appointment[]> {
     const url = `${this.apiUrl}/date/${date}/psychologist/${psychologistId}`;
     return this.http.get<Appointment[]>(url);
   }
-
-
-
-
 }

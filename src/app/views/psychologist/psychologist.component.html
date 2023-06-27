@@ -1,7 +1,9 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h2 class="text-center mb-4 special-title"><i class="fas fa-book-medical"></i> Mostrar Psicólogos</h2>
+      <h2 class="text-center mb-4 special-title">
+        <i class="fas fa-book-medical"></i> Mostrar Psicólogos
+      </h2>
     </div>
   </div>
   <div class="row mt-4" *ngIf="psychologists && psychologists.length > 0">
@@ -34,13 +36,25 @@
                 <td>{{ psychologist.role.role }}</td>
                 <td>
                   <ul>
-                    <li *ngFor="let service of psychologist.services">{{ service.serviceName }}</li>
+                    <li *ngFor="let service of psychologist.services">
+                      {{ service.serviceName }}
+                    </li>
                   </ul>
                 </td>
                 <td>
                   <div class="d-flex">
-                    <button class="btn btn-danger btn-sm mr-2" (click)="deletePsychologist(psychologist.id)">Eliminar</button>
-                    <button class="btn btn-primary btn-sm edit-button" (click)="openEditModal(psychologist)">Editar</button>
+                    <button
+                      class="btn btn-danger btn-sm mr-2"
+                      (click)="deletePsychologist(psychologist.id)"
+                    >
+                      Eliminar
+                    </button>
+                    <button
+                      class="btn btn-primary btn-sm edit-button"
+                      (click)="openEditModal(psychologist)"
+                    >
+                      Editar
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -58,63 +72,122 @@
     </div>
   </div>
 
- <!-- Modal de Editar -->
-<div class="modal" tabindex="-1" role="dialog" [class.show]="editModalOpen" [class.d-block]="editModalOpen">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Editar Psicólogo</h5>
-        <button type="button" class="close" (click)="closeEditModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="editName">Nombre:</label>
-          <input type="text" class="form-control" id="editName" [(ngModel)]="selectedPsychologist.name" />
+  <!-- Modal de Editar -->
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="editModalOpen"
+    [class.d-block]="editModalOpen"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Psicólogo</h5>
+          <button type="button" class="close" (click)="closeEditModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="editLastName">Apellido:</label>
-          <input type="text" class="form-control" id="editLastName" [(ngModel)]="selectedPsychologist.lastName" />
-        </div>
-        <div class="form-group">
-          <label for="editEmail">Email:</label>
-          <input type="email" class="form-control" id="editEmail" [(ngModel)]="selectedPsychologist.email" />
-        </div>
-        <div class="form-group">
-          <label for="editSpecialty">Especialidad:</label>
-          <select class="form-control" id="editSpecialty" [(ngModel)]="selectedPsychologist.specialty.id">
-            <option *ngFor="let specialty of specialties" [value]="specialty.id">{{ specialty.specialty }}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="editRole">Rol:</label>
-          <input type="text" class="form-control" id="editRole" [(ngModel)]="selectedPsychologist.role.role" readonly />
-        </div>
-        <div class="form-group scrollable-services">
-          <label for="editServices">Servicios:</label>
-          <div>
-            <div *ngFor="let service of services" class="form-check">
-              <input class="form-check-input" type="checkbox" [id]="'service-' + service.id" [value]="service.id"
-                [checked]="isServiceSelected(service)" (change)="toggleService(service)">
-              <label class="form-check-label" [for]="'service-' + service.id">
-                {{ service.serviceName }}
-              </label>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="editName">Nombre:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editName"
+              [(ngModel)]="selectedPsychologist.name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editLastName">Apellido:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editLastName"
+              [(ngModel)]="selectedPsychologist.lastName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="editEmail"
+              [(ngModel)]="selectedPsychologist.email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editSpecialty">Especialidad:</label>
+            <select
+              class="form-control"
+              id="editSpecialty"
+              [(ngModel)]="selectedPsychologist.specialty.id"
+            >
+              <option
+                *ngFor="let specialty of specialties"
+                [value]="specialty.id"
+              >
+                {{ specialty.specialty }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editRole">Rol:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editRole"
+              [(ngModel)]="selectedPsychologist.role.role"
+              readonly
+            />
+          </div>
+          <div class="form-group scrollable-services">
+            <label for="editServices">Servicios:</label>
+            <div>
+              <div *ngFor="let service of services" class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [id]="'service-' + service.id"
+                  [value]="service.id"
+                  [checked]="isServiceSelected(service)"
+                  (change)="toggleService(service)"
+                />
+                <label class="form-check-label" [for]="'service-' + service.id">
+                  {{ service.serviceName }}
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="updatePsychologist()">Guardar</button>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeEditModal()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="updatePsychologist()"
+          >
+            Guardar
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Modal de Éxito -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="successModalOpen" [class.d-block]="successModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="successModalOpen"
+    [class.d-block]="successModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -127,14 +200,26 @@
           <p>El psicólogo se ha actualizado exitosamente.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeSuccessModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeSuccessModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Error -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="errorModalOpen" [class.d-block]="errorModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="errorModalOpen"
+    [class.d-block]="errorModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -144,17 +229,32 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Ha ocurrido un error al actualizar el psicólogo. Por favor, intenta nuevamente.</p>
+          <p>
+            Ha ocurrido un error al actualizar el psicólogo. Por favor, intenta
+            nuevamente.
+          </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeErrorModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeErrorModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Error al Eliminar -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="deleteErrorModalOpen" [class.d-block]="deleteErrorModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="deleteErrorModalOpen"
+    [class.d-block]="deleteErrorModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -167,7 +267,13 @@
           <p>Ha ocurrido un error al eliminar el psicólogo.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeDeleteErrorModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeDeleteErrorModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>

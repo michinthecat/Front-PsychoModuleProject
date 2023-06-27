@@ -3,13 +3,11 @@ import { Patient } from 'src/app/models/patient/patient.model';
 import { PatientService } from '../../../services/api-consume/patient/patient.service';
 import { ModalService } from '../../../services/modal/modal.service';
 
-
-
 @Component({
   selector: 'app-searchpatient',
   templateUrl: './searchpatient.component.html',
   styleUrls: ['./searchpatient.component.css'],
-  providers: [PatientService, ModalService]
+  providers: [PatientService, ModalService],
 })
 export class SearchpatientComponent {
   @ViewChild('content') content: any;
@@ -23,7 +21,7 @@ export class SearchpatientComponent {
 
   constructor(
     private patientService: PatientService,
-    private modalService: ModalService,
+    private modalService: ModalService
   ) {}
 
   searchPatient() {
@@ -33,10 +31,7 @@ export class SearchpatientComponent {
           this.handlePatientSuccess(patient);
         },
         (error) => {
-          this.openModal(
-            'Error al buscar el Paciente',
-            `${error.error}`
-          );
+          this.openModal('Error al buscar el Paciente', `${error.error}`);
         }
       );
     }
@@ -48,24 +43,25 @@ export class SearchpatientComponent {
   }
 
   saveNotes() {
-    this.patientService.updatePatientNotes(this.patient.id.toString(), this.editedNotes).subscribe(
-      (response) => {
-        this.openModal(
-          'Actualización Exitosa',
-          `Datos Actualizados Exitosamente`
-        );
-        this.patient.notes = response.notes
-      },
-      (error) => {
-        this.openModal(
-          'Error al Actualizar los Datos Del Paciente',
-          `${error.error}`
-        );
-      }
-    );
+    this.patientService
+      .updatePatientNotes(this.patient.id.toString(), this.editedNotes)
+      .subscribe(
+        (response) => {
+          this.openModal(
+            'Actualización Exitosa',
+            `Datos Actualizados Exitosamente`
+          );
+          this.patient.notes = response.notes;
+        },
+        (error) => {
+          this.openModal(
+            'Error al Actualizar los Datos Del Paciente',
+            `${error.error}`
+          );
+        }
+      );
     this.editingNotes = false;
   }
-
 
   getGenderEmoji(gender: string): string {
     if (gender === 'Femenino') {
@@ -95,13 +91,10 @@ export class SearchpatientComponent {
     this.editingNotes = false;
   }
 
-
-
   setCursorPosition(event: any): void {
     // Establecer el cursor al final del campo de texto al hacer clic en él
     const textarea = event.target as HTMLTextAreaElement;
     textarea.selectionStart = textarea.value.length;
     textarea.selectionEnd = textarea.value.length;
-
   }
 }

@@ -1,11 +1,34 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h2 class="text-center mb-4 special-title">🔎 Actualización De Datos Personales 🧑</h2>
+      <h2 class="text-center mb-4 special-title">
+        🔎 Actualización De Datos Personales 🧑
+      </h2>
       <div class="input-group mb-3">
-        <input type="number" class="form-control rounded-start mr-2" id="patientId" [(ngModel)]="patientId" placeholder="Ingrese Cedula del Paciente" inputmode="numeric" [disabled]="searchComplete" (keyup.enter)="searchPatient()">
-        <button class="btn btn-primary rounded-end" *ngIf="!searchComplete" (click)="searchPatient()">Buscar</button>
-        <button class="btn btn-secondary rounded-end" *ngIf="searchComplete" (click)="clearSearch()">Limpiar</button>
+        <input
+          type="number"
+          class="form-control rounded-start mr-2"
+          id="patientId"
+          [(ngModel)]="patientId"
+          placeholder="Ingrese Cedula del Paciente"
+          inputmode="numeric"
+          [disabled]="searchComplete"
+          (keyup.enter)="searchPatient()"
+        />
+        <button
+          class="btn btn-primary rounded-end"
+          *ngIf="!searchComplete"
+          (click)="searchPatient()"
+        >
+          Buscar
+        </button>
+        <button
+          class="btn btn-secondary rounded-end"
+          *ngIf="searchComplete"
+          (click)="clearSearch()"
+        >
+          Limpiar
+        </button>
       </div>
     </div>
   </div>
@@ -18,52 +41,115 @@
         <div class="card-body">
           <div class="form-group">
             <label for="name">Nombre:</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="patient.name" [readonly]="!editingPatient">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              [(ngModel)]="patient.name"
+              [readonly]="!editingPatient"
+            />
           </div>
           <div class="form-group">
             <label for="lastName">Apellido:</label>
-            <input type="text" class="form-control" id="lastName" [(ngModel)]="patient.lastName" [readonly]="!editingPatient">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              [(ngModel)]="patient.lastName"
+              [readonly]="!editingPatient"
+            />
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" [(ngModel)]="patient.email" [readonly]="!editingPatient">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              [(ngModel)]="patient.email"
+              [readonly]="!editingPatient"
+            />
           </div>
           <div class="form-group">
             <label for="gender">Género:</label>
-            <select class="form-control" id="gender" [(ngModel)]="patient.gender.id" [disabled]="!editingPatient">
-              <option *ngFor="let gender of genders" [value]="gender.id">{{ gender.gender }}</option>
+            <select
+              class="form-control"
+              id="gender"
+              [(ngModel)]="patient.gender.id"
+              [disabled]="!editingPatient"
+            >
+              <option *ngFor="let gender of genders" [value]="gender.id">
+                {{ gender.gender }}
+              </option>
             </select>
           </div>
           <div class="form-group">
             <label for="age">Edad:</label>
-            <input type="number" class="form-control" id="age" [(ngModel)]="patient.age" [readonly]="!editingPatient">
+            <input
+              type="number"
+              class="form-control"
+              id="age"
+              [(ngModel)]="patient.age"
+              [readonly]="!editingPatient"
+            />
           </div>
           <div class="form-group">
             <label for="phone">Teléfono:</label>
-            <input type="text" class="form-control" id="phone" [(ngModel)]="patient.phone" [readonly]="!editingPatient">
+            <input
+              type="text"
+              class="form-control"
+              id="phone"
+              [(ngModel)]="patient.phone"
+              [readonly]="!editingPatient"
+            />
           </div>
           <div class="form-group">
             <label for="patientType">Tipo:</label>
-            <select class="form-control" id="patientType" [(ngModel)]="patient.patientType.id" [disabled]="!editingPatient">
-              <option *ngFor="let patientType of patientTypes" [value]="patientType.id">{{ patientType.patientType }}</option>
+            <select
+              class="form-control"
+              id="patientType"
+              [(ngModel)]="patient.patientType.id"
+              [disabled]="!editingPatient"
+            >
+              <option
+                *ngFor="let patientType of patientTypes"
+                [value]="patientType.id"
+              >
+                {{ patientType.patientType }}
+              </option>
             </select>
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary" *ngIf="!editingPatient" (click)="startEditing()">Editar</button>
-          <button class="btn btn-success" *ngIf="editingPatient" (click)="updatePatient()">Guardar</button>
+          <button
+            class="btn btn-primary"
+            *ngIf="!editingPatient"
+            (click)="startEditing()"
+          >
+            Editar
+          </button>
+          <button
+            class="btn btn-success"
+            *ngIf="editingPatient"
+            (click)="updatePatient()"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- Template De Notificacion Generico (MODAL) -->
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">{{ modalTitle }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -71,6 +157,12 @@
     {{ modalBody }}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close('Close click')"
+    >
+      Cerrar
+    </button>
   </div>
 </ng-template>

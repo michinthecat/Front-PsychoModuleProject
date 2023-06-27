@@ -1,7 +1,9 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h2 class="text-center mb-4 special-title"><i class="fas fa-book-medical"></i> Mostrar Servicios</h2>
+      <h2 class="text-center mb-4 special-title">
+        <i class="fas fa-book-medical"></i> Mostrar Servicios
+      </h2>
     </div>
   </div>
   <div class="row mt-4" *ngIf="services && services.length > 0">
@@ -29,8 +31,18 @@
                 <td>{{ service.cost }}</td>
                 <td>
                   <div class="d-flex">
-                    <button class="btn btn-danger btn-sm mr-2" (click)="deleteService(service.id)">Eliminar</button>
-                    <button class="btn btn-primary btn-sm edit-button" (click)="openEditModal(service)">Editar</button>
+                    <button
+                      class="btn btn-danger btn-sm mr-2"
+                      (click)="deleteService(service.id)"
+                    >
+                      Eliminar
+                    </button>
+                    <button
+                      class="btn btn-primary btn-sm edit-button"
+                      (click)="openEditModal(service)"
+                    >
+                      Editar
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -48,12 +60,21 @@
     </div>
   </div>
 
-  <button class="btn btn-primary btn-lg btn-floating mt-2" (click)="openModal()">
+  <button
+    class="btn btn-primary btn-lg btn-floating mt-2"
+    (click)="openModal()"
+  >
     <i class="fas fa-plus"></i>
   </button>
 
   <!-- Modal Gen-->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="modalOpen" [class.d-block]="modalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="modalOpen"
+    [class.d-block]="modalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -65,27 +86,60 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="serviceName">Nombre del Servicio:</label>
-            <input type="text" class="form-control" id="serviceName" [(ngModel)]="newService.serviceName" />
+            <input
+              type="text"
+              class="form-control"
+              id="serviceName"
+              [(ngModel)]="newService.serviceName"
+            />
           </div>
           <div class="form-group">
             <label for="description">Descripción:</label>
-            <textarea class="form-control" id="description" rows="3" [(ngModel)]="newService.description"></textarea>
+            <textarea
+              class="form-control"
+              id="description"
+              rows="3"
+              [(ngModel)]="newService.description"
+            ></textarea>
           </div>
           <div class="form-group">
             <label for="cost">Costo:</label>
-            <input type="number" class="form-control" id="cost" [(ngModel)]="newService.cost" />
+            <input
+              type="number"
+              class="form-control"
+              id="cost"
+              [(ngModel)]="newService.cost"
+            />
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="createService()">Guardar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeModal()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="createService()"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Editar -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="editModalOpen" [class.d-block]="editModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="editModalOpen"
+    [class.d-block]="editModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -97,27 +151,60 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="editServiceName">Nombre del Servicio:</label>
-            <input type="text" class="form-control" id="editServiceName" [(ngModel)]="selectedService.serviceName" />
+            <input
+              type="text"
+              class="form-control"
+              id="editServiceName"
+              [(ngModel)]="selectedService.serviceName"
+            />
           </div>
           <div class="form-group">
             <label for="editDescription">Descripción:</label>
-            <textarea class="form-control" id="editDescription" rows="3" [(ngModel)]="selectedService.description"></textarea>
+            <textarea
+              class="form-control"
+              id="editDescription"
+              rows="3"
+              [(ngModel)]="selectedService.description"
+            ></textarea>
           </div>
           <div class="form-group">
             <label for="editCost">Costo:</label>
-            <input type="number" class="form-control" id="editCost" [(ngModel)]="selectedService.cost" />
+            <input
+              type="number"
+              class="form-control"
+              id="editCost"
+              [(ngModel)]="selectedService.cost"
+            />
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="updateService()">Guardar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeEditModal()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="updateService()"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Éxito -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="successModalOpen" [class.d-block]="successModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="successModalOpen"
+    [class.d-block]="successModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -130,14 +217,26 @@
           <p>El servicio se ha agregado/actualizado exitosamente.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeSuccessModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeSuccessModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Error -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="errorModalOpen" [class.d-block]="errorModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="errorModalOpen"
+    [class.d-block]="errorModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -147,17 +246,32 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Ha ocurrido un error al agregar/actualizar el servicio. Por favor, intenta nuevamente.</p>
+          <p>
+            Ha ocurrido un error al agregar/actualizar el servicio. Por favor,
+            intenta nuevamente.
+          </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeErrorModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeErrorModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de Error al Eliminar -->
-  <div class="modal" tabindex="-1" role="dialog" [class.show]="deleteErrorModalOpen" [class.d-block]="deleteErrorModalOpen">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [class.show]="deleteErrorModalOpen"
+    [class.d-block]="deleteErrorModalOpen"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -167,10 +281,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Ha ocurrido un error al eliminar el servicio. Verifica que no esté asociado a un psicólogo.</p>
+          <p>
+            Ha ocurrido un error al eliminar el servicio. Verifica que no esté
+            asociado a un psicólogo.
+          </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeDeleteErrorModal()">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeDeleteErrorModal()"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
