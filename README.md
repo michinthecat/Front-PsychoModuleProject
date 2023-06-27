@@ -27,11 +27,13 @@ La aplicación cuenta con las siguientes funcionalidades:
 
 ```bash
 npm install
+```
 
 
 5. Una vez que se hayan instalado las dependencias, puedes iniciar el servidor de desarrollo ejecutando el siguiente comando:
 
 ```bash
-Bash: ng serve
+ng serve
+```
 
 Esto iniciará el servidor de desarrollo de Angular y la aplicación estará disponible en `http://localhost:4200/`. La aplicación se recargará automáticamente si realizas cambios en los archivos fuente.
