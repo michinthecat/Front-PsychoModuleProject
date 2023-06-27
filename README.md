@@ -4,7 +4,8 @@ Este proyecto fue generado con [Angular CLI] versión 16.1.1
 
 # Desarrolladores:
 
-- [Jhon Edison Bravo Casas](hola)
+- [Jhon Bravo C.](https://github.com/michinthecat)
+- [Laura Paramo M.](https://github.com/LauraParamo)
 
 ## Descripción del Proyecto
 
