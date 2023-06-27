@@ -31,7 +31,7 @@ export class SingupComponent implements OnInit {
 
   onRegister(): void {
     if (this.password !== this.confirmPassword) {
-      alert('Las contraseñas no coinciden. Por favor, verifica.');
+      alert('Las contraseñas no coinciden. Por favor, verifica nuevamente.');
       return;
     }
 
@@ -55,7 +55,6 @@ export class SingupComponent implements OnInit {
       (createdPsychologist: Psychologist) => {
         console.log('Registro exitoso en la API:', createdPsychologist);
 
-        // Registro en Cognito
         var poolData = {
           UserPoolId: environment.UserPoolId,
           ClientId: environment.ClientId,
@@ -68,7 +67,7 @@ export class SingupComponent implements OnInit {
         var isuer: Iuser = {
           email: this.email,
           given_name: `${this.name} ${this.lastName}`,
-          nickname: this.nickName,
+          nickname: this.nickName.toString(),
         };
 
         for (let key in isuer) {
