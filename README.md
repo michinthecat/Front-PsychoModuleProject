@@ -26,7 +26,7 @@ La aplicación cuenta con las siguientes funcionalidades:
 ## Configuración del Entorno de Desarrollo
 
 1. Clona el repositorio de GitHub en tu máquina local.
-2. Asegúrate de tener instalado Node.js en tu sistema. Puedes descargarlo e instalarlo desde [https://nodejs.org](https://nodejs.org).
+2. Asegúrate de tener instalado Node.js (18.16.0) en la version compatible con la version de Angular actual 16.1.1.
 3. Abre una terminal y navega hasta la carpeta raíz del proyecto.
 4. Ejecuta el siguiente comando para instalar las dependencias del proyecto:
 
