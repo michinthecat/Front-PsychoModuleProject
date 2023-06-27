@@ -1,4 +1,4 @@
-# Proyecto CognitoFront
+# Proyecto Modulo Administrativo Psicologico
 
 Este proyecto fue generado con [Angular CLI] versión 16.1.1
 
