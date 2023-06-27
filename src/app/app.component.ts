@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
     });
   }
 
+
+  //Importante: El rol de administrador es el #2
+  //Guardar en Variables de entorno
   ngOnInit() {
     this.authService.isAuthStateChanged.subscribe((isAuth: boolean) => {
       this.isLoggedIn = isAuth;

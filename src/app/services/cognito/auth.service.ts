@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
-import { environment } from 'src/environment/environment';
+import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { CognitoService } from './cognito.service';
 import { PsychologistService } from '../api-consume/psychologist/psychologist.service';

@@ -14,7 +14,7 @@ import { NotFoundComponent } from './views/auth/notfound/notfound.component';
 import { SearchpatientComponent } from './views/patients/searchpatient/searchpatient.component';
 import { UpdatepatientComponent } from './views/patients/updatepatient/updatepatient.component';
 import { ShowschedulesComponent } from './views/schedules/showschedules/showschedules.component';
-import { SpecialtyComponent } from './views/specialty/specialty/specialty.component';
+import { SpecialtyComponent } from './views/specialty/specialty.component';
 import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
