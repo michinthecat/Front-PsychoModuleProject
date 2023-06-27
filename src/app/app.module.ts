@@ -21,6 +21,7 @@ import { SpecialtyComponent } from './views/specialty/specialty/specialty.compon
 import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import { PsychologistComponent } from './views/psychologist/psychologist.component';
 
 
 
@@ -42,7 +43,8 @@ import { MenuAdminComponent } from './menu-admin/menu-admin.component';
     SpecialtyComponent,
     ServicespsychoComponent,
     ForgotpasswordComponent,
-    MenuAdminComponent
+    MenuAdminComponent,
+    PsychologistComponent
   ],
   imports: [
     BrowserModule,

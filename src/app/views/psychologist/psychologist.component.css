@@ -1,0 +1,8 @@
+.edit-button {
+  margin-left: 10px;
+}
+
+.scrollable-services {
+  max-height: 250px; /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+}

@@ -18,6 +18,7 @@ import { SpecialtyComponent } from './views/specialty/specialty/specialty.compon
 import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/servicespsycho.component';
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import { PsychologistComponent } from './views/psychologist/psychologist.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'show-schedules' , component: ShowschedulesComponent, canActivate: [HomeGuard]},
   {path: 'specialty-admin' , component: SpecialtyComponent, canActivate: [RolGuard]},
   {path: 'servicespsycho-admin' , component: ServicespsychoComponent, canActivate: [RolGuard]},
+  {path: 'psychologist-admin' , component: PsychologistComponent, canActivate: [RolGuard]},
   {path: 'forgot-password' , component: ForgotpasswordComponent, canActivate: [LoginGuard]},
   {path: '**', component: NotFoundComponent }
 
