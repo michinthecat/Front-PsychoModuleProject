@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {
     this.isLoggedIn = this.authService.isAuth();
     this.authService.userRole$.subscribe((userRole: number | null) => {
-      this.isLoggedWithAdmin = userRole === environment.IdAdminRol;
+      this.isLoggedWithAdmin = userRole === parseInt(environment.IdAdminRol);
     });
   }
 
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     });
 
     this.authService.userRole$.subscribe((userRole: number | null) => {
-      this.isLoggedWithAdmin = userRole === environment.IdAdminRol;
+      this.isLoggedWithAdmin = userRole === parseInt(environment.IdAdminRol);
     });
   }
 }
