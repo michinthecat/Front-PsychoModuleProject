@@ -151,4 +151,34 @@ export class CognitoService {
       });
     });
   }
+
+  //Borra el usuario autenticado ACTUALMENTE, no al que le ponga
+  deleteUser(): Observable<void> {
+    return new Observable<void>((observer) => {
+      var userPool = new CognitoUserPool(this.poolData);
+      var currentUser = userPool.getCurrentUser();
+
+      if (currentUser == null) {
+        observer.error('No user is currently authenticated.');
+        return;
+      }
+
+      currentUser.getSession((err: any, session: any) => {
+        if (err) {
+          observer.error(err.message || JSON.stringify(err));
+          return;
+        }
+
+        currentUser.deleteUser((err, result) => {
+          if (err) {
+            observer.error(err.message || JSON.stringify(err));
+            return;
+          }
+
+          observer.next();
+          observer.complete();
+        });
+      });
+    });
+  }
 }
