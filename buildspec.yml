@@ -15,7 +15,10 @@ phases:
         - npm install -g @angular/cli
   build:
     commands:
-        - sed -i 's#AWS_API_URL#'"$AWS_URL"'#' src/environments/environment.ts
+        - sed -i 's#AWS_URL#'"$AWS_URL"'#' src/environments/environment.ts
+        - sed -i 's#ID_ADMIN_ROL#'"$ID_ADMIN_ROL"'#' src/environments/environment.ts
+        - sed -i 's#CLIENT_ID#'"$CLIENT_ID"'#' src/environments/environment.ts
+        - sed -i 's#USER_POOL_ID#'"$USER_POOL_ID"'#' src/environments/environment.ts
         - echo Build started
         - ng build
 artifacts:

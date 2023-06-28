@@ -1,6 +1,6 @@
 export const environment = {
-  UserPoolId: 'us-east-1_oEiR6OhRg',
-  ClientId: '7059cqbjmulnil381essg47p74',
-  IdAdminRol: 2,
-  AwsUrl:'AWS_API_URL'
+  UserPoolId: 'USER_POOL_ID',
+  ClientId: 'CLIENT_ID',
+  IdAdminRol: 'ID_ADMIN_ROL',
+  AwsUrl:'AWS_URL'
 };
