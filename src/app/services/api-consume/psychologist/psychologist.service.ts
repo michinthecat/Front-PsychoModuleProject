@@ -39,12 +39,4 @@ export class PsychologistService {
     const url = `${this.apiUrl}/psychologists/${id}`;
     return this.http.delete(url, { responseType: 'text' });
   }
-
-  assignServiceToPsychologist(
-    psychologistId: number,
-    serviceId: number
-  ): Observable<any> {
-    const url = `${this.apiUrl}/psychologists/${psychologistId}/services/${serviceId}`;
-    return this.http.post(url, { responseType: 'text' });
-  }
 }
