@@ -111,9 +111,10 @@
             <label for="editEmail">Email:</label>
             <input
               type="email"
-              class="form-control"
+              class="form-control readonly-input"
               id="editEmail"
               [(ngModel)]="selectedPsychologist.email"
+              readonly
             />
           </div>
           <div class="form-group">
@@ -135,7 +136,7 @@
             <label for="editRole">Rol:</label>
             <input
               type="text"
-              class="form-control"
+              class="form-control readonly-input"
               id="editRole"
               [(ngModel)]="selectedPsychologist.role.role"
               readonly

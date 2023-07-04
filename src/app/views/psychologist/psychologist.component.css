@@ -6,3 +6,8 @@
   max-height: 250px;
   overflow-y: auto;
 }
+
+.readonly-input {
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
