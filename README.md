@@ -13,7 +13,7 @@ Modulo Administrativo Psicologico es una aplicación web desarrollada con Angula
 
 La aplicación cuenta con las siguientes funcionalidades:
 
-- Mostrar una lista de psicólogos con su información básica, incluyendo nombre, apellido, email y especialidad.
+- Mostrar una lista de psicólogos con su información básica, incluyendo nombre, apellido, email y especialidad..
 - Mostrar una lista de servicios con su información básica, incluyendo nombre del servicio, descripción y costo.
 - Agregar un nuevo psicólogo al sistema, proporcionando su nombre, apellido, email y especialidad.
 - Editar la información de un psicólogo existente, incluyendo su nombre, apellido, email y especialidad.
