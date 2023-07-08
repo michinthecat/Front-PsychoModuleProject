@@ -3,8 +3,8 @@ version: 0.2
 env:
     variables:
         CACHE_CONTROL: "86400"
-        # S3_BUCKET_ARN: "{{s3_bucket_url}}"
-        S3_BUCKET: "front-psycho-admin"
+        #S3_BUCKET: "{{s3_bucket_url}}"
+        #S3_BUCKET: "front-psycho-admin"
         BUILD_FOLDER: "dist"
 phases:
   install:
