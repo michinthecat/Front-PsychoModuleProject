@@ -19,6 +19,7 @@ import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/s
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 import { MenuAdminComponent } from './menus/menu-admin/menu-admin.component';
 import { PsychologistComponent } from './views/psychologist/psychologist.component';
+import { MainhomeComponent } from './views/mainhome/mainhome.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path:'signup', component: SingupComponent, canActivate: [LoginGuard]},
   {path:'appointmentform', component: AppointmentformComponent},
+  {path:'mainhome', component: MainhomeComponent},
   {path:'adminhome', component: HomeComponent, canActivate: [RolGuard]},
   {path:'menu', component: MenuComponent, canActivate: [HomeGuard]},
   {path:'menu-admin', component: MenuAdminComponent, canActivate: [RolGuard]},

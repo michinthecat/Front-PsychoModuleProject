@@ -22,6 +22,7 @@ import { ServicespsychoComponent } from './views/servicespsycho/servicespsycho/s
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 import { MenuAdminComponent } from './menus/menu-admin/menu-admin.component';
 import { PsychologistComponent } from './views/psychologist/psychologist.component';
+import { MainhomeComponent } from './views/mainhome/mainhome.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PsychologistComponent } from './views/psychologist/psychologist.compone
     ForgotpasswordComponent,
     MenuAdminComponent,
     PsychologistComponent,
+    MainhomeComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
