@@ -21,6 +21,9 @@ phases:
         - sed -i 's#USER_POOL_ID#'"$USER_POOL_ID"'#' src/environments/environment.ts
         - echo Build started
         - ng build
+  post_build:
+    commands:
+        - aws s3 cp dist s3://${S3_BUCKET} --recursive
 artifacts:
     files:
         - '**/*'
