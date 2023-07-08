@@ -3,7 +3,6 @@ version: 0.2
 env:
     variables:
         CACHE_CONTROL: "86400"
-        BUILD_FOLDER: "dist"
 phases:
   install:
     runtime-versions:
@@ -19,12 +18,12 @@ phases:
         - sed -i 's#CLIENT_ID#'"$CLIENT_ID"'#' src/environments/environment.ts
         - sed -i 's#USER_POOL_ID#'"$USER_POOL_ID"'#' src/environments/environment.ts
         - echo Build started
-        - ng build
+        - ng build --configuration production --aot
   post_build:
     commands:
         - aws s3 cp dist s3://${S3_BUCKET} --recursive
 artifacts:
     files:
         - '**/*'
-    base-directory: 'dist'
+    base-directory: 'dist*'
     discard-paths: yes
