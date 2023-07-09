@@ -102,16 +102,10 @@
         <div class="col-lg-12 text-center mb-5">
           <img src="/assets/images/marketing/image2.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 2" style="object-fit: cover;">
           <h2>Historia</h2>
-          <p class="text-justify">Los consultorios de Psicología de la Universidad de Ibagué surgen en el año 2007, año en que el programa de psicología y la Universidad en sus procesos de evaluación, ven la necesidad de fortalecer el desarrollo académico y los proyectos de proyección social. Es a partir de este año en que se adquieren las instalaciones de la antigua casa editorial EL POIRA y se adecuan los laboratorios y los consultorios de Psicología.</p>
-          <p><a class="btn btn-secondary" href="#">Ver más &raquo;</a></p>
+          <p [innerHTML]="mostrarTextoHistoriaCompleto ? textoHistoriaCompleto : textoHistoriaResumido" class="text-justify"></p>
+          <button class="btn btn-secondary" (click)="toggleTextoHistoriaCompleto()">{{ mostrarTextoHistoriaCompleto ? 'Ver menos' : 'Ver más' }} &raquo;</button>
         </div>
 
-        <div class="col-lg-12 text-center mb-5">
-          <img src="/assets/images/marketing/image3.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 3" style="object-fit: cover;">
-          <h2>A VOLAR</h2>
-          <p class="text-justify">Ofrecemos una variedad de servicios que incluyen evaluación psicológica, intervención individual, terapia de pareja y familia, psicoterapia de grupo, talleres de crecimiento personal, seminarios, conferencias y consultoría.</p>
-          <p><a class="btn btn-secondary" href="#">Ver más &raquo;</a></p>
-        </div>
       </div>
     </div>
 
