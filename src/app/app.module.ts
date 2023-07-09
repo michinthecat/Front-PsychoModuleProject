@@ -23,6 +23,8 @@ import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassw
 import { MenuAdminComponent } from './menus/menu-admin/menu-admin.component';
 import { PsychologistComponent } from './views/psychologist/psychologist.component';
 import { MainhomeComponent } from './views/mainhome/mainhome.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { MainhomeComponent } from './views/mainhome/mainhome.component';
     PsychologistComponent,
     MainhomeComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
