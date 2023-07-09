@@ -43,8 +43,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="/assets/images/carousel/image1.png" class="d-block w-100" alt="Imagen 1" style="object-fit: cover; object-position: top;">
-
+        <img src="/assets/images/carousel/image1.png" class="d-block w-100" alt="Imagen 1" style="object-fit: cover; ">
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Consultorio De Psicologia Unibague</h1>
@@ -53,8 +52,10 @@
           </div>
         </div>
       </div>
+
+
       <div class="carousel-item">
-        <img src="/assets/images/carousel/image2.png" class="d-block w-100" alt="Imagen 2" style="object-fit: cover; object-position: top;">
+        <img src="/assets/images/carousel/image2.png" class="d-block w-100" alt="Imagen 2" style="object-fit: cover; ">
 
         <div class="container">
           <div class="carousel-caption">
@@ -65,7 +66,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/assets/images/carousel/image3.png" class="d-block w-100" alt="Imagen 3" style="object-fit: cover; object-position: top;">
+        <img src="/assets/images/carousel/image3.png" class="d-block w-100" alt="Imagen 3" style="object-fit: cover; ">
 
         <div class="container">
           <div class="carousel-caption text-end">
@@ -88,29 +89,34 @@
   </div>
 
   <div class="container marketing">
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 
-        <h2>Presentación</h2>
-        <p>Los Consultorios de Psicología se establecen como un espacio del Programa de Psicología de la Universidad de Ibagué; ahora parte del Centro de Servicios en Psicología de la Universidad, se renombró como Unidad de Atención Clínica y Psicosocial; orientado al desarrollo social, a través del servicio de atención psicológica a la población Tolimense, creando estrategias de abordaje en los diferentes contextos, a partir de las diversas formas de intervención (asesoría, evaluación, diagnostico, psicoterapia, consultoría, investigación, prevención y promoción) posibilitando así, cambios y transformaciones que contribuyan al mejoramiento de la calidad de vida y la salud mental de la región. A su vez permite la exploración y la consolidación teórico-práctica del proceso formativo profesional de los estudiantes de pre-grado y postgrado de nuestra Universidad.</p>
-        <p><a class="btn btn-secondary" href="#">Leer más &raquo;</a></p>
-      </div>
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+    <div class="container marketing">
+      <div class="row flex-wrap">
+        <div class="col-lg-12 text-center mb-5">
+          <img src="/assets/images/marketing/image1.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 1" style="object-fit: cover;">
+          <h2>Presentación</h2>
+          <p [innerHTML]="mostrarTextoCompleto ? textoCompleto : textoResumido"></p>
+          <button class="btn btn-secondary" (click)="toggleTextoCompleto()">{{ mostrarTextoCompleto ? 'Ver menos' : 'Ver más' }} &raquo;</button>
+        </div>
 
-        <h2>Historia</h2>
-        <p>Los consultorios de Psicología de la Universidad de Ibagué surgen en el año 2007, año en que el programa de psicología y la Universidad en sus procesos de evaluación, ven la necesidad de fortalecer el desarrollo académico y los proyectos de proyección social. Es a partir de este año en que se adquieren las instalaciones de la antigua casa editorial EL POIRA y se adecuan los laboratorios y los consultorios de Psicología.</p>
-        <p><a class="btn btn-secondary" href="#">Leer más &raquo;</a></p>
-      </div>
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <div class="col-lg-12 text-center mb-5">
+          <img src="/assets/images/marketing/image2.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 2" style="object-fit: cover;">
+          <h2>Historia</h2>
+          <p>Los consultorios de Psicología de la Universidad de Ibagué surgen en el año 2007, año en que el programa de psicología y la Universidad en sus procesos de evaluación, ven la necesidad de fortalecer el desarrollo académico y los proyectos de proyección social. Es a partir de este año en que se adquieren las instalaciones de la antigua casa editorial EL POIRA y se adecuan los laboratorios y los consultorios de Psicología.</p>
+          <p><a class="btn btn-secondary" href="#">Ver más &raquo;</a></p>
+        </div>
 
-        <h2>Servicios</h2>
-        <p>Ofrecemos una variedad de servicios que incluyen evaluación psicológica, intervención individual, terapia de pareja y familia, psicoterapia de grupo, talleres de crecimiento personal, seminarios, conferencias y consultoría.</p>
-        <p><a class="btn btn-secondary" href="#">Leer más &raquo;</a></p>
+        <div class="col-lg-12 text-center mb-5">
+          <img src="/assets/images/marketing/image3.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 3" style="object-fit: cover;">
+          <h2>A VOLAR</h2>
+          <p>Ofrecemos una variedad de servicios que incluyen evaluación psicológica, intervención individual, terapia de pareja y familia, psicoterapia de grupo, talleres de crecimiento personal, seminarios, conferencias y consultoría.</p>
+          <p><a class="btn btn-secondary" href="#">Ver más &raquo;</a></p>
+        </div>
       </div>
     </div>
+
+
+
 
     <hr class="featurette-divider">
 
@@ -241,22 +247,13 @@
 
     <hr class="featurette-divider">
 
-  </div><!-- /.container -->
+  </div>
 
-  <!-- FOOTER -->
+
   <footer class="container">
     <p class="float-end"><a href="mainhome/#"><i class="bi bi-arrow-up-circle-fill"></i>Volver arriba</a></p>
     <p>&copy; 2021-2023 Consultorios de Psicología de la Universidad de Ibagué &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
   </footer>
-  <script>
-    const scrollToTopButton = document.querySelector('.float-end a');
-    scrollToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  </script>
 </main>
 
 
