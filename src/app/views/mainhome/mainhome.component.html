@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
 
-      <a class="navbar-brand" href="#"><i class="fas fa-brain" style="margin-right: 6px"></i>Centro de Servicios en Psicología</a>
+      <a class="navbar-brand" href="/mainhome"><i class="fas fa-brain" style="margin-right: 6px"></i>Centro de Servicios en Psicología</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,14 +10,26 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door-fill" style="margin-right: 5px"></i>Inicio</a>
+            <a class="nav-link" (click)="scrollToInicio()">
+              <i class="bi bi-gear-fill" style="margin-right: 5px"></i>Inciio
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-gear-fill" style="margin-right: 5px"></i>Servicios</a>
+            <a class="nav-link" (click)="scrollToNosotros()">
+              <i class="bi bi-gear-fill" style="margin-right: 5px"></i>Nosotros
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-book-fill" style="margin-right: 5px"></i>Historia</a>
+            <a class="nav-link" (click)="scrollToHistory()">
+              <i class="bi bi-gear-fill" style="margin-right: 5px"></i>Historia
+            </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="scrollToEvaluacionPsicologica()">
+              <i class="bi bi-gear-fill" style="margin-right: 5px"></i>Servicios
+            </a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="bi bi-envelope-fill" style="margin-right: 5px"></i>Contacto</a>
           </li>
@@ -36,12 +48,12 @@
 
 <main [@fadeInOut]>
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
+    <div id="nosotros" class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-inner">
+    <div id="inicio" class="carousel-inner">
       <div [@fadeInOut] class="carousel-item active">
         <img src="/assets/images/carousel/image1.png" class="d-block w-100" alt="Imagen 1" style="object-fit: cover; ">
         <div class="container">
@@ -78,51 +90,47 @@
       </div>
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <button  class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span  class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Siguiente</span>
     </button>
   </div>
 
   <div class="container marketing">
 
-    <div class="container marketing">
-
-      <div class="row flex-wrap">
+    <div  class="container marketing">
 
         <div class="col-lg-11,5 text-center mb-5">
           <img src="/assets/images/marketing/image1.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 1" style="object-fit: cover;">
-          <h2>Presentación</h2>
+          <h2>Quienes Somos?</h2>
+          <br>
           <p class="text-justify">{{ textoResumido }}</p>
           <p [@slideInOut]="mostrarTextoCompleto ? 'in' : 'out'" [innerHTML]="textoCompleto " class="text-justify">
           </p>
-          <button class="btn btn-secondary" (click)="toggleTextoCompleto()">{{ mostrarTextoCompleto ? 'Ver menos' : 'Ver más' }} &raquo;</button>
+          <button id="history" class="btn btn-secondary" (click)="toggleTextoCompleto()">{{ mostrarTextoCompleto ? 'Ver menos' : 'Ver más' }} &raquo;</button>
         </div>
+
+        <br >
 
         <div class="col-lg-12 text-center mb-5">
           <img src="/assets/images/marketing/image2.png" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Imagen 2" style="object-fit: cover;">
           <h2>Historia</h2>
+          <br>
           <p class="text-justify">{{ textoHistoriaResumido }}</p>
           <p [@slideInOut]="mostrarTextoHistoriaCompleto ? 'in' : 'out'" [innerHTML]="textoHistoriaCompleto " class="text-justify">
           </p>
-          <button class="btn btn-secondary" (click)="toggleTextoHistoriaCompleto()">{{ mostrarTextoHistoriaCompleto ? 'Ver menos' : 'Ver más' }} &raquo;</button>
+          <button class="btn btn-secondary"  (click)="toggleTextoHistoriaCompleto()">{{ mostrarTextoHistoriaCompleto ? 'Ver menos' : 'Ver más' }} &raquo;</button>
         </div>
 
-      </div>
+    </div >
 
-    </div>
+    <hr id="evaluacion-psicologica" class="featurette-divider">
 
-
-
-
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette" >
+    <div  class="row featurette" >
       <div class="col-md-7">
         <h2 class="featurette-heading">Evaluación Psicológica</h2>
         <p class="lead">Análisis sistemático y estimación del funcionamiento psicológico de un individuo, pareja o un grupo familiar, en las áreas intelectual, emocional, afectiva, interpersonal y social.</p>

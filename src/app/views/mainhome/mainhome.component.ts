@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
 
 @Component({
@@ -51,6 +51,36 @@ import { trigger, state, style, transition, animate, group } from '@angular/anim
   ]
 })
 export class MainhomeComponent {
+
+  constructor(private elementRef: ElementRef) {}
+
+  scrollToEvaluacionPsicologica() {
+    const evaluacionPsicologicaElement = this.elementRef.nativeElement.querySelector('#evaluacion-psicologica');
+    if (evaluacionPsicologicaElement) {
+      evaluacionPsicologicaElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  scrollToNosotros() {
+    const nosotrosElement = this.elementRef.nativeElement.querySelector('#nosotros');
+    if (nosotrosElement) {
+      nosotrosElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  scrollToInicio() {
+    const inicioElement = this.elementRef.nativeElement.querySelector('#inicio');
+    if (inicioElement) {
+      inicioElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  scrollToHistory() {
+    const historyElement = this.elementRef.nativeElement.querySelector('#history');
+    if (historyElement) {
+      historyElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   mostrarTextoCompleto = false;
   textoResumido = 'Los Consultorios de Psicología se establecen como un espacio del Programa de Psicología de la Universidad de Ibagué; ahora parte del Centro de Servicios en Psicología de la Universidad, se renombró como Unidad de Atención Clínica y Psicosocial; orientado al desarrollo social, a través del servicio de atención psicológica a la población Tolimense, creando estrategias de abordaje en los diferentes contextos, a partir de las diversas formas de intervención (asesoría, evaluación, diagnóstico, psicoterapia, consultoría, investigación, prevención y promoción) posibilitando así, cambios y transformaciones que contribuyan al mejoramiento de la calidad de vida y la salud mental de la región. A su vez permite la exploración y la consolidación teórico-práctica del proceso formativo profesional de los estudiantes de pregrado y postgrado de nuestra Universidad.';
