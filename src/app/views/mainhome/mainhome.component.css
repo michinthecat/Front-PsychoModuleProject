@@ -8,6 +8,10 @@ body {
   color: #5a5a5a;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
