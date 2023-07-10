@@ -23,7 +23,7 @@ import { MainhomeComponent } from './views/mainhome/mainhome.component';
 
 
 const routes: Routes = [
-  {path:'', component: LoginComponent, canActivate: [LoginGuard]},
+  {path:'', component: MainhomeComponent, canActivate: [LoginGuard]},
   {path:'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path:'signup', component: SingupComponent, canActivate: [LoginGuard]},
   {path:'appointmentform', component: AppointmentformComponent},
