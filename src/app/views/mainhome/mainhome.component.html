@@ -57,7 +57,7 @@
           <div [@slideInOut] class="carousel-caption text-start">
             <h1 >Consultorio De Psicologia Unibague</h1>
             <p >Un espacio del Programa de Psicología de la Universidad de Ibagué, ahora parte del Centro de Servicios en Psicología de la Universidad.</p>
-            <p ><a class="btn btn-lg btn-primary" href="#">Conoce más</a></p>
+            <p ><a class="btn btn-lg btn-primary" routerLink="/appointmentform">Agenda tu cita</a></p>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
           <div class="carousel-caption">
             <h1>Servicios de Atención Psicológica</h1>
             <p>Ofrecemos evaluación, intervención individual, terapia de pareja y familia, psicoterapia de grupo, talleres de crecimiento personal y más.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Explora nuestros servicios</a></p>
+            <p><a class="btn btn-lg btn-primary" (click)="scrollToEvaluacionPsicologica()">Explora nuestros servicios</a></p>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
           <div class="carousel-caption text-end">
             <h1>Misión y Visión</h1>
             <p>Nuestra misión es promover el fortalecimiento de habilidades y herramientas terapéuticas, y nuestra visión es ser líderes en atención psicológica y promoción del bienestar humano en el Tolima.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Conoce más</a></p>
+
           </div>
         </div>
       </div>
@@ -126,26 +126,31 @@
     </div >
 
     <hr id="evaluacion-psicologica" class="featurette-divider">
+    <h2 class="featurette-heading  text-center">Servicios</h2>
+    <br>
+    <hr class="featurette-divider">
 
-    <div  class="row featurette" >
+    <div class="row featurette">
       <div class="col-md-7">
         <h2 class="featurette-heading">Evaluación Psicológica</h2>
         <p class="lead">Análisis sistemático y estimación del funcionamiento psicológico de un individuo, pareja o un grupo familiar, en las áreas intelectual, emocional, afectiva, interpersonal y social.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image1.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="300" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
 
     <hr class="featurette-divider">
+
+
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
         <h2 class="featurette-heading">Intervención Individual</h2>
         <p class="lead">Proceso de asesoría psicológica o terapéutico orientado al cambio comportamental, cognitivo y emocional del consultante.</p>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image2.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="300" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
 
@@ -156,10 +161,11 @@
         <h2 class="featurette-heading">Terapia de Pareja y Familia</h2>
         <p class="lead">Proceso orientado a la evaluación, diagnóstico e intervención a nivel de la pareja y la familia, en las diferentes problemáticas que se generan en el desarrollo del ciclo vital individual y familiar.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image3.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="350" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
+
 
     <hr class="featurette-divider">
 
@@ -168,10 +174,11 @@
         <h2 class="featurette-heading">Psicoterapia de Grupo</h2>
         <p class="lead">Proceso orientado a la identificación de problemas emocionales diversos y a la modificación de patrones insatisfactorios a través de la vivencia de grupos y la retroalimentación del mismo.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image4.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="300" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
+
 
     <hr class="featurette-divider">
 
@@ -180,8 +187,8 @@
         <h2 class="featurette-heading">Talleres de Crecimiento Personal</h2>
         <p class="lead">Actividad didáctica vivencial estructurada cuyo objetivo es superar déficits o excesos comportamentales y desarrollar estrategias para solución de problemas.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image5.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="350" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
 
@@ -192,8 +199,8 @@
         <h2 class="featurette-heading">Seminarios y Conferencias</h2>
         <p class="lead">Los consultorios ofrecerán también estas modalidades, teniendo como base las necesidades de los usuarios, en temáticas propias del campo psicológico.</p>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image6.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="300" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
 
@@ -204,8 +211,8 @@
         <h2 class="featurette-heading">Proyectos de Promoción y Prevención</h2>
         <p class="lead">Actividad que privilegia el desarrollo de programas dirigidos al control y prevención de factores de riesgo en diversas problemáticas propias de la psicología a nivel de salud mental.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image7.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="350" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
 
@@ -216,32 +223,18 @@
         <h2 class="featurette-heading">Consultoría</h2>
         <p class="lead">Proceso de orientación y asesoría, dirigido a personas naturales e instituciones públicas y privadas, para el desarrollo de propuestas y proyectos en el campo psicológico.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">300x300</text></svg>
+      <div class="col-md-5 d-flex align-items-start">
+        <img src="/assets/images/services/image8.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="300" alt="Imagen Evaluación Psicológica" style="object-fit: cover;">
       </div>
     </div>
 
-    <hr class="featurette-divider">
-
-    <div class="row">
-      <div class="col-lg-12">
-        <h2>Objetivos</h2>
-        <ul>
-          <li>Promover y fomentar el bienestar humano de la comunidad tolimense, a través de atención psicológica individual y familiar.</li>
-          <li>Establecer acciones de formación investigativa y profesional, que permitan la participación de estudiantes, docentes, investigadores, por medio de la integración, aplicación de conocimientos, actitudes y habilidades en el marco del quehacer profesional.</li>
-          <li>Diseñar, implementar y evaluar programas de prevención, promoción e intervención psicosocial fundamentados en procesos de investigación.</li>
-        </ul>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
 
   </div>
 
-
+  <hr class="featurette-divider">
   <footer class="container">
     <p class="float-end" ><a (click)="scrollToInicio()"><i class="bi bi-arrow-up-circle-fill" ></i>Volver arriba</a></p>
-    <p>&copy; 2021-2023 Consultorios de Psicología de la Universidad de Ibagué &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
+    <p>&copy; 2021-2023 Consultorios de Psicología de la Universidad de Ibagué &middot; <a (click)="scrollToInicio()">Privacidad</a> &middot; <a (click)="scrollToInicio()">Términos</a></p>
   </footer>
 </main>
 

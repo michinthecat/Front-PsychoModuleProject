@@ -73,6 +73,12 @@ body {
   letter-spacing: -.05rem;
 }
 
+.featurette-center {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
