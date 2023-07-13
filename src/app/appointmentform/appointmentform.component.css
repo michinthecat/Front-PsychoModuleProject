@@ -28,14 +28,16 @@
 
 .collage-section {
   margin: 30px;
-  flex: 1;
-  width: 85%;
+  flex: 0.9;  /* reducido a 0.9 para dar más espacio al formulario */
+  width: 100%;  /* reducido proporcionalmente al aumento del formulario */
 }
 
 .form-container {
   background-color: white;
   margin: 60px;
   left: 10;
+  flex: 1.1;  /* aumentado a 1.1 */
+  width: 93.5%;  /* aumentado en un 10% */
 }
 
 img{
@@ -47,18 +49,27 @@ img{
   gap: 10px;
 }
 
-@media (max-width: 700px) {
-  .form-container {
-    margin: 20px;
-    left: 0;
+@media (max-width: 1000px) {
+  .header > section {
+    flex-direction: column;
+    align-items: center;  /* Esto centrará los hijos de la sección */
   }
 
   .collage-section {
+    width: 90%;
+    order: 2;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    width: calc(100% - 40px);
     margin: 20px;
-    width: 100%;
-    size: 90%;
+    align-self: center; /* Esto centrará el contenedor del formulario */
   }
 }
+
+
+
 
 @keyframes animate {
   0%{
