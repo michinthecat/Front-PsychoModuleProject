@@ -9,41 +9,46 @@
         <h4><i class="bi bi-calendar-check"></i>&nbsp;Agenda tu cita</h4>
       </div>
       <div class="mb-1">
-        <form id="contacto">
+        <form #appointmentForm="ngForm" id="appointmentForm">
           <div class="mb-4 d-flex justify-content-between">
             <div>
               <label for="name"><i class="bi bi-person-fill"></i> Nombre</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="ej: Gabriel" required (input)="validateInput($event, 'name')">
+              <input type="text" class="form-control" name="name" id="name" placeholder="ej: Gabriel" required [formControl]="inputControl" (input)="validateInput($event, 'name')">
               <div class="name text-danger"></div>
             </div>
             <div>
               <label for="lastname"><i class="bi bi-person-bounding-box"></i> Apellido</label>
-              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="ej: Pacheco" required (input)="validateInput($event, 'lastname')">
+              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="ej: Pacheco" required [formControl]="inputControl" (input)="validateInput($event, 'lastname')">
               <div class="lastname text-danger"></div>
             </div>
           </div>
           <div class="mb-4">
+            <label for="identification"><i class="bi bi-person-video2"></i> Numero de identificacion: </label>
+            <input type="identification" class="form-control" name="identification" id="identification" required [formControl]="inputControl" (input)="validateIdentification($event)">
+            <div class="identification text-danger"></div>
+          </div>
+          <div class="mb-4">
             <label for="email"><i class="bi bi-envelope-fill"></i> Correo</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="ej: gpmcheco@mail.com" required (input)="validateEmail($event)">
+            <input type="email" class="form-control" name="email" id="email" placeholder="ej: gpmcheco@mail.com" required [formControl]="inputControl" (input)="validateEmail($event)">
             <div class="email text-danger"></div>
           </div>
           <div class="form-group">
             <label for="linkage">Tipo de vinculación</label>
-            <select class="form-control" id="linkage" (change)="onLinkageSelected($event)">
-              <option *ngFor="let pacient of userType" [value]="pacient.id">{{pacient.patientType}}</option>
+            <select class="form-control" id="linkage" [(ngModel)]="selectedLinkage" name="linkage" required (ngModelChange)="onLinkageSelected($event)">
+              <option *ngFor="let pacient of userType" [value]="pacient.id">{{pacient.type}}</option>
             </select>
           </div>
           <br>
           <div class="form-group" *ngIf="showFields">
             <label for="program">Programa académico</label>
-            <select class="form-control" id="program">
+            <select class="form-control" id="program" #programSelect>
               <option *ngFor="let academic of academics" [value]="academic.id">{{academic.program}}</option>
             </select>
           </div>
           <br>
           <div class="form-group" *ngIf="showFields">
             <label for="semester">Semestre</label>
-            <select class="form-control" id="semester">
+            <select class="form-control" id="semester" #semesterSelect>
               <option *ngFor="let semester of semesters" [value]="semester.id">{{semester.semester}}</option>
             </select>
           </div>
@@ -51,7 +56,7 @@
           <div class="mb-4">
             <div class="form-group">
               <label for="gender"><i class="bi bi-gender-ambiguous"></i> Género</label>
-              <select class="form-control" id="gender">
+              <select class="form-control" id="gender" required #genderSelect>
                 <option *ngFor="let gender of genders" [value]="gender.id">{{gender.gender}}</option>
               </select>
             </div>
@@ -59,33 +64,33 @@
           <div class="mb-4 d-flex justify-content-between">
             <div>
               <label for="age"><i class="bi bi-person-plus-fill"></i> Edad</label>
-              <input type="number" class="form-control" name="age" id="age" required maxlength="2" (input)="validateAge($event)">
+              <input type="number" class="form-control" name="age" id="age" required maxlength="2" [formControl]="inputControl" (input)="validateAge($event)">
               <div class="age text-danger"></div>
             </div>
             <div>
               <label for="phone"><i class="bi bi-telephone-fill"></i> Teléfono</label>
-              <input type="number" class="form-control" name="phone" id="phone" required maxlength="10" (input)="validatePhone($event)">
+              <input type="number" class="form-control" name="phone" id="phone" required maxlength="10" [formControl]="inputControl" (input)="validatePhone($event)">
               <div class="phone text-danger"></div>
             </div>
           </div>
           <div class="form-group">
             <label for="service">Seleccione el servicio de interés</label>
-            <select class="form-control" id="service" name="service" [(ngModel)]="selectedService" (ngModelChange)="onServiceSelected($event)">
-              <option *ngFor="let service of services" [value]="service.id">{{service.serviceName}}</option>
+            <select class="form-control" id="service" name="service" required [(ngModel)]="selectedService" (ngModelChange)="onServiceSelected($event)">
+              <option *ngFor="let service of services" [value]="service.id">{{service.service_name}}</option>
             </select>
           </div>
           <br>
           <div class="form-group">
             <label for="psychologist">Seleccione el/la profesional</label>
-            <select class="form-control" id="psychologist" name="psychologist" [(ngModel)]="selectedPsychologistId" (ngModelChange)="onPsychologistSelected($event)">
+            <select class="form-control" id="psychologist" name="psychologist" required [(ngModel)]="selectedPsychologistId" (ngModelChange)="onPsychologistSelected($event)">
               <option *ngFor="let psychologist of psychologistsByService" [value]="psychologist.id">{{psychologist.name + ' ' + psychologist.last_name}}</option>
             </select>
           </div>
           <br>
           <div>
             <div class="form-group">
-              <label for="date">Fecha</label>
-              <input type="date" id="date" class="form-control" name="date" (change)="onDateSelected($event)">
+              <label for="date" >Fecha</label>
+              <input type="date" id="date" class="form-control" name="date" #dateInput (change)="onDateSelected($event)" required>
             </div>
           </div>
           <br>
@@ -94,27 +99,33 @@
               <label for="time"><i class="bi bi-clock-fill"></i> Hora</label>
             </div>
             <div style="text-align:center">
-              <tr>
-                <td>
-                  <div class="button-container">
-                    <button class="btn btn-primary" *ngFor="let times of time" id="time" (click)="selectedTime = times.time">
-                      {{ formatHour(times.time) }}
-                    </button>
-                  </div>
-                  <br>
-                </td>
-              </tr>
+              <table>
+                <tr>
+                  <td>
+                    <div class="button-container">
+                      <button class="btn btn-primary"  *ngFor="let times of time" id="time" 
+                        [ngClass]="{ 'selected': selectedTime === times.time }" (click)="selectTime(times.time)">
+                        {{ formatHour(times.time) }}
+                      </button>
+                    </div>
+                    <br>
+                  </td>
+                </tr>
+              </table>
             </div>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="terms" required [(ngModel)]="termsAccepted" name="terms">
+            <label for="terms" class="label-text">Acepto la política de tratamiento de datos de la Universidad de Ibagué.</label>
           </div>
           <br>
           <div>
-            <button id="button" class="col-12 btn btn-primary justify-content-between" (click)="createAppointment()">
+            <button id="button" class="col-12 btn btn-primary justify-content-between" (click)="createAppointment()" [disabled]="!termsAccepted || appointmentForm.invalid">
               <span>Enviar</span><i id="icono" class="bi bi-cursor-fill"></i>
             </button>
           </div>
         </form>
       </div>
-
     </div>
   </section>
 </div>
@@ -131,6 +142,6 @@
     {{modalBody}}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click'); resetForm()">Cerrar</button>
   </div>
 </ng-template>

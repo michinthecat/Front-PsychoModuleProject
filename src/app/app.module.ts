@@ -24,6 +24,7 @@ import { MenuAdminComponent } from './menus/menu-admin/menu-admin.component';
 import { PsychologistComponent } from './views/psychologist/psychologist.component';
 import { MainhomeComponent } from './views/mainhome/mainhome.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PsychologistComponent,
     MainhomeComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

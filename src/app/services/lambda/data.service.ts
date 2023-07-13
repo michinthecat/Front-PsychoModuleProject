@@ -10,7 +10,7 @@ import { ExternalAppointmentData } from '../../models/appointment/external-appoi
   providedIn: 'root',
 })
 export class DataService {
-  apiUrl = 'https://b8oisr2463.execute-api.us-east-2.amazonaws.com/dev';
+  apiUrl = 'https://5jaoqfe8ng.execute-api.us-east-1.amazonaws.com/dev';
 
   constructor(private http: HttpClient) {}
 
@@ -52,7 +52,7 @@ export class DataService {
   ): Observable<DatesByPsycologist[]> {
     const url =
       this.apiUrl +
-      '/times/by-date?id= ' +
+      '/times/bydate?id= ' +
       idPsycologist +
       '&' +
       'date=' +
