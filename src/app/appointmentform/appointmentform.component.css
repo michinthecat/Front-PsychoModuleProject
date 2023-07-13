@@ -4,22 +4,20 @@
 
 .background {
   height: 100vh;
-  background-image: url('~src/assets/images/carousel/image1.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
   animation: fadein 20s infinite ;
 }
 
 @keyframes fadein {
-  0% {background-image: url('~src/assets/images/carousel/image1.png');}
-  25% {background-image: url('~src/assets/images/carousel/image2.png');}
-  50% {background-image: url('~src/assets/images/carousel/image3.png');}
-  75% {background-image: url('~src/assets/images/carousel/image1.png');}
-  100% {background-image: url('~src/assets/images/carousel/image2.png');}
+  0% {background-image: url('/assets/images/carousel/image1.png');}
+  33% {background-image: url('/assets/images/carousel/image2.png');}
+  66% {background-image: url('/assets/images/carousel/image3.png');}
+  100% {background-image: url('/assets/images/carousel/image1.png');}
 }
 
 /* Aquí iría el resto del CSS... */
-
 
 .container-fluid {
   max-width: 100%;
