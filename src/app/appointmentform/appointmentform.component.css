@@ -3,7 +3,8 @@
 }
 
 .background {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17,7 +18,6 @@
   100% {background-image: url('/assets/images/appointmentform/image4.png');}
 }
 
-/* Aquí iría el resto del CSS... */
 
 .container-fluid {
   max-width: 100%;
