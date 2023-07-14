@@ -3,18 +3,20 @@
   position: relative;
 }
 
+
 .background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   animation: fadein 20s infinite ;
   z-index: 1;
 }
+
 
 @keyframes fadein {
   0% {background-image: url('/assets/images/appointmentform/image1.png'); opacity: 1;}
