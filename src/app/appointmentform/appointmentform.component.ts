@@ -12,12 +12,23 @@ import { Gender} from '../models/gender/gender.model'
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ValidationService } from '../services/lambda/validation.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 @Component({
   selector: 'app-appointmentform',
   templateUrl: './appointmentform.component.html',
-  styleUrls: ['./appointmentform.component.css']
+  styleUrls: ['./appointmentform.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1200ms ease-out', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('500ms ease-out', style({ opacity: 0 }))
+      ])
+    ])]
 })
 export class AppointmentformComponent implements OnInit{
   @ViewChild('content') content: any;
@@ -70,7 +81,7 @@ export class AppointmentformComponent implements OnInit{
   onLinkageSelected(selectedLinkage: string): void {
     this.showFields = selectedLinkage === '1';
   }
-  
+
   onServiceSelected(selectedService: string): void {
     if (selectedService) {
       console.log('Servicio: ' + selectedService);
@@ -81,7 +92,7 @@ export class AppointmentformComponent implements OnInit{
       console.log('Error: selectedService is null or undefined');
     }
   }
-  
+
   onDateSelected(event: any): void {
     if (event.target && event.target.value) {
       const selectedDate: string = event.target.value;
@@ -112,9 +123,9 @@ export class AppointmentformComponent implements OnInit{
 
   selectTime(time: string): void {
     if (this.selectedTime === time) {
-      this.selectedTime = null; 
+      this.selectedTime = null;
     } else {
-      this.selectedTime = time; 
+      this.selectedTime = time;
     }
   }
 
@@ -123,7 +134,7 @@ export class AppointmentformComponent implements OnInit{
     if (/^\d{2}:\d{2}:\d{2}$/.test(hour)) {
       return hour.substr(0, 5);
     } else {
-      return hour; 
+      return hour;
     }
   }
 
