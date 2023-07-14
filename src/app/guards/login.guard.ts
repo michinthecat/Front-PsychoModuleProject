@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
     var isAuth = this.authService.isAuth();
     if(isAuth) {
-      this.router.navigate(['/adminhome']);
+      this.router.navigate(['/show-appointment']);
       return false;
     }
     return true;

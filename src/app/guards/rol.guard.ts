@@ -8,7 +8,7 @@ import { PsychologistService } from '../services/api-consume/psychologist/psycho
 @Injectable({
   providedIn: 'root'
 })
-export class RolGuard implements CanActivate {
+export class RolAdminGuard implements CanActivate {
 
   constructor(private cognitoService: CognitoService, private psychologistService: PsychologistService) {}
 

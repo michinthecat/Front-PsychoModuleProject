@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/adminhome">
+    <a class="navbar-brand" routerLink="/show-appointment">
       <i class="bi bi-flower1" style="margin-right: 5px"></i>
       <span class="text-warning">Modulo Administrativo Psicologico</span>
     </a>
@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/adminhome"
+          <a class="nav-link active" aria-current="page" routerLink="/show-appointment"
             >Inicio</a
           >
         </li>
@@ -132,13 +132,6 @@
       </ul>
 
       <form class="d-flex">
-        <button
-          type="button"
-          class="btn btn-outline-warning"
-          (click)="onLogout()"
-        >
-          <i class="fa-regular fa-user"></i> Perfil
-        </button>
         <span style="margin: 0 5px"></span>
         <button
           type="button"

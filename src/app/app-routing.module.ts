@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './views/auth/login/login.component';
 import { SingupComponent } from './views/auth/signup/singup.component';
-import { HomeComponent } from './home/home.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeGuard } from './guards/home.guard';
-import { RolGuard } from './guards/rol.guard';
+import { RolAdminGuard } from './guards/rol.guard';
 import { AppointmentformComponent } from './appointmentform/appointmentform.component';
 import { SearchappointmentComponent } from './views/appointments/searchappointment/searchappointment.component';
 import { MenuComponent } from './menus/menu-user/menu.component';
@@ -23,22 +22,21 @@ import { MainhomeComponent } from './views/mainhome/mainhome.component';
 
 
 const routes: Routes = [
-  {path:'', component: MainhomeComponent, canActivate: [LoginGuard]},
+  {path:'', component: MainhomeComponent},
   {path:'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path:'signup', component: SingupComponent, canActivate: [LoginGuard]},
   {path:'appointmentform', component: AppointmentformComponent},
   {path:'mainhome', component: MainhomeComponent},
-  {path:'adminhome', component: HomeComponent, canActivate: [RolGuard]},
   {path:'menu', component: MenuComponent, canActivate: [HomeGuard]},
-  {path:'menu-admin', component: MenuAdminComponent, canActivate: [RolGuard]},
+  {path:'menu-admin', component: MenuAdminComponent, canActivate: [RolAdminGuard]},
   {path: 'search-appointment', component: SearchappointmentComponent, canActivate: [HomeGuard]},
   {path: 'show-appointment', component: ShowAppointmentComponent, canActivate: [HomeGuard]},
   {path: 'search-patient' , component: SearchpatientComponent, canActivate: [HomeGuard]},
   {path: 'update-patient' , component: UpdatepatientComponent, canActivate: [HomeGuard]},
   {path: 'show-schedules' , component: ShowschedulesComponent, canActivate: [HomeGuard]},
-  {path: 'specialty-admin' , component: SpecialtyComponent, canActivate: [RolGuard]},
-  {path: 'servicespsycho-admin' , component: ServicespsychoComponent, canActivate: [RolGuard]},
-  {path: 'psychologist-admin' , component: PsychologistComponent, canActivate: [RolGuard]},
+  {path: 'specialty-admin' , component: SpecialtyComponent, canActivate: [RolAdminGuard]},
+  {path: 'servicespsycho-admin' , component: ServicespsychoComponent, canActivate: [RolAdminGuard]},
+  {path: 'psychologist-admin' , component: PsychologistComponent, canActivate: [RolAdminGuard]},
   {path: 'forgot-password' , component: ForgotpasswordComponent, canActivate: [LoginGuard]},
   {path: '**', component: NotFoundComponent }
 
