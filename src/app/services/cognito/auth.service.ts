@@ -52,7 +52,7 @@ export class AuthService {
       });
     } else {
       this.isAuthSubject.next(false);
-      this.userRole$.next(null); // reset user role when not authenticated
+      this.userRole$.next(null);
     }
 
     return isAuth;

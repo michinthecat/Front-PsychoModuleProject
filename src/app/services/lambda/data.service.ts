@@ -5,12 +5,13 @@ import { PsycologistByService } from '../../models/psychologist/psycologist-by-s
 import { DatesByPsycologist } from '../../models/schedule/dates-by-psycologist.model';
 import { StudentAppointmentData } from '../../models/appointment/student-appointment-data.model';
 import { ExternalAppointmentData } from '../../models/appointment/external-appointment-data.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  apiUrl = 'https://5jaoqfe8ng.execute-api.us-east-1.amazonaws.com/dev';
+  apiUrl = environment.AwsUrl;
 
   constructor(private http: HttpClient) {}
 

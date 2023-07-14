@@ -11,7 +11,6 @@ export class DateFormatService {
     return `${day}/${month}/${year} ${hourMinute}`;
   }
 
-  // Funcion para dar la fecha de hoy en este formato = 'YYYY-MM-DD'
   getTodayDate(): string {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');

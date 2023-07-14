@@ -152,7 +152,6 @@ export class CognitoService {
     });
   }
 
-  //Borra el usuario autenticado ACTUALMENTE, no al que le ponga
   deleteUser(): Observable<void> {
     return new Observable<void>((observer) => {
       var userPool = new CognitoUserPool(this.poolData);
