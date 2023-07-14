@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DataService {
-  apiUrl = environment.AwsUrl;
+  apiUrl = environment.AwsLambdaUrl;
 
   constructor(private http: HttpClient) {}
 
