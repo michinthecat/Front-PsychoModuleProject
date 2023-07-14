@@ -167,9 +167,9 @@ export class PsychologistComponent implements OnInit {
       (s) => s.id === service.id
     );
     if (index > -1) {
-      this.selectedPsychologist.services.splice(index, 1); // Remove service
+      this.selectedPsychologist.services.splice(index, 1);
     } else {
-      this.selectedPsychologist.services.push(service); // Add service
+      this.selectedPsychologist.services.push(service);
     }
   }
 

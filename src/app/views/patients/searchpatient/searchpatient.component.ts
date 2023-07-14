@@ -18,6 +18,7 @@ export class SearchpatientComponent {
   searchComplete = false;
   editingNotes = false;
   editedNotes: string;
+  statusText = false;
 
   constructor(
     private patientService: PatientService,
@@ -51,6 +52,7 @@ export class SearchpatientComponent {
             'Actualización Exitosa',
             `Datos Actualizados Exitosamente`
           );
+          this.statusText = false;
           this.patient.notes = response.notes;
         },
         (error) => {
@@ -92,9 +94,13 @@ export class SearchpatientComponent {
   }
 
   setCursorPosition(event: any): void {
-    // Establecer el cursor al final del campo de texto al hacer clic en él
+
+
+    if(this.statusText == false){
     const textarea = event.target as HTMLTextAreaElement;
     textarea.selectionStart = textarea.value.length;
     textarea.selectionEnd = textarea.value.length;
+    this.statusText =  true;
   }
+}
 }
